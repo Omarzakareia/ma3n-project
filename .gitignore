@@ -1,1 +1,65 @@
+# Ignore Visual Studio files
 .vs/
+*.user
+*.suo
+*.sln.cache
+*.vscode/
+*.cache
+*.ncb
+*.pdb
+*.obj
+*.aps
+*.ilk
+*.log
+*.sdf
+*.sqlite
+*.sqllite3
+
+# Ignore bin and obj folders (compiled files)
+bin/
+obj/
+Debug/
+Release/
+
+# Ignore build-related files
+*.Build.CI.log
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Ignore package files
+packages/
+*.nupkg
+*.snupkg
+.nuget/
+
+# Ignore temporary files
+*.tmp
+*.cache
+*.bak
+*.swp
+*.DS_Store
+Thumbs.db
+
+# Ignore Telerik auto-generated files
+Telerik.Web.UI.DialogHandler.aspx
+Telerik.Web.UI.SpellCheckHandler.axd
+
+# Ignore logs and temporary Visual Studio files
+*.log
+*.tlog
+*.log2
+*.log3
+*.log4
+*.log5
+
+# Ignore IIS Express settings
+iisexpress/
+
+# Ignore Web.config files (to prevent exposing sensitive data)
+Web.config
+Web.Debug.config
+Web.Release.config
+
+HospitalSystem/obj/Debug/HospitalSystem.csproj.AssemblyReference.cache
+HospitalSystem/obj/Debug/build.force
