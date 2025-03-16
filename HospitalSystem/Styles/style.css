@@ -56,33 +56,68 @@ nav ul li a:hover {
   color: white;
 }
 
-footer {
-  padding: 40px 0;
-  background-color: #23408e;
-  bottom:0;
-  left:0;
-  position:absolute;
-  text-align:center;
-  width:100%;
+.footer {
+    width: 100%;
+    padding: 20px 0;
+    background-color: #23408E; /* Keeps the background unchanged */
 }
 
-footer h5 {
-  color: white;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-footer ul {
-  padding: 0;
-  margin: 0;
-  list-style-type: none;
+.footer-logo {
+    max-width: 150px;
+    height: auto;
 }
 
-footer ul li a {
-  color: white;
-  text-decoration: none;
+.footer-links {
+    list-style: none;
+    padding: 0;
 }
 
-footer ul li a:hover {
-  color: white;
+    .footer-links li {
+        margin-bottom: 5px;
+    }
+
+    .footer-links a {
+        text-decoration: none;
+        color: inherit; /* Keeps text color unchanged */
+    }
+
+.footer-social {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+    .footer-social li {
+        display: inline-block;
+    }
+
+    .footer-social a {
+        font-size: 20px;
+        text-decoration: none;
+        color: inherit;
+    }
+
+@media (max-width: 768px) {
+    .footer .row {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-logo {
+        max-width: 120px;
+        margin-bottom: 15px;
+    }
+
+    .footer-social {
+        justify-content: center;
+    }
 }
 
 .primary-btn {
