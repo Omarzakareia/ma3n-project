@@ -1,0 +1,334 @@
+.small-text {
+  font-size: 12px;
+  color: #888888;
+}
+
+* {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+.container-fluid {
+  padding-left: 7vw;
+  padding-right: 7vw;
+}
+
+nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-color: #23408e;
+  padding: 20px 0;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1010;
+}
+
+nav ul {
+  padding: 0;
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  list-style-type: none;
+}
+
+nav ul li {
+  margin-left: 20px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  color: white;
+}
+
+footer {
+  padding: 40px 0;
+  background-color: #23408e;
+  bottom:0;
+  left:0;
+  position:absolute;
+  text-align:center;
+  width:100%;
+}
+
+footer h5 {
+  color: white;
+}
+
+footer ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+footer ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+footer ul li a:hover {
+  color: white;
+}
+
+.primary-btn {
+  border: 0;
+  color: white;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 10px 30px;
+  border: 2px solid #ed1b24;
+  background-color: #ed1b24;
+  text-decoration: none;
+}
+
+.primary-btn:hover {
+  color: white;
+}
+
+.secondary-btn {
+  border: 0;
+  color: #ed1b24;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 10px 30px;
+  border: 2px solid #ed1b24;
+  text-decoration: none;
+}
+
+.secondary-btn:hover {
+  color: white;
+}
+
+.hero-section {
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.book-wrapper {
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  z-index: 5;
+  position: absolute;
+  border-radius: 20px;
+  -webkit-box-shadow: 0 0 60px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 60px rgba(0, 0, 0, 0.2);
+}
+
+.book-wrapper h4 {
+  text-align: center;
+}
+
+.book-wrapper table {
+  width: 100%;
+  border: 1px solid #cccccc;
+  border-radius: 20px;
+}
+
+.book-wrapper table td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #cccccc;
+}
+
+.book-wrapper label {
+  color: #888888;
+  font-size: 13px;
+}
+
+.book-wrapper select,
+.book-wrapper input {
+  text-align: center;
+  border: 0;
+}
+
+.doctors-list {
+  padding: 40px 0;
+  background-color: #e2e6ea;
+}
+
+.doctors-list .rating-wrapper svg {
+  fill: #fbcd00;
+}
+
+.doctors-list .details p {
+  color: #23408e;
+}
+
+.doctors-list .doctor-schedule {
+  width: 100%;
+  border: 1px solid #cccccc;
+}
+
+.doctors-list .doctor-schedule th,
+.doctors-list .doctor-schedule td {
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #cccccc;
+}
+
+.custom-card {
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.custom-card .img-wrapper {
+  width: 100%;
+  border-radius: 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+}
+
+.custom-card .img-wrapper:after {
+  content: '';
+  display: block;
+  padding-bottom: 100%;
+}
+
+.custom-card .img-wrapper input {
+  position: absolute;
+  opacity: 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.servcies svg {
+  fill: #23408e;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 1rem;
+}
+
+.servcies p {
+  color: #888888;
+}
+
+.social-links {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.social-links li {
+  margin-right: 14px;
+}
+
+.contact-us-hero {
+  height: 60vh;
+  background-size: cover;
+  background-position: center;
+  background-image: url(../img/contact.jpg);
+  position: relative;
+}
+
+.contact-us-hero .container-fluid {
+  position: relative;
+  z-index: 2;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.contact-us-hero .container-fluid h1 {
+  color: white;
+}
+
+.book-app-hero {
+  height: 60vh;
+  background-size: cover;
+  background-position: center;
+  background-image: url(../img/appointment.jpg);
+  position: relative;
+}
+
+.book-app-hero .container-fluid {
+  position: relative;
+  z-index: 2;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.book-app-hero .container-fluid h1 {
+  color: white;
+}
+
+.contact-info {
+  padding: 20px;
+  background-color: #EFEFEF;
+}
+
+.contact-info h4 {
+  color: #23408e;
+}
+
+.appointments-table {
+  background-color: white;
+}
+
+.appointments-table th:nth-child(5),
+.appointments-table td:nth-child(5) {
+  text-align: center;
+}
+/*# sourceMappingURL=style.css.map */
