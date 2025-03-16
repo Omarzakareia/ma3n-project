@@ -57,13 +57,13 @@ nav ul li a:hover {
 }
 
 footer {
-  padding: 40px 0;
-  background-color: #23408e;
-  bottom:0;
-  left:0;
-  position:absolute;
-  text-align:center;
-  width:100%;
+    padding: 40px 0;
+    background-color: #23408e;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    text-align: center;
+    width: 100%;
 }
 
 footer h5 {
