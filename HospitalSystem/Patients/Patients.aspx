@@ -3,17 +3,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <telerik:RadGrid ID="RadGrid1" runat="server">
-        <MasterTableView DataKeyNames="PatientID">
+    <telerik:RadGrid ID="RadGrid1" runat="server" AutoGenerateColumns="False" AllowPaging="True" PageSize="10">
+        <MasterTableView>
             <Columns>
-                <telerik:GridBoundColumn DataField="PatientID" HeaderText="ID" ReadOnly="true" UniqueName="PatientID" />
-                <telerik:GridBoundColumn DataField="Name" HeaderText="Name" UniqueName="Name" />
-                <telerik:GridBoundColumn DataField="Age" HeaderText="Age" UniqueName="Age" />
-                <telerik:GridBoundColumn DataField="Gender" HeaderText="Gender" UniqueName="Gender" />
-                <telerik:GridBoundColumn DataField="ContactNumber" HeaderText="Contact" UniqueName="ContactNumber" />
+                <telerik:GridBoundColumn DataField="PatientID" HeaderText="Patient ID" UniqueName="PatientID" />
+                <telerik:GridBoundColumn DataField="Full_Name" HeaderText="Patient Name" UniqueName="Full_Name" />
+                <telerik:GridBoundColumn DataField="Phone" HeaderText="Patient Phone" UniqueName="Phone" />
             </Columns>
         </MasterTableView>
     </telerik:RadGrid>
-    <telerik:RadRadioButton ID="RadRadioButton1" runat="server" Text="RadRadioButton"></telerik:RadRadioButton>
-    <telerik:RadButton ID="RadButton1" runat="server" Text="RadButton"></telerik:RadButton>
 </asp:Content>

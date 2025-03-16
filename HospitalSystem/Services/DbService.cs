@@ -13,7 +13,7 @@ namespace HospitalSystem.Services
 
 		private DbService()
 		{
-            var conn = ConfigurationManager.ConnectionStrings["MyDB"]; 
+            var conn = ConfigurationManager.ConnectionStrings["HospitalEntities"]; 
             if (conn == null)
             {
                 throw new Exception("❌ Connection string 'MyDB' not found in web.config!");
