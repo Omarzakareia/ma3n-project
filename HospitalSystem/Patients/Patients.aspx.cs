@@ -32,5 +32,20 @@ namespace HospitalSystem.Patients
                 Response.Write("<script>alert('Error: " + ex.Message.Replace("'", "\\'") + "');</script>");
             }
         }
+        protected void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            string searchText = txtSearch.Text.Trim().ToLower();
+
+            using (var db = DbService.Instance.GetDbContext())
+            {
+                var patientData = db.PatientInfoes
+                    .Where(p => p.FullName.ToLower().Contains(searchText))
+                    .ToList();
+
+                RadGrid1.DataSource = patientData;
+                RadGrid1.DataBind();
+            }
+        }
+
     }
 }

@@ -16,7 +16,7 @@ namespace HospitalSystem.Services
             var conn = ConfigurationManager.ConnectionStrings["HospitalEntities"]; 
             if (conn == null)
             {
-                throw new Exception("❌ Connection string 'MyDB' not found in web.config!");
+                throw new Exception("❌ Connection string 'HospitalEntities' not found in web.config!");
             }
             _connectionString = conn.ConnectionString;
         }
