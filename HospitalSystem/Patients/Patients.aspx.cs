@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using HospitalSystem.Services;
 using Telerik.Web.UI;
+using Telerik.Web.UI.Skins;
 
 namespace HospitalSystem.Patients
 {
@@ -15,9 +16,10 @@ namespace HospitalSystem.Patients
         {
             if (!IsPostBack)
             {
-                LoadPatientData();
+                //LoadPatientData();
                 LoadDeletedPatientData();
             }
+
         }
 
         private void LoadPatientData()
@@ -27,8 +29,7 @@ namespace HospitalSystem.Patients
                 using (var db = DbService.Instance.GetDbContext())
                 {
                     var patientData = db.PatientInfoes.ToList(); // Fetch from view
-                    RadGrid1.DataSource = patientData;
-                    RadGrid1.DataBind(); // Bind to RadGrid
+                    RadGridActive.DataSource = patientData;
                 }
             }
             catch (Exception ex)
@@ -47,12 +48,12 @@ namespace HospitalSystem.Patients
                     .Where(p => p.FullName.ToLower().Contains(searchText))
                     .ToList();
 
-                RadGrid1.DataSource = patientData;
-                RadGrid1.DataBind();
+                RadGridActive.DataSource = patientData;
+                RadGridActive.DataBind();
             }
         }
 
-        protected void RadGrid1_DeleteCommand(object sender, GridCommandEventArgs e)
+        protected void RadGridActive_DeleteCommand(object sender, GridCommandEventArgs e)
         {
             GridDataItem item = e.Item as GridDataItem;
             if (item != null)
@@ -105,6 +106,54 @@ namespace HospitalSystem.Patients
 
             // Change button text
             btnToggleView.Text = pnlActivePatients.Visible ? "Show Deleted Patients" : "Show Active Patients";
+        }
+        protected void RadGridActive_UpdateCommand(object sender, GridCommandEventArgs e)
+        {
+            GridEditableItem editedItem = e.Item as GridEditableItem;
+            if (editedItem != null)
+            {
+                // Get PatientID (Primary Key)
+                int patientId = Convert.ToInt32(editedItem.GetDataKeyValue("PatientID"));
+
+                // Retrieve updated values from the edit form
+                string fullName = (editedItem["FullName"].Controls[0] as TextBox).Text.Trim();
+                string phone = (editedItem["Phone"].Controls[0] as TextBox).Text.Trim();
+
+                // Split full name into first and last name
+                string firstName = "";
+                string lastName = "";
+
+                if (!string.IsNullOrEmpty(fullName))
+                {
+                    string[] nameParts = fullName.Split(new char[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);
+                    firstName = nameParts.Length > 0 ? nameParts[0] : "";
+                    lastName = nameParts.Length > 1 ? nameParts[1] : ""; // Last name is everything after the first space
+                }
+
+                using (var db = DbService.Instance.GetDbContext())
+                {
+                    var patient = db.Patients.FirstOrDefault(p => p.PatientID == patientId);
+                    if (patient != null)
+                    {
+                        // Update fields
+                        patient.FirstName = firstName;
+                        patient.LastName = lastName;
+                        patient.Phone = phone;
+
+                        db.SaveChanges(); // Save changes to DB
+                    }
+                }
+            }
+        }
+
+
+        protected void RadGridDeleted_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
+        {
+            LoadDeletedPatientData();
+        }
+        protected void RadGridActive_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
+        {
+            LoadPatientData();
         }
     }
 }
