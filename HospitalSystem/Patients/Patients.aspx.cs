@@ -14,30 +14,10 @@ namespace HospitalSystem.Patients
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                //LoadPatientData();
-                LoadDeletedPatientData();
-            }
 
         }
 
-        private void LoadPatientData()
-        {
-            try
-            {
-                using (var db = DbService.Instance.GetDbContext())
-                {
-                    var patientData = db.PatientInfoes.ToList(); // Fetch from view
-                    RadGridActive.DataSource = patientData;
-                }
-            }
-            catch (Exception ex)
-            {
 
-                Response.Write("<script>alert('Error: " + ex.Message.Replace("'", "\\'") + "');</script>");
-            }
-        }
         protected void txtSearch_TextChanged(object sender, EventArgs e)
         {
             string searchText = txtSearch.Text.Trim().ToLower();
@@ -72,29 +52,12 @@ namespace HospitalSystem.Patients
 
                         Response.Write("<script>alert('Marked as deleted in DB!');</script>"); // 🔹 Debugging step
 
-                        LoadPatientData();
                     }
                     else
                     {
                         Response.Write("<script>alert('Error: Patient not found!');</script>");
                     }
                 }
-            }
-        }
-        private void LoadDeletedPatientData()
-        {
-            try
-            {
-                using (var db = DbService.Instance.GetDbContext())
-                {
-                    var deletedPatients = db.DeletedPatientViews.ToList(); // Fetch from DeletedPatientView
-                    RadGridDeleted.DataSource = deletedPatients;
-                    RadGridDeleted.DataBind();
-                }
-            }
-            catch (Exception ex)
-            {
-                Response.Write("<script>alert('Error: " + ex.Message.Replace("'", "\\'") + "');</script>");
             }
         }
 
@@ -149,11 +112,35 @@ namespace HospitalSystem.Patients
 
         protected void RadGridDeleted_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
         {
-            LoadDeletedPatientData();
+            try
+            {
+                using (var db = DbService.Instance.GetDbContext())
+                {
+                    var deletedPatients = db.DeletedPatientViews.ToList(); // Fetch from DeletedPatientView
+                    RadGridDeleted.DataSource = deletedPatients;
+                    RadGridDeleted.DataBind();
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('Error: " + ex.Message.Replace("'", "\\'") + "');</script>");
+            }
         }
         protected void RadGridActive_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
         {
-            LoadPatientData();
+            try
+            {
+                using (var db = DbService.Instance.GetDbContext())
+                {
+                    var patientData = db.PatientInfoes.ToList(); // Fetch from view
+                    RadGridActive.DataSource = patientData;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Response.Write("<script>alert('Error: " + ex.Message.Replace("'", "\\'") + "');</script>");
+            }
         }
     }
 }
