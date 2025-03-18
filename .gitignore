@@ -90,3 +90,7 @@ HospitalSystem/web.config
 HospitalSystem/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 HospitalSystem/obj/Debug/HospitalSystem.csproj.AssemblyReference.cache
 HospitalSystem/web.config
+HospitalSystem/Setting.cs
+HospitalSystem/UserInfoView.cs
+HospitalSystem/DeletedPatientView.cs
+HospitalSystem/obj/Debug/HospitalSystem.csproj.AssemblyReference.cache
