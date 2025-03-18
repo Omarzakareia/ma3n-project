@@ -15,13 +15,22 @@ namespace HospitalSystem.Users
     {
 
         /// <summary>
-        /// RadGrid1 control.
+        /// btnActiveUsers control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadGrid RadGrid1;
+        protected global::Telerik.Web.UI.RadButton btnActiveUsers;
+
+        /// <summary>
+        /// btnDeletedUsers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton btnDeletedUsers;
 
         /// <summary>
         /// txtMaxAttempts control.
@@ -51,21 +60,48 @@ namespace HospitalSystem.Users
         protected global::System.Web.UI.WebControls.Label lblSaveStatus;
 
         /// <summary>
-        /// UserDataSource control.
+        /// RadMultiPage1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource UserDataSource;
+        protected global::Telerik.Web.UI.RadMultiPage RadMultiPage1;
 
         /// <summary>
-        /// RoleDataSource control.
+        /// PageActiveUsers control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource RoleDataSource;
+        protected global::Telerik.Web.UI.RadPageView PageActiveUsers;
+
+        /// <summary>
+        /// RadGrid1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid RadGrid1;
+
+        /// <summary>
+        /// PageDeletedUsers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadPageView PageDeletedUsers;
+
+        /// <summary>
+        /// RadGridDeletedUsers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid RadGridDeletedUsers;
     }
 }

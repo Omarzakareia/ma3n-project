@@ -122,6 +122,9 @@
     <Compile Include="DeletedPatientView.cs">
       <DependentUpon>HospitalEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="DeletedUsersView.cs">
+      <DependentUpon>HospitalEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Department.cs">
       <DependentUpon>HospitalEntities.tt</DependentUpon>
     </Compile>
