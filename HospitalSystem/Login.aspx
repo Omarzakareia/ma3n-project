@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="HospitalSystem.Login" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 
@@ -12,6 +13,9 @@
                     <asp:ValidationSummary ID="ValidationSummary1" runat="server" ValidationGroup="grp" ForeColor="Red" />
 
                     <h4>Login</h4>
+
+                    <!-- Error Message Label -->
+                    <asp:Label ID="lblError" runat="server" ForeColor="Red" CssClass="d-block mb-3" ></asp:Label>
 
                     <!-- Email Field -->
                     <div class="mb-3">
