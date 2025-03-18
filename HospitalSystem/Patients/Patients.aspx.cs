@@ -90,7 +90,7 @@ namespace HospitalSystem.Patients
                 {
                     string[] nameParts = fullName.Split(new char[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);
                     firstName = nameParts.Length > 0 ? nameParts[0] : "";
-                    lastName = nameParts.Length > 1 ? nameParts[1] : ""; // Last name is everything after the first space
+                    lastName = nameParts.Length > 1 ? nameParts[1] : "";
                 }
 
                 using (var db = DbService.Instance.GetDbContext())
@@ -116,7 +116,7 @@ namespace HospitalSystem.Patients
             {
                 using (var db = DbService.Instance.GetDbContext())
                 {
-                    var deletedPatients = db.DeletedPatientViews.ToList(); // Fetch from DeletedPatientView
+                    var deletedPatients = db.DeletedPatientViews.ToList(); // Fetch from View
                     RadGridDeleted.DataSource = deletedPatients;
                     RadGridDeleted.DataBind();
                 }
