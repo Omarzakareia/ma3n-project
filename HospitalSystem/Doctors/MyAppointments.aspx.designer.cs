@@ -11,7 +11,7 @@ namespace HospitalSystem.Doctors
 {
 
 
-	public partial class Departments
+	public partial class MyAppointments
 	{
 
 		/// <summary>
