@@ -142,5 +142,45 @@ namespace HospitalSystem.Patients
                 Response.Write("<script>alert('Error: " + ex.Message.Replace("'", "\\'") + "');</script>");
             }
         }
+        protected void btnAddPatient_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (var db = DbService.Instance.GetDbContext())
+                {
+                    int defaultStaffId = 1;
+                    // Create a new Patient object
+                    var newPatient = new Patient
+                    {
+                        PatientID = 29,
+                        FirstName = txtFirstName.Text.Trim(),
+                        LastName = txtLastName.Text.Trim(),
+                        Gender = txtGender.Text.Trim(),
+                        Phone = txtPhone.Text.Trim(),
+                        Email = txtEmail.Text.Trim(),
+                        StaffID = defaultStaffId,
+                        Address = txtAddress.Text.Trim(),
+                        CreatedAt = DateTime.Now,  // Set CreatedAt to current time
+                        IsDeleted = false         // Mark as not deleted
+                    };
+
+                    // Add to database and save
+                    db.Patients.Add(newPatient);
+                    db.SaveChanges();
+
+                    // Show success message
+                    Response.Write("<script>alert('Patient added successfully!');</script>");
+
+                    // Refresh Grid
+                    RadGridActive.Rebind();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle error
+                Response.Write("<script>alert('Error: " + ex.Message.Replace("'", "\\'") + "');</script>");
+            }
+        }
+
     }
 }

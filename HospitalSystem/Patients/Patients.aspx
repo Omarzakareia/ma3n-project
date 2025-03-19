@@ -100,7 +100,7 @@
                 <!-- Centered Telerik Button with Bottom Margin -->
                 <div class="d-flex justify-content-center mb-4">
                     <telerik:RadButton ID="btnAddPatient" runat="server" CssClass="btn btn-success"
-                        ButtonType="SkinnedButton" Text="Add Patient" />
+                        ButtonType="SkinnedButton" Text="Add Patient" OnClick="btnAddPatient_Click" />
                 </div>
             </div>
         </div>
