@@ -35,6 +35,9 @@
                                             Text='<%# Eval("FullName") %>' CssClass="text-primary">
                                         </asp:HyperLink>
                                     </ItemTemplate>
+                                    <EditItemTemplate>
+                                        <telerik:RadTextBox ID="txtFullName" runat="server" Text='<%# Bind("FullName") %>' CssClass="form-control" />
+                                    </EditItemTemplate>
                                 </telerik:GridTemplateColumn>
 
                                 <telerik:GridBoundColumn DataField="Phone" HeaderText="Patient Phone" UniqueName="Phone" />

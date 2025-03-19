@@ -79,7 +79,7 @@ namespace HospitalSystem.Patients
                 int patientId = Convert.ToInt32(editedItem.GetDataKeyValue("PatientID"));
 
                 // Retrieve updated values from the edit form
-                string fullName = (editedItem["FullName"].Controls[0] as TextBox).Text.Trim();
+                string fullName = (editedItem["FullNameColumn"].FindControl("txtFullName") as RadTextBox)?.Text.Trim();
                 string phone = (editedItem["Phone"].Controls[0] as TextBox).Text.Trim();
 
                 // Split full name into first and last name
@@ -108,6 +108,7 @@ namespace HospitalSystem.Patients
                 }
             }
         }
+
 
 
         protected void RadGridDeleted_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
