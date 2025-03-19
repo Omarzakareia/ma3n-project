@@ -27,8 +27,16 @@
                         OnNeedDataSource="RadGridActive_NeedDataSource">
                         <MasterTableView DataKeyNames="PatientID">
                             <Columns>
-                                <telerik:GridBoundColumn DataField="PatientID" HeaderText="Patient ID" UniqueName="PatientID" />
-                                <telerik:GridBoundColumn DataField="FullName" HeaderText="Patient Name" UniqueName="FullName" />
+                                <telerik:GridBoundColumn DataField="PatientID" HeaderText="Patient ID" UniqueName="PatientID" ReadOnly="true" />
+                                <telerik:GridTemplateColumn HeaderText="Patient Name" UniqueName="FullNameColumn">
+                                    <ItemTemplate>
+                                        <asp:HyperLink ID="lnkPatientHistory" runat="server"
+                                            NavigateUrl='<%# "PatientHistory.aspx?PatientID=" + Eval("PatientID") %>'
+                                            Text='<%# Eval("FullName") %>' CssClass="text-primary">
+                                        </asp:HyperLink>
+                                    </ItemTemplate>
+                                </telerik:GridTemplateColumn>
+
                                 <telerik:GridBoundColumn DataField="Phone" HeaderText="Patient Phone" UniqueName="Phone" />
                                 <telerik:GridButtonColumn CommandName="DeletePatient" Text="&#10060;" HeaderText="Delete"
                                     UniqueName="DeleteColumn" ButtonType="LinkButton" ItemStyle-CssClass="text-center" />

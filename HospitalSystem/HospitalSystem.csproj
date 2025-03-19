@@ -125,6 +125,9 @@
     <Compile Include="DeletedPatientView.cs">
       <DependentUpon>HospitalModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DeletedUsersView.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Department.cs">
       <DependentUpon>HospitalModel.tt</DependentUpon>
     </Compile>
@@ -160,8 +163,18 @@
     <Compile Include="Patient.cs">
       <DependentUpon>HospitalModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="PatientHistory.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="PatientInfo.cs">
       <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Patients\PatientHistory.aspx.cs">
+      <DependentUpon>PatientHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Patients\PatientHistory.aspx.designer.cs">
+      <DependentUpon>PatientHistory.aspx</DependentUpon>
     </Compile>
     <Compile Include="Patients\Patients.aspx.cs">
       <DependentUpon>Patients.aspx</DependentUpon>
@@ -277,6 +290,7 @@
     <Content Include="img\favicon.png" />
     <Content Include="img\logo.png" />
     <Content Include="Doctors\Departments.aspx" />
+    <Content Include="Patients\PatientHistory.aspx" />
     <Content Include="Patients\Patients.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -370,7 +384,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
