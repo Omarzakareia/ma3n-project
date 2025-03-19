@@ -67,9 +67,20 @@ namespace HospitalSystem.Patients
             pnlActivePatients.Visible = !pnlActivePatients.Visible;
             pnlDeletedPatients.Visible = !pnlDeletedPatients.Visible;
 
+            // Ensure correct data is loaded when toggling
+            if (pnlDeletedPatients.Visible)
+            {
+                RadGridDeleted.Rebind(); 
+            }
+            else
+            {
+                RadGridActive.Rebind(); 
+            }
+
             // Change button text
             btnToggleView.Text = pnlActivePatients.Visible ? "Show Deleted Patients" : "Show Active Patients";
         }
+
         protected void RadGridActive_UpdateCommand(object sender, GridCommandEventArgs e)
         {
             GridEditableItem editedItem = e.Item as GridEditableItem;
@@ -109,6 +120,32 @@ namespace HospitalSystem.Patients
             }
         }
 
+        protected void RadGridDeleted_ItemCommand(object sender, GridCommandEventArgs e)
+        {
+            if (e.CommandName == "RestorePatient")
+            {
+                int patientId = Convert.ToInt32(e.CommandArgument);
+
+                using (var db = DbService.Instance.GetDbContext())
+                {
+                    var patient = db.Patients.FirstOrDefault(p => p.PatientID == patientId);
+                    if (patient != null)
+                    {
+                        patient.IsDeleted = false;
+                        patient.DeletedAt = null; // Reset deleted timestamp
+                        db.SaveChanges();
+
+                        // Refresh grids
+                        RadGridDeleted.Rebind();
+                        RadGridActive.Rebind();
+
+                        Response.Write("<script>alert('Patient restored successfully!');</script>");
+                    }
+                }
+            }
+        }
+
+
 
 
         protected void RadGridDeleted_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
@@ -119,7 +156,6 @@ namespace HospitalSystem.Patients
                 {
                     var deletedPatients = db.DeletedPatientViews.ToList(); // Fetch from View
                     RadGridDeleted.DataSource = deletedPatients;
-                    RadGridDeleted.DataBind();
                 }
             }
             catch (Exception ex)

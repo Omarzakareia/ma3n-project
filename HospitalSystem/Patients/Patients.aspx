@@ -57,7 +57,7 @@
             <div class="w-100 border shadow-sm p-3">
                 <asp:Panel ID="pnlDeletedPatients" runat="server" Visible="false">
                     <telerik:RadGrid ID="RadGridDeleted" runat="server" AutoGenerateColumns="False" AllowPaging="True"
-                        CellSpacing="-1" GridLines="Both" OnNeedDataSource="RadGridDeleted_NeedDataSource">
+                        CellSpacing="-1" GridLines="Both" OnNeedDataSource="RadGridDeleted_NeedDataSource" OnItemCommand="RadGridDeleted_ItemCommand">
                         <MasterTableView DataKeyNames="PatientID">
                             <Columns>
                                 <telerik:GridBoundColumn DataField="PatientID" HeaderText="Patient ID" UniqueName="PatientID" />
@@ -65,6 +65,13 @@
                                 <telerik:GridBoundColumn DataField="DeletedBy" HeaderText="Deleted By" UniqueName="UserFullName" />
                                 <telerik:GridBoundColumn DataField="UserFullName" HeaderText="User Name" UniqueName="UserFullName" />
                                 <telerik:GridBoundColumn DataField="DeletedAt" HeaderText="Deleted At" UniqueName="DeletedAt" DataFormatString="{0:MM/dd/yyyy}" />
+                                <telerik:GridTemplateColumn HeaderText="Restore User" UniqueName="RestoreColumn">
+                                    <ItemTemplate>
+                                        <asp:Button ID="btnRestorePatient" runat="server" Text="&#10084;"
+                                            ForeColor="Red" CssClass="btn text-center" CommandName="RestorePatient"
+                                            CommandArgument='<%# Eval("PatientID") %>' />
+                                    </ItemTemplate>
+                                </telerik:GridTemplateColumn>
                             </Columns>
                             <EditFormSettings>
                                 <EditColumn ShowNoSortIcon="False"></EditColumn>
