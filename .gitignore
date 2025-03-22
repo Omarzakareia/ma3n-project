@@ -112,3 +112,5 @@ HospitalSystem/DeletedUsersView.cs
 HospitalSystem/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 HospitalSystem/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 HospitalSystem/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+HospitalSystem/DeletedDepartmentView.cs
+HospitalSystem/DepartmentView.cs
