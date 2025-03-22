@@ -3,20 +3,34 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container mt-4">
-        <!-- Bootstrap Container -->
+    <div class="m-2">
 
-        <!-- Wrapper for Search Bar & Grid -->
-        <div class="w-100 p-3">
-            <!-- Full Width & Padding -->
+        <div class="w-100 ">
 
+            <a href="UserManagement.aspx" style="text-decoration: none;">
+                <h2 class="text-center fw-bold mb-4 py-2 border-bottom shadow-sm bg-light text-success">User Management</h2>
+            </a>
             <!-- Toggle Button -->
-            <asp:Button ID="btnToggleView" runat="server" CssClass="btn btn-primary mb-3"
-                Text="Show Deleted Patients" OnClick="btnToggleView_Click" />
+            <div class="d-flex justify-content-between align-items-center flex-wrap bg-light px-3 rounded shadow-sm ">
 
-            <!-- Search Box -->
-            <telerik:RadTextBox ID="txtSearch" runat="server" AutoPostBack="true" OnTextChanged="txtSearch_TextChanged"
-                EmptyMessage="Search by Full Name..." CssClass="form-control w-100 p-3 mb-3" Width="100%" />
+                <asp:Button ID="btnToggleView" runat="server" CssClass="btn btn-primary mb-3 mt-4"
+                    Text="Show Deleted Patients" OnClick="btnToggleView_Click" />
+            </div>
+
+            <!-- Add User and Search Section -->
+            <div class="d-flex justify-content-between align-items-center flex-wrap bg-light p-3 rounded shadow-sm mb-3">
+                <!-- Search Box & Buttons (Left Side) -->
+                <div class="d-flex flex-grow-1 me-3 align-items-stretch">
+                    <telerik:RadTextBox ID="txtSearch" runat="server" EmptyMessage="🔍 Search by Full Name..."
+                        CssClass="form-control shadow-sm py-2" Width="75%" />
+
+                    <telerik:RadButton ID="btnSearch" runat="server" Text="🔍 Search" CssClass="btn btn-primary ms-2 px-3"
+                        OnClick="btnSearch_Click" />
+
+                    <telerik:RadButton ID="btnResetSearch" runat="server" Text="🔄 Reset" CssClass="btn btn-secondary ms-2 px-3"
+                        OnClick="btnResetSearch_Click" />
+                </div>
+            </div>
 
             <!-- Active Patients Grid -->
             <div class="w-100 border shadow-sm p-3">
@@ -41,8 +55,7 @@
                                 </telerik:GridTemplateColumn>
 
                                 <telerik:GridBoundColumn DataField="Phone" HeaderText="Patient Phone" UniqueName="Phone" />
-                                <telerik:GridButtonColumn CommandName="DeletePatient" Text="&#10060;" HeaderText="Delete"
-                                    UniqueName="DeleteColumn" ButtonType="LinkButton" ItemStyle-CssClass="text-center" />
+
                             </Columns>
                             <EditFormSettings>
                                 <EditColumn ShowNoSortIcon="False"></EditColumn>
@@ -66,6 +79,7 @@
                                 <telerik:GridBoundColumn DataField="UserFullName" HeaderText="User Name" UniqueName="UserFullName" />
                                 <telerik:GridBoundColumn DataField="DeletedAt" HeaderText="Deleted At" UniqueName="DeletedAt" DataFormatString="{0:MM/dd/yyyy}" />
                                 <telerik:GridTemplateColumn HeaderText="Restore User" UniqueName="RestoreColumn">
+                                    <ItemStyle HorizontalAlign="Center" Width="50px" />
                                     <ItemTemplate>
                                         <asp:Button ID="btnRestorePatient" runat="server" Text="&#10084;"
                                             ForeColor="Red" CssClass="btn text-center" CommandName="RestorePatient"
@@ -117,7 +131,7 @@
 
                 <!-- Centered Telerik Button with Bottom Margin -->
                 <div class="d-flex justify-content-center mb-4">
-                    <telerik:RadButton ID="btnAddPatient" runat="server" CssClass="btn btn-success"
+                    <telerik:RadButton ID="btnAddPatient" runat="server" Class="btn btn-success" Style="background-color: #259843; color: white;"
                         ButtonType="SkinnedButton" Text="Add Patient" OnClick="btnAddPatient_Click" />
                 </div>
             </div>

@@ -17,8 +17,13 @@ namespace HospitalSystem.Patients
 
         }
 
+        protected void btnResetSearch_Click(object sender, EventArgs e)
+        {
+            txtSearch.Text = "";
+            RadGridActive.Rebind();
+        }
 
-        protected void txtSearch_TextChanged(object sender, EventArgs e)
+        protected void btnSearch_Click(object sender, EventArgs e)
         {
             string searchText = txtSearch.Text.Trim().ToLower();
 
@@ -109,12 +114,12 @@ namespace HospitalSystem.Patients
                     var patient = db.Patients.FirstOrDefault(p => p.PatientID == patientId);
                     if (patient != null)
                     {
-                        // Update fields
+                     
                         patient.FirstName = firstName;
                         patient.LastName = lastName;
                         patient.Phone = phone;
 
-                        db.SaveChanges(); // Save changes to DB
+                        db.SaveChanges(); 
                     }
                 }
             }
