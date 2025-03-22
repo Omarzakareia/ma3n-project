@@ -15,6 +15,24 @@ namespace HospitalSystem.Doctors
 	{
 
 		/// <summary>
+		/// btnToggleView control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Button btnToggleView;
+
+		/// <summary>
+		/// ActiveDeparment control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Panel ActiveDeparment;
+
+		/// <summary>
 		/// RadGrid1 control.
 		/// </summary>
 		/// <remarks>
@@ -22,5 +40,23 @@ namespace HospitalSystem.Doctors
 		/// To modify move field declaration from designer file to code-behind file.
 		/// </remarks>
 		protected global::Telerik.Web.UI.RadGrid RadGrid1;
+
+		/// <summary>
+		/// DeletedDepartment control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Panel DeletedDepartment;
+
+		/// <summary>
+		/// RadGridDeleted control.
+		/// </summary>
+		/// <remarks>
+		/// Auto-generated field.
+		/// To modify move field declaration from designer file to code-behind file.
+		/// </remarks>
+		protected global::Telerik.Web.UI.RadGrid RadGridDeleted;
 	}
 }

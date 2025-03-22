@@ -14,25 +14,22 @@ namespace HospitalSystem.Doctors
 
 		protected void Page_Load(object sender, EventArgs e)
 		{
-			if (!IsPostBack)
-			{
-				RadGrid1.Rebind();
-			}
+			
 		}
+
+
 
 
 
 		protected void RadGrid1_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
 		{
-			var departments = db.Departments.Where(d => d.IsDeleted == false)
-							.Select(d => new
-							{
-								d.DepartmentID,
-								d.DepartmentName
-							})
-							.ToList();
-
-			RadGrid1.DataSource = departments; 
+			var departmentViews = db.DepartmentViews.ToList(); // Fetch from view
+			RadGrid1.DataSource = departmentViews;
+		}
+		protected void RadGridDeleted_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
+		{
+			var departmentViews = db.DeletedDepartmentViews.ToList(); // Fetch from view
+			RadGridDeleted.DataSource = departmentViews;
 		}
 
 
@@ -230,7 +227,25 @@ namespace HospitalSystem.Doctors
 			}
 		}
 
+		protected void btnToggleView_Click(object sender, EventArgs e)
+		{
+			// Toggle visibility of panels
+			ActiveDeparment.Visible = !ActiveDeparment.Visible;
+			DeletedDepartment.Visible = !DeletedDepartment.Visible;
 
+			// Ensure correct data is loaded when toggling
+			if (DeletedDepartment.Visible)
+			{
+				RadGridDeleted.Rebind();
+			}
+			else
+			{
+				RadGrid1.Rebind();
+			}
+
+			// Change button text
+			btnToggleView.Text = ActiveDeparment.Visible ? "Show Deleted Patients" : "Show Active Patients";
+		}
 
 
 
