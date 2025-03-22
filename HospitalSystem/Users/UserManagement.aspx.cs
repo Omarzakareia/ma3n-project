@@ -34,6 +34,22 @@ namespace HospitalSystem.Users
         }
 
 
+
+
+        private void LoadMaxAttempts() => txtMaxAttempts.Text = _context.Settings.FirstOrDefault()?.MaxFailedAttempts.ToString() ?? "5";
+        private int GetCurrentUserID()
+        {
+            int userId = 0;
+            HttpCookie authCookie = Request.Cookies["cooklogin"];
+
+            if (authCookie != null && authCookie["userId"] != null)
+            {
+                int.TryParse(authCookie["userId"], out userId);
+            }
+
+            return userId;
+        }
+
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             string searchText = txtSearch.Text.Trim();
@@ -56,23 +72,6 @@ namespace HospitalSystem.Users
             txtSearch.Text = "";
             RadGrid1.Rebind();
         }
-
-
-        private void LoadMaxAttempts() => txtMaxAttempts.Text = _context.Settings.FirstOrDefault()?.MaxFailedAttempts.ToString() ?? "5";
-        private int GetCurrentUserID()
-        {
-            int userId = 0;
-            HttpCookie authCookie = Request.Cookies["cooklogin"];
-
-            if (authCookie != null && authCookie["userId"] != null)
-            {
-                int.TryParse(authCookie["userId"], out userId);
-            }
-
-            return userId;
-        }
-
-
         protected void btnSaveAttempts_Click(object sender, EventArgs e)
         {
             if (int.TryParse(txtMaxAttempts.Text, out int maxAttempts) && maxAttempts > 0)
