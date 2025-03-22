@@ -366,4 +366,86 @@ nav ul li a:hover {
 .appointments-table td:nth-child(5) {
   text-align: center;
 }
-/*# sourceMappingURL=style.css.map */
+
+/* Ensures each row has a consistent structure */
+.repeater-item {
+    display: flex;
+    justify-content: space-between; /* Aligns name/speciality on the left and button on the right */
+    align-items: center; /* Centers everything vertically */
+    gap: 10px; /* Adds spacing between elements */
+    padding: 5px 0; /* Adds spacing between rows */
+}
+
+/* Ensures FullName and Speciality stay together properly */
+.doctor-info {
+    display: flex;
+    gap: 5px; /* Adjust space between FullName and Speciality */
+    align-items: center;
+    min-width: 200px;
+}
+
+/* Ensures Speciality is closer to the FullName */
+.speciality {
+    color: gray;
+    font-style: italic;
+}
+
+/* Button Styling */
+.unassign-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    min-width: 80px; /* Ensures all buttons have the same width */
+    text-align: center;
+}
+
+    /* Adds hover effect */
+    .unassign-btn:hover {
+        background-color: darkred;
+    }
+
+/* Adds spacing between multiple buttons if there are multiple doctors */
+.repeater-item + .repeater-item {
+    margin-top: 5px;
+}
+
+
+/* Ensures dropdown is on the left and button is pushed to the far right */
+.assign-doctor-container {
+    display: flex;
+    justify-content: space-between; /* Pushes the button to the right */
+    align-items: center;
+    width: 100%; /* Ensures the container takes the full column width */
+}
+
+/* Dropdown styling */
+.doctor-dropdown {
+    padding: 6px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    min-width: 180px;
+}
+
+/* Button styling */
+.assign-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    min-width: 80px;
+    text-align: center;
+}
+
+    /* Hover effect */
+    .assign-btn:hover {
+        background-color: #0056b3;
+    }

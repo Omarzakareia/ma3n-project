@@ -1,5 +1,9 @@
 ﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<<<<<<< HEAD
   <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+=======
+  <Import Project="packages\Telerik.Licensing.1.4.6\build\Telerik.Licensing.props" Condition="Exists('packages\Telerik.Licensing.1.4.6\build\Telerik.Licensing.props')" />
+>>>>>>> Doctor_Mangement
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -60,7 +64,7 @@
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Web.Mobile" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="Telerik.Licensing.Runtime, Version=1.4.6.0, Culture=neutral, PublicKeyToken=98bb5b04e55c09ef, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Licensing.Runtime">
       <HintPath>lib\RCAJAX\2025.1.218.462.Trial\Telerik.Licensing.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
@@ -107,6 +111,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Appointment.cs">
+<<<<<<< HEAD
       <DependentUpon>HospitalEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Billing.cs">
@@ -114,6 +119,15 @@
     </Compile>
     <Compile Include="BillingVault.cs">
       <DependentUpon>HospitalEntities.tt</DependentUpon>
+=======
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Billing.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BillingVault.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+>>>>>>> Doctor_Mangement
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -122,6 +136,7 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="DeletedPatientView.cs">
       <DependentUpon>HospitalEntities.tt</DependentUpon>
     </Compile>
@@ -148,6 +163,47 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>HospitalEntities.edmx</DependentUpon>
+=======
+    <Compile Include="DeletedDepartmentView.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DeletedPatientView.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DeletedUsersView.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Department.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DepartmentView.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Doctor.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Doctors\MyAppointments.aspx.cs">
+      <DependentUpon>MyAppointments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Doctors\MyAppointments.aspx.designer.cs">
+      <DependentUpon>MyAppointments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HospitalModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HospitalModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HospitalModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HospitalModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HospitalModel.edmx</DependentUpon>
+>>>>>>> Doctor_Mangement
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -161,10 +217,20 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Patient.cs">
+<<<<<<< HEAD
       <DependentUpon>HospitalEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientInfo.cs">
       <DependentUpon>HospitalEntities.tt</DependentUpon>
+=======
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PatientHistory.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PatientInfo.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+>>>>>>> Doctor_Mangement
     </Compile>
     <Compile Include="Patients\Patients.aspx.cs">
       <DependentUpon>Patients.aspx</DependentUpon>
@@ -195,6 +261,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Role.cs">
+<<<<<<< HEAD
       <DependentUpon>HospitalEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="App_Data\Services\DbService.cs" />
@@ -235,6 +302,33 @@
     </Compile>
     <Compile Include="Users\UserManagement.aspx.designer.cs">
       <DependentUpon>UserManagement.aspx</DependentUpon>
+=======
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Setting.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Speciality.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Staff.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfoView.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+>>>>>>> Doctor_Mangement
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -292,6 +386,7 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Default.aspx" />
+<<<<<<< HEAD
     <Content Include="HospitalEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>HospitalEntities.edmx</DependentUpon>
@@ -301,6 +396,18 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>HospitalEntities.edmx</DependentUpon>
       <LastGenOutput>HospitalEntities.cs</LastGenOutput>
+=======
+    <Content Include="Doctors\MyAppointments.aspx" />
+    <Content Include="HospitalModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HospitalModel.edmx</DependentUpon>
+      <LastGenOutput>HospitalModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="HospitalModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HospitalModel.edmx</DependentUpon>
+      <LastGenOutput>HospitalModel.cs</LastGenOutput>
+>>>>>>> Doctor_Mangement
     </Content>
     <Content Include="img\favicon.png" />
     <Content Include="img\logo.png" />
@@ -353,12 +460,21 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="MasterPage.Master" />
+<<<<<<< HEAD
     <EntityDeploy Include="HospitalEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>HospitalEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <Content Include="HospitalEntities.edmx.diagram">
       <DependentUpon>HospitalEntities.edmx</DependentUpon>
+=======
+    <EntityDeploy Include="HospitalModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>HospitalModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="HospitalModel.edmx.diagram">
+      <DependentUpon>HospitalModel.edmx</DependentUpon>
+>>>>>>> Doctor_Mangement
     </Content>
     <None Include="packages.config" />
     <None Include="web.Debug.config">
@@ -371,9 +487,12 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+<<<<<<< HEAD
   <ItemGroup>
     <Folder Include="Services\" />
   </ItemGroup>
+=======
+>>>>>>> Doctor_Mangement
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -404,15 +523,22 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
+<<<<<<< HEAD
     <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
     <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
   <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+=======
+    <Error Condition="!Exists('packages\Telerik.Licensing.1.4.6\build\Telerik.Licensing.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Telerik.Licensing.1.4.6\build\Telerik.Licensing.props'))" />
+    <Error Condition="!Exists('packages\Telerik.Licensing.1.4.6\build\Telerik.Licensing.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Telerik.Licensing.1.4.6\build\Telerik.Licensing.targets'))" />
+  </Target>
+  <Import Project="packages\Telerik.Licensing.1.4.6\build\Telerik.Licensing.targets" Condition="Exists('packages\Telerik.Licensing.1.4.6\build\Telerik.Licensing.targets')" />
+>>>>>>> Doctor_Mangement
 </Project>
