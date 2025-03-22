@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Web;
 using System.Web.UI;
 using HospitalSystem.Services;
@@ -19,25 +20,14 @@ namespace HospitalSystem
 
         private void LoadMaxFailedAttempts()
         {
-            if (Application["MaxFailedAttempts"] != null)
-            {
-                MaxFailedAttempts = (int)Application["MaxFailedAttempts"];
-            }
-            else
-            {
-                string connString = ConfigurationManager.ConnectionStrings["InternSmallHospitalConnectionString"].ConnectionString;
-                using (SqlConnection conn = new SqlConnection(connString))
-                {
-                    conn.Open();
-                    using (SqlCommand cmd = new SqlCommand("SELECT MaxFailedAttempts FROM Settings", conn))
-                    {
-                        object result = cmd.ExecuteScalar();
-                        MaxFailedAttempts = result != null ? Convert.ToInt32(result) : 5;
-                    }
-                }
-                Application["MaxFailedAttempts"] = MaxFailedAttempts;
-            }
+            HospitalEntities _context = new HospitalEntities();
+            MaxFailedAttempts = Application["MaxFailedAttempts"] as int?
+                                ?? _context.Settings.Select(s => (int?)s.MaxFailedAttempts).FirstOrDefault()
+                                ?? 5;
+
+            Application["MaxFailedAttempts"] = MaxFailedAttempts;
         }
+
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {

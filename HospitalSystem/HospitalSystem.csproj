@@ -202,6 +202,13 @@
     <Compile Include="sysdiagram.cs">
       <DependentUpon>HospitalEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Unauthorized.aspx.cs">
+      <DependentUpon>Unauthorized.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Unauthorized.aspx.designer.cs">
+      <DependentUpon>Unauthorized.aspx</DependentUpon>
+    </Compile>
     <Compile Include="User.cs">
       <DependentUpon>HospitalEntities.tt</DependentUpon>
     </Compile>
@@ -305,6 +312,7 @@
     <Content Include="App_Data\RadSpell\fr-FR.tdf" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Unauthorized.aspx" />
     <Content Include="Users\UserManagement.aspx" />
     <Content Include="web.config" />
     <Content Include="Scripts\bootstrap.min.js.map" />
@@ -379,7 +387,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

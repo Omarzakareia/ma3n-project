@@ -82,7 +82,7 @@ namespace HospitalSystem.Services
             authCookie["email"] = HttpUtility.UrlEncode(email.ToUpper());
             authCookie["role"] = HttpUtility.UrlEncode(role);
             authCookie["userId"] = userId.ToString();
-            authCookie.Expires = rememberMe ? DateTime.Now.AddDays(7) : DateTime.Now.AddHours(1); // Persistent or session cookie
+            authCookie.Expires = rememberMe ? DateTime.Now.AddDays(7) : DateTime.Now.AddHours(1); 
             HttpContext.Current.Response.Cookies.Add(authCookie);
         }
     }
