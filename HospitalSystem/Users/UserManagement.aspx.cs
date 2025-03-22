@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
 using Telerik.Web.UI;
+using Telerik.Windows.Documents.Spreadsheet.Expressions.Functions;
 
 namespace HospitalSystem.Users
 {
@@ -93,6 +94,9 @@ namespace HospitalSystem.Users
         }
         protected void RadGrid1_NeedDataSource(object sender, GridNeedDataSourceEventArgs e) {
             RadGrid1.DataSource = _context.UserInfoViews.ToList();
+            var specialityColumn = RadGrid1.MasterTableView.GetColumn("Speciality");
+            specialityColumn.Visible = false; // Ensure it's hidden by default
+
         }
         protected void RadGridDeletedUsers_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
         {
@@ -129,9 +133,11 @@ namespace HospitalSystem.Users
 
                     // Handle Role dropdown
                     var ddlRole = editedItem.FindControl("ddlRole") as RadDropDownList;
-                    if (ddlRole != null && !string.IsNullOrEmpty(ddlRole.SelectedValue))
+                    string selectedRole = ddlRole?.SelectedValue;
+
+                    if (!string.IsNullOrEmpty(selectedRole))
                     {
-                        var role = _context.Roles.FirstOrDefault(r => r.RoleName == ddlRole.SelectedValue);
+                        var role = _context.Roles.FirstOrDefault(r => r.RoleName == selectedRole);
                         if (role != null) user.RoleID = role.RoleID;
                     }
 
@@ -140,7 +146,7 @@ namespace HospitalSystem.Users
                     if (ddlIsLocked != null)
                     {
                         user.IsLocked = bool.Parse(ddlIsLocked.SelectedValue);
-                        // If the user is locked, reset FailedLogins to 0
+                        // If the user is unlocked, reset FailedLogins to 0
                         if (!(bool)user.IsLocked)
                         {
                             user.FailedLogins = 0;
@@ -148,13 +154,59 @@ namespace HospitalSystem.Users
                     }
 
                     _context.SaveChanges();
+
+                    // **Handle Specialty if the user is a Doctor**
+                    if (selectedRole == "Doctor")
+                    {
+                        var ddlSpecialty = editedItem.FindControl("ddlSpecialty") as RadComboBox;
+                        if (ddlSpecialty != null && !string.IsNullOrEmpty(ddlSpecialty.SelectedValue))
+                        {
+                            if (int.TryParse(ddlSpecialty.SelectedValue, out int specialtyId))
+                            {
+                                System.Diagnostics.Debug.WriteLine("Updating Speciality ID: " + specialtyId);
+
+                                var existingDoctor = _context.Doctors.FirstOrDefault(d => d.UserID == userId);
+                                if (existingDoctor != null)
+                                {
+                                    // Update existing specialty
+                                    existingDoctor.SpecialityID = specialtyId;
+                                }
+                                else
+                                {
+                                    // If the doctor doesn't exist yet, insert a new record
+                                    var newDoctor = new Doctor
+                                    {
+                                        UserID = user.UserID,
+                                        SpecialityID = specialtyId
+                                    };
+                                    _context.Doctors.Add(newDoctor);
+                                }
+
+                                _context.SaveChanges();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        // If the role is changed from Doctor to something else, remove the doctor entry
+                        var existingDoctor = _context.Doctors.FirstOrDefault(d => d.UserID == userId);
+                        if (existingDoctor != null)
+                        {
+                            _context.Doctors.Remove(existingDoctor);
+                            _context.SaveChanges();
+                        }
+                    }
+
+                    RadGrid1.Rebind();
                 }
             }
         }
+
         protected void RadGrid1_InsertCommand(object sender, GridCommandEventArgs e)
         {
             if (e.Item is GridEditableItem item)
             {
+                // Get values from input fields
                 string username = (item["Username"].Controls[0] as TextBox)?.Text.Trim();
                 string fullName = (item["FullName"].Controls[0] as TextBox)?.Text.Trim();
                 string email = (item["Email"].Controls[0] as TextBox)?.Text.Trim();
@@ -164,25 +216,30 @@ namespace HospitalSystem.Users
                 // Get Role dropdown
                 var ddlRole = item.FindControl("ddlRole") as RadDropDownList;
                 int? roleId = null;
-                if (ddlRole != null && !string.IsNullOrEmpty(ddlRole.SelectedValue))
+                string selectedRole = ddlRole?.SelectedValue;
+
+                if (!string.IsNullOrEmpty(selectedRole))
                 {
-                    var roleEntity = _context.Roles.FirstOrDefault(r => r.RoleName == ddlRole.SelectedValue);
+                    var roleEntity = _context.Roles.FirstOrDefault(r => r.RoleName == selectedRole);
                     if (roleEntity != null)
                     {
                         roleId = roleEntity.RoleID;
                     }
                 }
 
-                if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(fullName) || string.IsNullOrEmpty(email) || roleId == null)
+                // Validate required fields
+                if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(fullName) ||
+                    string.IsNullOrEmpty(email) || roleId == null)
                 {
-                    return; // Don't insert if required fields are missing
+                    return; // Stop insert if required fields are missing
                 }
 
                 // Get IsLocked dropdown
                 var ddlIsLocked = item.FindControl("ddlIsLocked") as RadDropDownList;
                 bool isLocked = ddlIsLocked != null && bool.TryParse(ddlIsLocked.SelectedValue, out bool locked) && locked;
 
-                _context.Users.Add(new User
+                // Insert User
+                var newUser = new User
                 {
                     Username = username,
                     PasswordHash = password,
@@ -194,11 +251,106 @@ namespace HospitalSystem.Users
                     IsLocked = isLocked,
                     CreatedAt = DateTime.Now,
                     IsDeleted = false
-                });
+                };
 
+                _context.Users.Add(newUser);
                 _context.SaveChanges();
+
+                // **Handle Specialty if the user is a Doctor**
+                if (ddlRole.SelectedValue == "Doctor")
+                {
+                    var ddlSpecialty = item.FindControl("ddlSpecialty") as RadComboBox;
+                    if (ddlSpecialty != null && !string.IsNullOrEmpty(ddlSpecialty.SelectedValue))
+                    {
+                        // Parse SpecialityID directly from SelectedValue
+                        if (int.TryParse(ddlSpecialty.SelectedValue, out int specialtyId))
+                        {
+                            System.Diagnostics.Debug.WriteLine("Parsed Speciality ID: " + specialtyId);
+
+                            var newDoctor = new Doctor
+                            {
+                                UserID = newUser.UserID,
+                                SpecialityID = specialtyId
+                            };
+
+                            _context.Doctors.Add(newDoctor);
+                            _context.SaveChanges();
+                        }
+                    }
+                }
+
+                RadGrid1.Rebind();
             }
         }
+
+        protected void ddlRole_SelectedIndexChanged(object sender, DropDownListEventArgs e)
+        {
+            var ddlRole = sender as RadDropDownList;
+            var gridItem = ddlRole.NamingContainer as GridEditableItem;
+
+            var ddlSpecialty = gridItem.FindControl("ddlSpecialty") as RadComboBox;
+            if (ddlRole.SelectedValue == "Doctor")
+            {
+                ddlSpecialty.Visible = true;
+            }
+            else
+            {
+                ddlSpecialty.Visible = false;
+            }
+        }
+        protected void RadGrid1_ItemDataBound(object sender, GridItemEventArgs e)
+        {
+            if (e.Item is GridEditableItem editItem && e.Item.IsInEditMode)
+            {
+                var ddlRole = editItem.FindControl("ddlRole") as RadDropDownList;
+                var ddlSpecialty = editItem.FindControl("ddlSpecialty") as RadComboBox;
+
+                if (ddlSpecialty != null)
+                {
+                    ddlSpecialty.DataSource = _context.Specialities.ToList();
+                    ddlSpecialty.DataTextField = "SpecialityName";
+                    ddlSpecialty.DataValueField = "SpecialityID";
+                    ddlSpecialty.DataBind();
+                    ddlSpecialty.Items.Insert(0, new RadComboBoxItem("-- Select Specialty --", ""));
+                }
+
+                // **Prevent crash when inserting a new user**
+                if (editItem.OwnerTableView.IsItemInserted)
+                {
+                    ddlSpecialty.Visible = false; // Hide specialty by default for new users
+                    return;
+                }
+
+                // **Check if editing an existing user**
+                if (editItem.OwnerTableView.DataKeyNames.Contains("UserID") &&
+                    editItem.GetDataKeyValue("UserID") != null)
+                {
+                    int userId = System.Convert.ToInt32(editItem.GetDataKeyValue("UserID"));
+                    string selectedRole = ddlRole.SelectedValue;
+                    bool isDoctor = selectedRole == "Doctor";
+
+                    if (isDoctor)
+                    {
+                        ddlSpecialty.Visible = true;
+                        var doctor = _context.Doctors.FirstOrDefault(d => d.UserID == userId);
+                        if (doctor != null)
+                        {
+                            ddlSpecialty.SelectedValue = doctor.SpecialityID.ToString();
+                        }
+                    }
+                    else
+                    {
+                        ddlSpecialty.Visible = false;
+                    }
+
+                    var specialityColumn = RadGrid1.MasterTableView.GetColumn("Speciality");
+                    specialityColumn.Visible = isDoctor;
+                }
+            }
+        }
+
+
+
 
 
         protected void RadGridDeletedUsers_DeleteCommand(object sender, GridCommandEventArgs e)

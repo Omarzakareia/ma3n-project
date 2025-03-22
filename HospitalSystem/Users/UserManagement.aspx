@@ -27,7 +27,7 @@
     <div class="d-flex justify-content-between align-items-center flex-wrap bg-light p-3 rounded shadow-sm mb-3">
         <!-- Search Box & Buttons (Left Side) -->
         <div class="d-flex flex-grow-1 me-3 align-items-stretch">
-            <telerik:RadTextBox ID="txtSearch" runat="server" EmptyMessage="🔍 Search by Full Name..." 
+            <telerik:RadTextBox ID="txtSearch" runat="server" EmptyMessage="🔍 Search by Full Name..."
                 CssClass="form-control shadow-sm py-2" Width="40%" />
 
             <telerik:RadButton ID="btnSearch" runat="server" Text="🔍 Search" CssClass="btn btn-primary ms-2 px-3"
@@ -39,7 +39,7 @@
 
         <!-- Add User Button (Right Side) -->
         <telerik:RadButton ID="btnAddUser" runat="server" Text="Add User"
-             OnClick="btnAddUser_Click" Style="background-color: #259843; color: white;" />
+            OnClick="btnAddUser_Click" Style="background-color: #259843; color: white;" />
     </div>
 
 
@@ -52,7 +52,7 @@
                 OnDeleteCommand="RadGrid1_DeleteCommand"
                 OnNeedDataSource="RadGrid1_NeedDataSource"
                 OnUpdateCommand="RadGrid1_UpdateCommand"
-                OnInsertCommand="RadGrid1_InsertCommand" Skin="Bootstrap">
+                OnInsertCommand="RadGrid1_InsertCommand" OnItemDataBound="RadGrid1_ItemDataBound" Skin="Bootstrap">
                 <PagerStyle BackColor="Green" ForeColor="Red" AlwaysVisible="True" />
                 <GroupingSettings CollapseAllTooltip="Collapse all groups" />
                 <MasterTableView AutoGenerateColumns="False" CommandItemDisplay="Top" DataKeyNames="UserID">
@@ -79,7 +79,7 @@
                                 <%# Eval("RoleName") %>
                             </ItemTemplate>
                             <EditItemTemplate>
-                                <telerik:RadDropDownList ID="ddlRole" runat="server" SelectedValue='<%# Bind("RoleName") %>'>
+                                <telerik:RadDropDownList ID="ddlRole" runat="server" AutoPostBack="true" SelectedValue='<%# Bind("RoleName") %>' OnSelectedIndexChanged="ddlRole_SelectedIndexChanged">
                                     <Items>
                                         <telerik:DropDownListItem Text="Admin" Value="Admin" />
                                         <telerik:DropDownListItem Text="Staff" Value="Staff" />
@@ -88,6 +88,13 @@
                                 </telerik:RadDropDownList>
                             </EditItemTemplate>
                         </telerik:GridTemplateColumn>
+                        <telerik:GridTemplateColumn HeaderText="Specialty" UniqueName="Speciality" Visible="false">
+                            <EditItemTemplate>
+                                <telerik:RadComboBox ID="ddlSpecialty" runat="server" Visible="false" />
+                            </EditItemTemplate>
+                        </telerik:GridTemplateColumn>
+
+
                         <telerik:GridBoundColumn DataField="CreatedAt" HeaderText="Created At" ReadOnly="True" UniqueName="CreatedAt">
                         </telerik:GridBoundColumn>
                         <telerik:GridTemplateColumn HeaderText="Is Locked" UniqueName="IsLocked">
@@ -105,7 +112,7 @@
                         </telerik:GridTemplateColumn>
                         <telerik:GridTemplateColumn HeaderText="Delete" UniqueName="DeleteColumn">
                             <HeaderStyle HorizontalAlign="Center" />
-                            <ItemStyle HorizontalAlign="Center" Width="50px" />         
+                            <ItemStyle HorizontalAlign="Center" Width="50px" />
                             <ItemTemplate>
                                 <div class="d-flex justify-content-center">
                                     <asp:LinkButton ID="btnDelete" runat="server" CommandName="Delete" CssClass="btn btn-link text-danger">
