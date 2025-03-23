@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HospitalSystem.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +11,7 @@ namespace HospitalSystem.Users
 {
     public partial class UserManagement : System.Web.UI.Page
     {
-        private readonly InternSmallHospitalConnectionString _context = new InternSmallHospitalConnectionString();
+        private InternSmallHospitalConnectionString _context = DbService.Instance.GetDbContext();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,12 +24,12 @@ namespace HospitalSystem.Users
                 }
                 else
                 {
-                    string userRole = myCookie["Role"].ToUpper(); 
+                    string userRole = myCookie["Role"].ToUpper();
 
                     if (string.IsNullOrEmpty(userRole) || userRole != "ADMIN")
                     {
-                        Response.Redirect("~/Unauthorized.aspx"); 
-                    }                   
+                        Response.Redirect("~/Unauthorized.aspx");
+                    }
                     LoadMaxAttempts();
                 }
             }
@@ -380,7 +381,7 @@ namespace HospitalSystem.Users
                     RadGridDeletedUsers.Rebind();
                 }
             }
-        } 
+        }
         #endregion
 
     }

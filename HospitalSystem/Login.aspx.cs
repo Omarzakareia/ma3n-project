@@ -19,7 +19,8 @@ namespace HospitalSystem
         }
         private void LoadMaxFailedAttempts()
         {
-            InternSmallHospitalConnectionString _context = new InternSmallHospitalConnectionString();
+            InternSmallHospitalConnectionString _context = DbService.Instance.GetDbContext();
+
             MaxFailedAttempts = Application["MaxFailedAttempts"] as int?
                                 ?? _context.Settings.Select(s => (int?)s.MaxFailedAttempts).FirstOrDefault()
                                 ?? 5;

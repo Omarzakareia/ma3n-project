@@ -11,7 +11,7 @@ namespace HospitalSystem.Services
 
         public AuthenticationService()
         {
-            _context = new InternSmallHospitalConnectionString();
+            _context = DbService.Instance.GetDbContext();
         }
 
         public AuthenticationResult AuthenticateUser(string email, string password)
