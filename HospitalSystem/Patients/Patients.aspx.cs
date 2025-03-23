@@ -12,15 +12,53 @@ namespace HospitalSystem.Patients
 {
     public partial class Patients : System.Web.UI.Page
     {
+        private int? userId = null; 
+        private int? staffId = null;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack) 
+            {
+                SetUserAndStaffID();
+            }
         }
-        private int getUserID()
+        private void SetUserAndStaffID()
         {
-            HttpCookie myCookie = Request.Cookies["cooklogin"];
-            return Convert.ToInt32(myCookie["userId"]);
+            try
+            {
+                HttpCookie myCookie = Request.Cookies["cooklogin"];
+                if (myCookie != null && int.TryParse(myCookie["userId"], out int parsedUserId))
+                {
+                    userId = parsedUserId;
+                }
+                else
+                {
+                    Response.Write("<script>alert('Error: Unable to retrieve user ID!'); window.location.href='" + ResolveUrl("~/Login.aspx") + "';</script>");
+                    Response.End();
+                    return;
+                }
+
+                using (var db = DbService.Instance.GetDbContext())
+                {
+                    var staff = db.Staffs.FirstOrDefault(s => s.UserID == userId);
+                    if (staff != null)
+                    {
+                        staffId = staff.StaffID;
+                    }
+                    else
+                    {
+                        Response.Write("<script>alert('Error: No staff record found for this user!'); window.location.href='" + ResolveUrl("~/Default.aspx") + "';</script>");
+                        Response.End();
+                        return;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('Error: " + ex.Message.Replace("'", "\\'") + "');</script>");
+                Response.End();
+            }
         }
+
         #region Buttons Clicks
         protected void btnResetSearch_Click(object sender, EventArgs e)
         {
@@ -33,16 +71,9 @@ namespace HospitalSystem.Patients
             {
                 using (var db = DbService.Instance.GetDbContext())
                 {
-                    int userId = getUserID();
-
                     // Get the staff ID for the logged-in user
                     var staff = db.Staffs.FirstOrDefault(s => s.UserID == userId);
-                    if (staff == null)
-                    {
-                        Response.Write("<script>alert('Error: Staff record not found for this user!');</script>");
-                        return;
-                    }
-
+                    
                     var newPatient = new Patient
                     {
                         FirstName = txtFirstName.Text.Trim(),
@@ -120,7 +151,7 @@ namespace HospitalSystem.Patients
                     if (patient != null)
                     {
                         patient.IsDeleted = true;
-                        patient.DeletedBy = getUserID();
+                        patient.DeletedBy = userId;
                         patient.DeletedAt = DateTime.Now;
                         db.SaveChanges();
 
