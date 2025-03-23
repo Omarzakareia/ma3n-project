@@ -15,6 +15,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link href="<%= ResolveUrl("~/Styles/style.css") %>" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="<%= ResolveUrl("~/img/favicon.png") %>">
 
@@ -46,8 +48,7 @@
 
                 <!-- Doctor Dropdown -->
                 <li class="nav-item dropdown">
-                    <a class="dropdown-toggle" href="#" id="doctorDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Doctor
+                    <a class="dropdown-toggle" href="#" id="doctorDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Doctor
                     </a>
                     <ul class="dropdown-menu custom-dropdown" aria-labelledby="doctorDropdown">
                         <li><a class="dropdown-item" href="<%= ResolveUrl("~/Doctors/Departments.aspx") %>">Departments</a></li>
@@ -66,7 +67,7 @@
             </ul>
             <ul class="navbar-nav d-flex flex-row align-items-center" id="lstWelcome" runat="server">
                 <li class="nav-item me-3">
-                    <asp:LinkButton ID="btnUser" runat="server" ></asp:LinkButton>
+                    <asp:LinkButton ID="btnUser" runat="server"></asp:LinkButton>
                 </li>
                 <li class="nav-item">
                     <asp:LinkButton ID="btnLogOut" CssClass="btn btn-danger" runat="server" OnClick="btnLogOut_Click">Sign Out</asp:LinkButton>
@@ -74,7 +75,7 @@
             </ul>
 
         </nav>
-        
+
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
         </div>
@@ -82,42 +83,43 @@
 
     <footer class="footer">
         <div class="container">
-            <div class="row text-center text-md-start">
-                <!-- Logo -->
-                <div class="col-md-4 mb-3">
+            <div class="footer-content">
+                <!-- Logo Section -->
+                <div class="footer-logo-section">
                     <a href="index.html">
                         <img src="<%= ResolveUrl("~/img/logo.png") %>" class="footer-logo" alt="Logo">
                     </a>
                 </div>
 
                 <!-- Sitemap -->
-                <div class="col-md-4 mb-3">
-                    <h5>Sitemap</h5>
+                <div class="footer-links-section mt-4">
                     <ul class="footer-links">
-                        <li><a href="">About Us</a></li>
-                        <li><a href="">Our Team</a></li>
-                        <li><a href="">Contact Us</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Team</a></li>
+                        <li><a href="#">Contact Us</a></li>
                     </ul>
                 </div>
 
                 <!-- Social Links -->
-                <div class="col-md-4 mb-3">
+                <div class="footer-social-section">
                     <h5>Follow Us</h5>
                     <ul class="footer-social">
-                        <li>
-                            <a href=""><i class="bi bi-facebook"></i></a>
-                        </li>
-                        <li>
-                            <a href=""><i class="bi bi-instagram"></i></a>
-                        </li>
-                        <li>
-                            <a href=""><i class="bi bi-twitter"></i></a>
-                        </li>
+                        <li><a href="#"><i class="bi bi-facebook"></i></a></li>
+                        <li><a href="#"><i class="bi bi-instagram"></i></a></li>
+                        <li><a href="#"><i class="bi bi-twitter"></i></a></li>
+                        <li><a href="#"><i class="bi bi-linkedin"></i></a></li>
                     </ul>
                 </div>
             </div>
+
+            <!-- Copyright -->
+            <div class="footer-bottom">
+                <p >&copy; 2025 Your Hospital. All Rights Reserved.</p>
+            </div>
         </div>
     </footer>
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">

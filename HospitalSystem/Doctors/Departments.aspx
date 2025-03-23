@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-  <a href="Deparments.aspx" style="text-decoration: none;">
+  <a href="Departments.aspx" style="text-decoration: none;">
         <h2 class="text-center fw-bold mb-4 py-2 border-bottom shadow-sm bg-light text-success">Department Management</h2>
     </a>
     <div class="d-flex justify-content-between align-items-center flex-wrap bg-light px-3 rounded shadow-sm ">
