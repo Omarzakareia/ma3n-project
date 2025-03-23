@@ -3,9 +3,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <a style="text-decoration: none;">
-        <h2 class="text-center fw-bold mb-4 py-2 border-bottom shadow-sm bg-light">Patient History</h2>
-    </a>
+    <a href="Patients.aspx" style="text-decoration: none;">
+    <h2 class="text-center fw-bold mt-4 py-2 border-bottom shadow-sm bg-light text-success">Patients</h2>
+</a>
     <div class="container mt-4">
 
         <asp:Label ID="lblErrorMessage" runat="server" CssClass="text-danger" Visible="false"></asp:Label>

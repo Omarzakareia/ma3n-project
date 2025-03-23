@@ -16,12 +16,60 @@ namespace HospitalSystem.Patients
         {
 
         }
-
+        private int getUserID()
+        {
+            HttpCookie myCookie = Request.Cookies["cooklogin"];
+            return Convert.ToInt32(myCookie["userId"]);
+        }
+        #region Buttons Clicks
         protected void btnResetSearch_Click(object sender, EventArgs e)
         {
             txtSearch.Text = "";
             RadGridActive.Rebind();
         }
+        protected void btnAddPatient_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (var db = DbService.Instance.GetDbContext())
+                {
+                    int userId = getUserID();
+
+                    // Get the staff ID for the logged-in user
+                    var staff = db.Staffs.FirstOrDefault(s => s.UserID == userId);
+                    if (staff == null)
+                    {
+                        Response.Write("<script>alert('Error: Staff record not found for this user!');</script>");
+                        return;
+                    }
+
+                    var newPatient = new Patient
+                    {
+                        FirstName = txtFirstName.Text.Trim(),
+                        LastName = txtLastName.Text.Trim(),
+                        Gender = txtGender.Text.Trim(),
+                        Phone = txtPhone.Text.Trim(),
+                        Email = txtEmail.Text.Trim(),
+                        StaffID = staff.StaffID,
+                        Address = txtAddress.Text.Trim(),
+                        CreatedAt = DateTime.Now,
+                        IsDeleted = false
+                    };
+
+                    db.Patients.Add(newPatient);
+                    db.SaveChanges();
+
+                    Response.Write("<script>alert('Patient added successfully!');</script>");
+                    RadGridActive.Rebind();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle error
+                Response.Write("<script>alert('Error: " + ex.Message.Replace("'", "\\'") + "');</script>");
+            }
+        }
+
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
@@ -37,7 +85,27 @@ namespace HospitalSystem.Patients
                 RadGridActive.DataBind();
             }
         }
+        protected void btnToggleView_Click(object sender, EventArgs e)
+        {
+            // Toggle visibility of panels
+            pnlActivePatients.Visible = !pnlActivePatients.Visible;
+            pnlDeletedPatients.Visible = !pnlDeletedPatients.Visible;
 
+            if (pnlDeletedPatients.Visible)
+            {
+                RadGridDeleted.Rebind();
+            }
+            else
+            {
+                RadGridActive.Rebind();
+            }
+
+            // Change button text
+            btnToggleView.Text = pnlActivePatients.Visible ? "Show Deleted Patients" : "Show Active Patients";
+        }
+        #endregion
+
+        #region CRUD
         protected void RadGridActive_DeleteCommand(object sender, GridCommandEventArgs e)
         {
             GridDataItem item = e.Item as GridDataItem;
@@ -52,6 +120,7 @@ namespace HospitalSystem.Patients
                     if (patient != null)
                     {
                         patient.IsDeleted = true;
+                        patient.DeletedBy = getUserID();
                         patient.DeletedAt = DateTime.Now;
                         db.SaveChanges();
 
@@ -64,26 +133,6 @@ namespace HospitalSystem.Patients
                     }
                 }
             }
-        }
-
-        protected void btnToggleView_Click(object sender, EventArgs e)
-        {
-            // Toggle visibility of panels
-            pnlActivePatients.Visible = !pnlActivePatients.Visible;
-            pnlDeletedPatients.Visible = !pnlDeletedPatients.Visible;
-
-            // Ensure correct data is loaded when toggling
-            if (pnlDeletedPatients.Visible)
-            {
-                RadGridDeleted.Rebind(); 
-            }
-            else
-            {
-                RadGridActive.Rebind(); 
-            }
-
-            // Change button text
-            btnToggleView.Text = pnlActivePatients.Visible ? "Show Deleted Patients" : "Show Active Patients";
         }
 
         protected void RadGridActive_UpdateCommand(object sender, GridCommandEventArgs e)
@@ -114,12 +163,12 @@ namespace HospitalSystem.Patients
                     var patient = db.Patients.FirstOrDefault(p => p.PatientID == patientId);
                     if (patient != null)
                     {
-                     
+
                         patient.FirstName = firstName;
                         patient.LastName = lastName;
                         patient.Phone = phone;
 
-                        db.SaveChanges(); 
+                        db.SaveChanges();
                     }
                 }
             }
@@ -137,7 +186,8 @@ namespace HospitalSystem.Patients
                     if (patient != null)
                     {
                         patient.IsDeleted = false;
-                        patient.DeletedAt = null; // Reset deleted timestamp
+                        patient.DeletedBy = null;
+                        patient.DeletedAt = null;
                         db.SaveChanges();
 
                         // Refresh grids
@@ -149,10 +199,9 @@ namespace HospitalSystem.Patients
                 }
             }
         }
+        #endregion
 
-
-
-
+        #region DataSource
         protected void RadGridDeleted_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
         {
             try
@@ -184,45 +233,7 @@ namespace HospitalSystem.Patients
                 Response.Write("<script>alert('Error: " + ex.Message.Replace("'", "\\'") + "');</script>");
             }
         }
-        protected void btnAddPatient_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                using (var db = DbService.Instance.GetDbContext ())
-                {
-                    int defaultStaffId = 1;
-                    // Create a new Patient object
-                    var newPatient = new Patient
-                    {
-                        PatientID = 29,
-                        FirstName = txtFirstName.Text.Trim(),
-                        LastName = txtLastName.Text.Trim(),
-                        Gender = txtGender.Text.Trim(),
-                        Phone = txtPhone.Text.Trim(),
-                        Email = txtEmail.Text.Trim(),
-                        StaffID = defaultStaffId,
-                        Address = txtAddress.Text.Trim(),
-                        CreatedAt = DateTime.Now,  // Set CreatedAt to current time
-                        IsDeleted = false         // Mark as not deleted
-                    };
-
-                    // Add to database and save
-                    db.Patients.Add(newPatient);
-                    db.SaveChanges();
-
-                    // Show success message
-                    Response.Write("<script>alert('Patient added successfully!');</script>");
-
-                    // Refresh Grid
-                    RadGridActive.Rebind();
-                }
-            }
-            catch (Exception ex)
-            {
-                // Handle error
-                Response.Write("<script>alert('Error: " + ex.Message.Replace("'", "\\'") + "');</script>");
-            }
-        }
+        #endregion
 
     }
 }
