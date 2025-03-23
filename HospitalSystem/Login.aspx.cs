@@ -27,6 +27,7 @@ namespace HospitalSystem
 
             Application["MaxFailedAttempts"] = MaxFailedAttempts;
         }
+
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             if (Page.IsValid)
@@ -46,7 +47,7 @@ namespace HospitalSystem
                 var result = _authService.AuthenticateUser(email, password);
                 if (result.IsAuthenticated)
                 {
-                    _authService.SetAuthCookie(email, result.Role, result.UserId, chkRememberMe.Checked);
+                    _authService.SetAuthCookie(email, result.Name, result.Role, result.UserId, chkRememberMe.Checked);
                     Response.Redirect("Default.aspx");
                 }
                 else
@@ -57,6 +58,7 @@ namespace HospitalSystem
                 }
             }
         }
+
 
 
     }

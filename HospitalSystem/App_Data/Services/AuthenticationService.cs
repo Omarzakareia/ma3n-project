@@ -22,17 +22,17 @@ namespace HospitalSystem.Services
             {
                 if ((bool)user.IsLocked)
                 {
-                    return new AuthenticationResult(false, 0, null); // Account is locked
+                    return new AuthenticationResult(false, 0, null, null); // Account is locked
                 }
 
                 if (user.PasswordHash == password)
                 {
                     ResetFailedLogins(email); // Reset failed attempts on success
-                    return new AuthenticationResult(true, user.UserID, user.Role.RoleName);
+                    return new AuthenticationResult(true, user.UserID, user.Role.RoleName, user.FullName);
                 }
             }
 
-            return new AuthenticationResult(false, 0, null);
+            return new AuthenticationResult(false, 0, null, null);
         }
 
         public bool IsAccountLocked(string email)
@@ -68,10 +68,11 @@ namespace HospitalSystem.Services
             }
         }
 
-        public void SetAuthCookie(string email, string role, int userId, bool rememberMe)
+        public void SetAuthCookie(string email,string name, string role, int userId, bool rememberMe)
         {
             HttpCookie authCookie = new HttpCookie("cooklogin");
             authCookie["email"] = HttpUtility.UrlEncode(email.ToUpper());
+            authCookie["name"] = HttpUtility.UrlEncode(name.ToUpper());
             authCookie["role"] = HttpUtility.UrlEncode(role);
             authCookie["userId"] = userId.ToString();
             authCookie.Expires = rememberMe ? DateTime.Now.AddDays(7) : DateTime.Now.AddHours(1);
@@ -80,17 +81,20 @@ namespace HospitalSystem.Services
 
     }
 
+    // Updated AuthenticationResult to include the Name
     public class AuthenticationResult
     {
         public bool IsAuthenticated { get; }
         public int UserId { get; }
         public string Role { get; }
+        public string Name { get; } // Added name property
 
-        public AuthenticationResult(bool isAuthenticated, int userId, string role)
+        public AuthenticationResult(bool isAuthenticated, int userId, string role, string name)
         {
             IsAuthenticated = isAuthenticated;
             UserId = userId;
             Role = role;
+            Name = name;
         }
     }
 }
