@@ -27,7 +27,7 @@
         <nav class="container-fluid">
             <ul>
                 <li>
-                    <a href="index.html">
+                    <a href="Login.aspx">
                         <img width="140" src="<%= ResolveUrl("~/img/logo.png") %>"></a>
                 </li>
             </ul>
@@ -37,15 +37,15 @@
                     </a>
                 </li>
                 <li>
-                    <a href="Register.html">Register
+                    <a href="Register.html">Signout
                     </a>
                 </li>
                 <li>
-                    <a href="Contact-Us.html">Contact Us
+                    <a href="Users/UserManagement.aspx">UserManagement
                     </a>
                 </li>
                 <li>
-                    <a></a>
+                    <a ></a>
                 </li>
                 <li>
                     <a></a>
