@@ -4,7 +4,9 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h2>My Appointments</h2>
+     <a href="MyAppointments.aspx" style="text-decoration: none;">
+       <h2 class="text-center fw-bold mb-4 py-2 border-bottom shadow-sm bg-light text-success">Appointments</h2>
+   </a>
 
     <telerik:RadGrid ID="RadGrid1" runat="server" AllowFilteringByColumn="True" AllowPaging="True" 
         AllowSorting="True" OnNeedDataSource="RadGrid1_NeedDataSource">
@@ -32,6 +34,10 @@
                 <telerik:GridBoundColumn DataField="Status" HeaderText="Status" UniqueName="Status"
                     SortExpression="Status" />
             </Columns>
+            <EditFormSettings>
+                <EditColumn ShowNoSortIcon="False"></EditColumn>
+            </EditFormSettings>
+            <HeaderStyle BackColor="Green" ForeColor="White" />
         </MasterTableView>
     </telerik:RadGrid>
 </asp:Content>

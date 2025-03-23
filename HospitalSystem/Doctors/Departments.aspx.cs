@@ -41,7 +41,7 @@ namespace HospitalSystem.Doctors
 				if (ddlDoctors != null)
 				{
 					ddlDoctors.DataSource = db.Doctors
-											  .Where(d => d.DepartmentID == null || d.DepartmentID == 0)
+											  .Where(d => (d.DepartmentID == null || d.DepartmentID == 0) && d.User.IsDeleted == false)
 											  .Select(d => new { d.DoctorID, DoctorName = d.User.FullName })
 											  .ToList();
 					ddlDoctors.DataTextField = "DoctorName";
@@ -54,7 +54,7 @@ namespace HospitalSystem.Doctors
 				if (rptDoctors != null)
 				{
 					var doctors = db.Doctors
-						.Where(d => d.DepartmentID == departmentId)
+						.Where(d => d.DepartmentID == departmentId && d.User.IsDeleted == false)
 						.Select(d => new
 						{
 							d.DoctorID,
@@ -93,19 +93,7 @@ namespace HospitalSystem.Doctors
 					RadGrid1.Rebind();
 				}
 			}
-			else if (e.CommandName == "UnassignDoctor")
-			{
-				int doctorId = Convert.ToInt32(e.CommandArgument);
-
-				var doctor = db.Doctors.FirstOrDefault(d => d.DoctorID == doctorId);
-				if (doctor != null)
-				{
-					doctor.DepartmentID = null; 
-					db.SaveChanges();
-				}
-
-				RadGrid1.Rebind();
-			}
+			
 
 		}
 
@@ -247,7 +235,22 @@ namespace HospitalSystem.Doctors
 			btnToggleView.Text = ActiveDeparment.Visible ? "Show Deleted Patients" : "Show Active Patients";
 		}
 
-
+		protected void RadGridDeletedUsers_DeleteCommand(object sender, GridCommandEventArgs e)
+		{
+			if (e.Item is GridDataItem item && int.TryParse(item.GetDataKeyValue("DepartmentID")?.ToString(), out int DepartmentID))
+			{
+				var department = db.Departments.FirstOrDefault(d => d.DepartmentID == DepartmentID);
+				if (department != null)
+				{
+					department.IsDeleted = false;
+					department.DeletedBy = null;
+					department.DeletedAt = null;
+					db.SaveChanges();
+					RadGrid1.Rebind();
+					RadGridDeleted.Rebind();
+				}
+			}
+		}
 
 
 
