@@ -24,36 +24,37 @@
 
 <body>
     <div>
-        <nav class="container-fluid">
-            <ul>
-                <li>
-                    <a href="Login.aspx">
-                        <img width="140" src="<%= ResolveUrl("~/img/logo.png") %>"></a>
+        <nav class="container-fluid d-flex align-items-center justify-content-between p-3 custom-nav">
+            <!-- Logo -->
+            <a href="<%= ResolveUrl("~/Login.aspx") %>">
+                <img width="140" src="<%= ResolveUrl("~/img/logo.png") %>">
+            </a>
+
+            <!-- Navigation Links -->
+            <ul class="nav">
+                <li class="nav-item"><a href="<%= ResolveUrl("~/Users/UserManagement.aspx") %>">User Management</a></li>
+
+                <!-- Doctor Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="dropdown-toggle" href="#" id="doctorDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Doctor
+                    </a>
+                    <ul class="dropdown-menu custom-dropdown" aria-labelledby="doctorDropdown">
+                        <li><a class="dropdown-item" href="<%= ResolveUrl("~/Doctors/Departments.aspx") %>">Departments</a></li>
+                        <li><a class="dropdown-item" href="<%= ResolveUrl("~/Doctors/MyAppointments.aspx") %>">Appointments</a></li>
+                    </ul>
                 </li>
+
+                <li class="nav-item"><a href="<%= ResolveUrl("~/Patients/PatientManagement.aspx") %>">Patients</a></li>
             </ul>
-            <ul>
-                <li>
-                    <a href="Login.aspx">Login
-                    </a>
-                </li>
-                <li>
-                    <a href="Register.html">Signout
-                    </a>
-                </li>
-                <li>
-                    <a href="Users/UserManagement.aspx">UserManagement
-                    </a>
-                </li>
-                <li>
-                    <a ></a>
-                </li>
-                <li>
-                    <a></a>
-                </li>
+
+            <!-- Login & Signout Links (Right Aligned) -->
+            <ul class="nav auth-links">
+                <li class="nav-item"><a href="<%= ResolveUrl("~/Login.aspx") %>">Login</a></li>
+                <li class="nav-item"><a href="<%= ResolveUrl("~/Register.html") %>">Signout</a></li>
             </ul>
         </nav>
-
     </div>
+
     <form id="form1" runat="server">
         <telerik:RadScriptManager ID="RadScriptManager1" runat="server">
             <Scripts>
@@ -72,43 +73,43 @@
     </form>
 
     <footer class="footer">
-    <div class="container">
-        <div class="row text-center text-md-start">
-            <!-- Logo -->
-            <div class="col-md-4 mb-3">
-                <a href="index.html">
-                    <img src="<%= ResolveUrl("~/img/logo.png") %>" class="footer-logo" alt="Logo">
-                </a>
-            </div>
+        <div class="container">
+            <div class="row text-center text-md-start">
+                <!-- Logo -->
+                <div class="col-md-4 mb-3">
+                    <a href="index.html">
+                        <img src="<%= ResolveUrl("~/img/logo.png") %>" class="footer-logo" alt="Logo">
+                    </a>
+                </div>
 
-            <!-- Sitemap -->
-            <div class="col-md-4 mb-3">
-                <h5>Sitemap</h5>
-                <ul class="footer-links">
-                    <li><a href="">About Us</a></li>
-                    <li><a href="">Our Team</a></li>
-                    <li><a href="">Contact Us</a></li>
-                </ul>
-            </div>
+                <!-- Sitemap -->
+                <div class="col-md-4 mb-3">
+                    <h5>Sitemap</h5>
+                    <ul class="footer-links">
+                        <li><a href="">About Us</a></li>
+                        <li><a href="">Our Team</a></li>
+                        <li><a href="">Contact Us</a></li>
+                    </ul>
+                </div>
 
-            <!-- Social Links -->
-            <div class="col-md-4 mb-3">
-                <h5>Follow Us</h5>
-                <ul class="footer-social">
-                    <li>
-                        <a href=""><i class="bi bi-facebook"></i></a>
-                    </li>
-                    <li>
-                        <a href=""><i class="bi bi-instagram"></i></a>
-                    </li>
-                    <li>
-                        <a href=""><i class="bi bi-twitter"></i></a>
-                    </li>
-                </ul>
+                <!-- Social Links -->
+                <div class="col-md-4 mb-3">
+                    <h5>Follow Us</h5>
+                    <ul class="footer-social">
+                        <li>
+                            <a href=""><i class="bi bi-facebook"></i></a>
+                        </li>
+                        <li>
+                            <a href=""><i class="bi bi-instagram"></i></a>
+                        </li>
+                        <li>
+                            <a href=""><i class="bi bi-twitter"></i></a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

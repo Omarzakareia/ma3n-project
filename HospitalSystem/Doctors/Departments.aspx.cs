@@ -2,6 +2,7 @@
 using System;
 using System.Drawing;
 using System.Linq;
+using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Telerik.Web.UI;
@@ -19,7 +20,12 @@ namespace HospitalSystem.Doctors
 
         }
 
-        protected void btnToggleView_Click(object sender, EventArgs e)
+		private int getUserID()
+		{
+			HttpCookie myCookie = Request.Cookies["cooklogin"];
+			return Convert.ToInt32(myCookie["userId"]);
+		}
+		protected void btnToggleView_Click(object sender, EventArgs e)
         {
             // Toggle visibility of panels
             ActiveDeparment.Visible = !ActiveDeparment.Visible;
@@ -36,12 +42,35 @@ namespace HospitalSystem.Doctors
             }
 
             // Change button text
-            btnToggleView.Text = ActiveDeparment.Visible ? "Show Deleted Patients" : "Show Active Patients";
+            btnToggleView.Text = ActiveDeparment.Visible ? "Show Deleted Departments" : "Show Active Departments";
         }
 
+		protected void btnSearch_Click(object sender, EventArgs e)
+		{
+			string searchText = txtSearch.Text.Trim();
 
-        #region DateView
-        protected void RadGrid1_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
+			using (db)
+			{
+				var query = db.DepartmentViews.AsQueryable();
+
+				if (!string.IsNullOrEmpty(searchText))
+				{
+					query = query.Where(d => d.DepartmentName.StartsWith(searchText));
+				}
+
+				RadGrid1.DataSource = query.ToList();
+				RadGrid1.DataBind();
+			}
+		}
+		protected void btnResetSearch_Click(object sender, EventArgs e)
+		{
+			txtSearch.Text = "";
+			RadGrid1.Rebind();
+		}
+
+
+		#region DateView
+		protected void RadGrid1_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
         {
             var departmentViews = db.DepartmentViews.ToList(); // Fetch from view
             RadGrid1.DataSource = departmentViews;
@@ -149,6 +178,7 @@ namespace HospitalSystem.Doctors
                     {
                         department.IsDeleted = true;
                         department.DeletedAt = DateTime.Now;
+                        department.DeletedBy = getUserID();
                     }
 
                     db.SaveChanges();
