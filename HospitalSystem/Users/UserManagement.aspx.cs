@@ -10,7 +10,7 @@ namespace HospitalSystem.Users
 {
     public partial class UserManagement : System.Web.UI.Page
     {
-        private readonly HospitalEntities _context = new HospitalEntities();
+        private readonly InternSmallHospitalConnectionString _context = new InternSmallHospitalConnectionString();
 
         protected void Page_Load(object sender, EventArgs e)
         {

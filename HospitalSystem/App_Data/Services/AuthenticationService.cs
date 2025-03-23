@@ -7,11 +7,11 @@ namespace HospitalSystem.Services
 {
     public class AuthenticationService
     {
-        private readonly HospitalEntities _context;
+        private readonly InternSmallHospitalConnectionString _context;
 
         public AuthenticationService()
         {
-            _context = new HospitalEntities();
+            _context = new InternSmallHospitalConnectionString();
         }
 
         public bool AuthenticateUser(string email, string password, out int userId, out string role)

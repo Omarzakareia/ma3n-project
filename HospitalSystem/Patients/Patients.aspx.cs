@@ -27,7 +27,7 @@ namespace HospitalSystem.Patients
         {
             string searchText = txtSearch.Text.Trim().ToLower();
 
-            using (var db = DbService.Instance.GetDbContext())
+            using (InternSmallHospitalConnectionString db = new InternSmallHospitalConnectionString())
             {
                 var patientData = db.PatientInfoes
                     .Where(p => p.FullName.ToLower().Contains(searchText))
@@ -46,7 +46,7 @@ namespace HospitalSystem.Patients
                 int patientId = Convert.ToInt32(item.GetDataKeyValue("PatientID"));
                 Response.Write("<script>alert('Patient ID: " + patientId + "');</script>"); // 🔹 Debugging step
 
-                using (var db = DbService.Instance.GetDbContext())
+                using (InternSmallHospitalConnectionString db = new InternSmallHospitalConnectionString())
                 {
                     var patient = db.Patients.FirstOrDefault(p => p.PatientID == patientId);
                     if (patient != null)
@@ -109,7 +109,7 @@ namespace HospitalSystem.Patients
                     lastName = nameParts.Length > 1 ? nameParts[1] : "";
                 }
 
-                using (var db = DbService.Instance.GetDbContext())
+                using (InternSmallHospitalConnectionString db = new InternSmallHospitalConnectionString())
                 {
                     var patient = db.Patients.FirstOrDefault(p => p.PatientID == patientId);
                     if (patient != null)
@@ -131,7 +131,7 @@ namespace HospitalSystem.Patients
             {
                 int patientId = Convert.ToInt32(e.CommandArgument);
 
-                using (var db = DbService.Instance.GetDbContext())
+                using (InternSmallHospitalConnectionString db = new InternSmallHospitalConnectionString())
                 {
                     var patient = db.Patients.FirstOrDefault(p => p.PatientID == patientId);
                     if (patient != null)
@@ -157,7 +157,7 @@ namespace HospitalSystem.Patients
         {
             try
             {
-                using (var db = DbService.Instance.GetDbContext())
+                using (InternSmallHospitalConnectionString db = new InternSmallHospitalConnectionString())
                 {
                     var deletedPatients = db.DeletedPatientViews.ToList(); // Fetch from View
                     RadGridDeleted.DataSource = deletedPatients;
@@ -172,7 +172,7 @@ namespace HospitalSystem.Patients
         {
             try
             {
-                using (var db = DbService.Instance.GetDbContext())
+                using (InternSmallHospitalConnectionString db = new InternSmallHospitalConnectionString())
                 {
                     var patientData = db.PatientInfoes.ToList(); // Fetch from view
                     RadGridActive.DataSource = patientData;
@@ -188,7 +188,7 @@ namespace HospitalSystem.Patients
         {
             try
             {
-                using (var db = DbService.Instance.GetDbContext())
+                using (InternSmallHospitalConnectionString db = new InternSmallHospitalConnectionString())
                 {
                     int defaultStaffId = 1;
                     // Create a new Patient object

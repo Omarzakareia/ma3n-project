@@ -26,7 +26,7 @@ namespace HospitalSystem.Patients
                     return;
                 }
 
-                using (var db = DbService.Instance.GetDbContext())
+                using (InternSmallHospitalConnectionString db = new InternSmallHospitalConnectionString() )
                 {
                     var historyData = db.PatientHistories
                         .Where(h => h.PatientID == patientID)

@@ -13,10 +13,10 @@ namespace HospitalSystem.Services
 
 		private DbService()
 		{
-            var conn = ConfigurationManager.ConnectionStrings["HospitalEntities"]; 
+            var conn = ConfigurationManager.ConnectionStrings["InternSmallHospitalConnectionString"]; 
             if (conn == null)
             {
-                throw new Exception("❌ Connection string 'HospitalEntities' not found in web.config!");
+                throw new Exception("❌ Connection string 'InternSmallHospitalConnectionString' not found in web.config!");
             }
             _connectionString = conn.ConnectionString;
         }
@@ -31,9 +31,9 @@ namespace HospitalSystem.Services
 				return _instance;
 			}
 		}
-        public HospitalEntities GetDbContext()
+        public InternSmallHospitalConnectionString GetDbContext()
         {
-            return new HospitalEntities(); 
+            return new InternSmallHospitalConnectionString(); 
         }
     }
 

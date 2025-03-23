@@ -20,7 +20,7 @@ namespace HospitalSystem
 
         private void LoadMaxFailedAttempts()
         {
-            HospitalEntities _context = new HospitalEntities();
+            InternSmallHospitalConnectionString _context = new InternSmallHospitalConnectionString();
             MaxFailedAttempts = Application["MaxFailedAttempts"] as int?
                                 ?? _context.Settings.Select(s => (int?)s.MaxFailedAttempts).FirstOrDefault()
                                 ?? 5;

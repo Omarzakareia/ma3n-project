@@ -283,6 +283,7 @@
     <Content Include="App_Data\RadCaptcha\Y.wav" />
     <Content Include="App_Data\RadCaptcha\Z.wav" />
     <Compile Include="App_Data\Services\AuthenticationService.cs" />
+    <Compile Include="App_Data\Services\DbService.cs" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
