@@ -34,7 +34,7 @@ namespace HospitalSystem
                 HttpCookie myCookie = new HttpCookie("cooklogin");
                 myCookie.Expires = DateTime.Now.AddDays(-1); // Expire it in the past
                 Response.Cookies.Add(myCookie);
-                Response.Redirect("Default.aspx");
+                Response.Redirect(ResolveUrl("~/Default.aspx"));
             }
 
             Response.Redirect("Default.aspx");
