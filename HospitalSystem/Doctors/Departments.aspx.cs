@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HospitalSystem.Services;
+using System;
 using System.Drawing;
 using System.Linq;
 using System.Web.UI;
@@ -9,258 +10,258 @@ using Telerik.Windows.Documents.Model.Drawing.Charts;
 
 namespace HospitalSystem.Doctors
 {
-	public partial class Departments : System.Web.UI.Page
-	{
-		private InternSmallHospitalConnectionString db = new InternSmallHospitalConnectionString();
+    public partial class Departments : System.Web.UI.Page
+    {
+        InternSmallHospitalConnectionString db = DbService.Instance.GetDbContext();
 
-		protected void Page_Load(object sender, EventArgs e)
-		{
-			
-		}
+        protected void Page_Load(object sender, EventArgs e)
+        {
 
-		protected void btnToggleView_Click(object sender, EventArgs e)
-		{
-			// Toggle visibility of panels
-			ActiveDeparment.Visible = !ActiveDeparment.Visible;
-			DeletedDepartment.Visible = !DeletedDepartment.Visible;
+        }
 
-			// Ensure correct data is loaded when toggling
-			if (DeletedDepartment.Visible)
-			{
-				RadGridDeleted.Rebind();
-			}
-			else
-			{
-				RadGrid1.Rebind();
-			}
+        protected void btnToggleView_Click(object sender, EventArgs e)
+        {
+            // Toggle visibility of panels
+            ActiveDeparment.Visible = !ActiveDeparment.Visible;
+            DeletedDepartment.Visible = !DeletedDepartment.Visible;
 
-			// Change button text
-			btnToggleView.Text = ActiveDeparment.Visible ? "Show Deleted Patients" : "Show Active Patients";
-		}
+            // Ensure correct data is loaded when toggling
+            if (DeletedDepartment.Visible)
+            {
+                RadGridDeleted.Rebind();
+            }
+            else
+            {
+                RadGrid1.Rebind();
+            }
 
-
-		#region DateView
-		protected void RadGrid1_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
-		{
-			var departmentViews = db.DepartmentViews.ToList(); // Fetch from view
-			RadGrid1.DataSource = departmentViews;
-		}
-		protected void RadGridDeleted_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
-		{
-			var departmentViews = db.DeletedDepartmentViews.ToList(); // Fetch from view
-			RadGridDeleted.DataSource = departmentViews;
-		}
+            // Change button text
+            btnToggleView.Text = ActiveDeparment.Visible ? "Show Deleted Patients" : "Show Active Patients";
+        }
 
 
-		protected void RadGrid1_ItemDataBound(object sender, GridItemEventArgs e)
-		{
-			if (e.Item is GridDataItem item)
-			{
-				DropDownList ddlDoctors = (DropDownList)item.FindControl("ddlDoctors");
-				if (ddlDoctors != null)
-				{
-					ddlDoctors.DataSource = db.Doctors
-											  .Where(d => (d.DepartmentID == null || d.DepartmentID == 0) && d.User.IsDeleted == false)
-											  .Select(d => new { d.DoctorID, DoctorName = d.User.FullName })
-											  .ToList();
-					ddlDoctors.DataTextField = "DoctorName";
-					ddlDoctors.DataValueField = "DoctorID";
-					ddlDoctors.DataBind();
-				}
-				int departmentId = Convert.ToInt32(item.GetDataKeyValue("DepartmentID"));
-
-				var rptDoctors = (Repeater)item.FindControl("rptDoctors");
-				if (rptDoctors != null)
-				{
-					var doctors = db.Doctors
-						.Where(d => d.DepartmentID == departmentId && d.User.IsDeleted == false)
-						.Select(d => new
-						{
-							d.DoctorID,
-							d.User.FullName,
-							d.Speciality.SpecialityName
-						})
-						.ToList();
-
-					rptDoctors.DataSource = doctors;
-					rptDoctors.DataBind();
-				}
-			}
-		}
-
-		#endregion
+        #region DateView
+        protected void RadGrid1_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
+        {
+            var departmentViews = db.DepartmentViews.ToList(); // Fetch from view
+            RadGrid1.DataSource = departmentViews;
+        }
+        protected void RadGridDeleted_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
+        {
+            var departmentViews = db.DeletedDepartmentViews.ToList(); // Fetch from view
+            RadGridDeleted.DataSource = departmentViews;
+        }
 
 
+        protected void RadGrid1_ItemDataBound(object sender, GridItemEventArgs e)
+        {
+            if (e.Item is GridDataItem item)
+            {
+                DropDownList ddlDoctors = (DropDownList)item.FindControl("ddlDoctors");
+                if (ddlDoctors != null)
+                {
+                    ddlDoctors.DataSource = db.Doctors
+                                              .Where(d => (d.DepartmentID == null || d.DepartmentID == 0) && d.User.IsDeleted == false)
+                                              .Select(d => new { d.DoctorID, DoctorName = d.User.FullName })
+                                              .ToList();
+                    ddlDoctors.DataTextField = "DoctorName";
+                    ddlDoctors.DataValueField = "DoctorID";
+                    ddlDoctors.DataBind();
+                }
+                int departmentId = Convert.ToInt32(item.GetDataKeyValue("DepartmentID"));
 
-		#region CRUD
-		protected void RadGrid1_ItemInsert(object sender, GridCommandEventArgs e)
-		{
-			if (e.Item is GridEditableItem editableItem)
-			{
+                var rptDoctors = (Repeater)item.FindControl("rptDoctors");
+                if (rptDoctors != null)
+                {
+                    var doctors = db.Doctors
+                        .Where(d => d.DepartmentID == departmentId && d.User.IsDeleted == false)
+                        .Select(d => new
+                        {
+                            d.DoctorID,
+                            d.User.FullName,
+                            d.Speciality.SpecialityName
+                        })
+                        .ToList();
 
-				GridEditableItem item = (GridEditableItem)e.Item;
-				TextBox txtDepartmentName = (TextBox)item["DepartmentName"].Controls[0];
+                    rptDoctors.DataSource = doctors;
+                    rptDoctors.DataBind();
+                }
+            }
+        }
 
-				if (txtDepartmentName != null)
-				{
-					string departmentName = txtDepartmentName.Text.Trim();
-
-					if (!string.IsNullOrEmpty(departmentName))
-					{
+        #endregion
 
 
 
-						Department newDepartment = new Department
-						{
-							DepartmentName = departmentName,
-							IsDeleted = false
-						};
+        #region CRUD
+        protected void RadGrid1_ItemInsert(object sender, GridCommandEventArgs e)
+        {
+            if (e.Item is GridEditableItem editableItem)
+            {
 
+                GridEditableItem item = (GridEditableItem)e.Item;
+                TextBox txtDepartmentName = (TextBox)item["DepartmentName"].Controls[0];
 
-						db.Departments.Add(newDepartment);
-						db.SaveChanges();
+                if (txtDepartmentName != null)
+                {
+                    string departmentName = txtDepartmentName.Text.Trim();
 
-
-
-						RadGrid1.Rebind();
-					}
-				}
-			}
-		}
-		protected void RadGrid1_DeleteCommand(object sender, GridCommandEventArgs e)
-		{
-			try
-			{
-				if (e.Item is GridDataItem item)
-				{
-					int departmentId = Convert.ToInt32(item.GetDataKeyValue("DepartmentID"));
-
-
-					var doctors = db.Doctors.Where(d => d.DepartmentID == departmentId).ToList();
-					foreach (var doctor in doctors)
-					{
-						doctor.DepartmentID = null;
-					}
-
-
-					var department = db.Departments.FirstOrDefault(d => d.DepartmentID == departmentId);
-					if (department != null)
-					{
-						department.IsDeleted = true;
-						department.DeletedAt = DateTime.Now;
-					}
-
-					db.SaveChanges();
-				}
-			}
-			catch (Exception ex)
-			{
-
-				Console.WriteLine("Error deleting department: " + ex.Message);
-			}
-		}
-
-
-		protected void RadGrid1_UpdateCommand(object sender, GridCommandEventArgs e)
-		{
-			try
-			{
-				if (e.Item is GridEditableItem editableItem)
-				{
-					int departmentId = Convert.ToInt32(editableItem.GetDataKeyValue("DepartmentID"));
-					string newDepartmentName = ((TextBox)editableItem["DepartmentName"].Controls[0]).Text.Trim();
-
-					var department = db.Departments.FirstOrDefault(d => d.DepartmentID == departmentId);
-					if (department != null)
-					{
-						department.DepartmentName = newDepartmentName;
-						db.SaveChanges();
-					}
-				}
-			}
-			catch (Exception ex)
-			{
-
-				Console.WriteLine("Error updating department: " + ex.Message);
-			}
-		}
-
-
-		#endregion
-
-
-		#region As/Unsign
-		protected void RadGrid1_ItemCommand(object sender, GridCommandEventArgs e)
-		{
-			if (e.CommandName == "AssignDoctor")
-			{
-				GridDataItem item = (GridDataItem)e.Item;
-				DropDownList ddlDoctors = (DropDownList)item.FindControl("ddlDoctors");
-
-				if (ddlDoctors != null && !string.IsNullOrEmpty(ddlDoctors.SelectedValue))
-				{
-					int doctorId = Convert.ToInt32(ddlDoctors.SelectedValue);
-					int departmentId = Convert.ToInt32(e.CommandArgument);
-
-
-					var doctor = db.Doctors.FirstOrDefault(d => d.DoctorID == doctorId);
-					if (doctor != null)
-					{
-						doctor.DepartmentID = departmentId;
-						db.SaveChanges();
-					}
-
-
-					RadGrid1.Rebind();
-				}
-			}
-
-
-		}
-
-		protected void btnUnassignDoctor_Command(object sender, CommandEventArgs e)
-		{
-			if (e.CommandName == "UnassignDoctor")
-			{
-				int doctorId = Convert.ToInt32(e.CommandArgument);
+                    if (!string.IsNullOrEmpty(departmentName))
+                    {
 
 
 
-				var doctor = db.Doctors.FirstOrDefault(d => d.DoctorID == doctorId);
-				if (doctor != null)
-				{
-					doctor.DepartmentID = null; // Unassign doctor from department
-					db.SaveChanges();
-				}
+                        Department newDepartment = new Department
+                        {
+                            DepartmentName = departmentName,
+                            IsDeleted = false
+                        };
 
 
-				RadGrid1.Rebind(); // Refresh the grid
-			}
-		}
-
-		#endregion
-
-
-		//Restore
-		protected void RadGridDeletedUsers_DeleteCommand(object sender, GridCommandEventArgs e)
-		{
-			if (e.Item is GridDataItem item && int.TryParse(item.GetDataKeyValue("DepartmentID")?.ToString(), out int DepartmentID))
-			{
-				var department = db.Departments.FirstOrDefault(d => d.DepartmentID == DepartmentID);
-				if (department != null)
-				{
-					department.IsDeleted = false;
-					department.DeletedBy = null;
-					department.DeletedAt = null;
-					db.SaveChanges();
-					RadGrid1.Rebind();
-					RadGridDeleted.Rebind();
-				}
-			}
-		}
+                        db.Departments.Add(newDepartment);
+                        db.SaveChanges();
 
 
 
+                        RadGrid1.Rebind();
+                    }
+                }
+            }
+        }
+        protected void RadGrid1_DeleteCommand(object sender, GridCommandEventArgs e)
+        {
+            try
+            {
+                if (e.Item is GridDataItem item)
+                {
+                    int departmentId = Convert.ToInt32(item.GetDataKeyValue("DepartmentID"));
 
-	}
+
+                    var doctors = db.Doctors.Where(d => d.DepartmentID == departmentId).ToList();
+                    foreach (var doctor in doctors)
+                    {
+                        doctor.DepartmentID = null;
+                    }
+
+
+                    var department = db.Departments.FirstOrDefault(d => d.DepartmentID == departmentId);
+                    if (department != null)
+                    {
+                        department.IsDeleted = true;
+                        department.DeletedAt = DateTime.Now;
+                    }
+
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine("Error deleting department: " + ex.Message);
+            }
+        }
+
+
+        protected void RadGrid1_UpdateCommand(object sender, GridCommandEventArgs e)
+        {
+            try
+            {
+                if (e.Item is GridEditableItem editableItem)
+                {
+                    int departmentId = Convert.ToInt32(editableItem.GetDataKeyValue("DepartmentID"));
+                    string newDepartmentName = ((TextBox)editableItem["DepartmentName"].Controls[0]).Text.Trim();
+
+                    var department = db.Departments.FirstOrDefault(d => d.DepartmentID == departmentId);
+                    if (department != null)
+                    {
+                        department.DepartmentName = newDepartmentName;
+                        db.SaveChanges();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine("Error updating department: " + ex.Message);
+            }
+        }
+
+
+        #endregion
+
+
+        #region As/Unsign
+        protected void RadGrid1_ItemCommand(object sender, GridCommandEventArgs e)
+        {
+            if (e.CommandName == "AssignDoctor")
+            {
+                GridDataItem item = (GridDataItem)e.Item;
+                DropDownList ddlDoctors = (DropDownList)item.FindControl("ddlDoctors");
+
+                if (ddlDoctors != null && !string.IsNullOrEmpty(ddlDoctors.SelectedValue))
+                {
+                    int doctorId = Convert.ToInt32(ddlDoctors.SelectedValue);
+                    int departmentId = Convert.ToInt32(e.CommandArgument);
+
+
+                    var doctor = db.Doctors.FirstOrDefault(d => d.DoctorID == doctorId);
+                    if (doctor != null)
+                    {
+                        doctor.DepartmentID = departmentId;
+                        db.SaveChanges();
+                    }
+
+
+                    RadGrid1.Rebind();
+                }
+            }
+
+
+        }
+
+        protected void btnUnassignDoctor_Command(object sender, CommandEventArgs e)
+        {
+            if (e.CommandName == "UnassignDoctor")
+            {
+                int doctorId = Convert.ToInt32(e.CommandArgument);
+
+
+
+                var doctor = db.Doctors.FirstOrDefault(d => d.DoctorID == doctorId);
+                if (doctor != null)
+                {
+                    doctor.DepartmentID = null; // Unassign doctor from department
+                    db.SaveChanges();
+                }
+
+
+                RadGrid1.Rebind(); // Refresh the grid
+            }
+        }
+
+        #endregion
+
+
+        //Restore
+        protected void RadGridDeletedUsers_DeleteCommand(object sender, GridCommandEventArgs e)
+        {
+            if (e.Item is GridDataItem item && int.TryParse(item.GetDataKeyValue("DepartmentID")?.ToString(), out int DepartmentID))
+            {
+                var department = db.Departments.FirstOrDefault(d => d.DepartmentID == DepartmentID);
+                if (department != null)
+                {
+                    department.IsDeleted = false;
+                    department.DeletedBy = null;
+                    department.DeletedAt = null;
+                    db.SaveChanges();
+                    RadGrid1.Rebind();
+                    RadGridDeleted.Rebind();
+                }
+            }
+        }
+
+
+
+
+    }
 }
