@@ -7,8 +7,8 @@
 
         <div class="w-100 ">
 
-            <a href="UserManagement.aspx" style="text-decoration: none;">
-                <h2 class="text-center fw-bold mb-4 py-2 border-bottom shadow-sm bg-light text-success">User Management</h2>
+            <a href="Patients.aspx" style="text-decoration: none;">
+                <h2 class="text-center fw-bold mb-4 py-2 border-bottom shadow-sm bg-light text-success">Patients</h2>
             </a>
             <!-- Toggle Button -->
             <div class="d-flex justify-content-between align-items-center flex-wrap bg-light px-3 rounded shadow-sm ">
