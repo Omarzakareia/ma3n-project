@@ -34,9 +34,7 @@ namespace HospitalSystem.Users
             }
         }
 
-
-
-
+        #region LoadData-GetCurrentUserID-DataSource
         private void LoadMaxAttempts() => txtMaxAttempts.Text = _context.Settings.FirstOrDefault()?.MaxFailedAttempts.ToString() ?? "5";
         private int GetCurrentUserID()
         {
@@ -50,7 +48,21 @@ namespace HospitalSystem.Users
 
             return userId;
         }
+        protected void RadGrid1_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
+        {
+            RadGrid1.DataSource = _context.UserInfoViews.ToList();
+            var specialityColumn = RadGrid1.MasterTableView.GetColumn("Speciality");
+            specialityColumn.Visible = false; // Ensure it's hidden by default
 
+        }
+        protected void RadGridDeletedUsers_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
+        {
+            RadGridDeletedUsers.DataSource = _context.DeletedUsersViews.ToList();
+        }
+
+        #endregion
+
+        #region ButtonEvents
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             string searchText = txtSearch.Text.Trim();
@@ -75,34 +87,38 @@ namespace HospitalSystem.Users
         }
         protected void btnSaveAttempts_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(txtMaxAttempts.Text, out int maxAttempts) && maxAttempts > 0)
+            string maxAttemptsValue = txtMaxAttempts.Text;
+            if (!string.IsNullOrEmpty(maxAttemptsValue) && maxAttemptsValue.All(char.IsDigit))
             {
-                var setting = _context.Settings.FirstOrDefault() ?? _context.Settings.Add(new Setting());
-                setting.MaxFailedAttempts = maxAttempts;
-                _context.SaveChanges();
-                lblSaveStatus.Text = "Max failed attempts updated!";
-                lblSaveStatus.Visible = true;
-                Application["MaxFailedAttempts"] = maxAttempts;
+                int maxAttempts = int.Parse(maxAttemptsValue);
+                if (maxAttempts > 0)
+                {
+                    var setting = _context.Settings.FirstOrDefault();
+                    if (setting == null)
+                    {
+                        setting = _context.Settings.Add(new Setting());
+                    }
+                    setting.MaxFailedAttempts = maxAttempts;
+                    _context.SaveChanges();
+
+                    lblSaveStatus.Text = "Max failed attempts updated!";
+                    lblSaveStatus.Visible = true;
+
+                    Application["MaxFailedAttempts"] = maxAttempts;
+                }
             }
         }
+
         protected void btnActiveUsers_Click(object sender, EventArgs e) { RadMultiPage1.SelectedIndex = 0; RadGrid1.Rebind(); }
-        protected void btnDeletedUsers_Click(object sender, EventArgs e) { RadMultiPage1.SelectedIndex = 1;RadGridDeletedUsers.Rebind(); }
+        protected void btnDeletedUsers_Click(object sender, EventArgs e) { RadMultiPage1.SelectedIndex = 1; RadGridDeletedUsers.Rebind(); }
         protected void btnAddUser_Click(object sender, EventArgs e)
         {
             RadGrid1.MasterTableView.IsItemInserted = true;
             RadGrid1.Rebind();
         }
-        protected void RadGrid1_NeedDataSource(object sender, GridNeedDataSourceEventArgs e) {
-            RadGrid1.DataSource = _context.UserInfoViews.ToList();
-            var specialityColumn = RadGrid1.MasterTableView.GetColumn("Speciality");
-            specialityColumn.Visible = false; // Ensure it's hidden by default
+        #endregion
 
-        }
-        protected void RadGridDeletedUsers_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
-        {
-            RadGridDeletedUsers.DataSource = _context.DeletedUsersViews.ToList();
-        }
-
+        #region CRUD
         protected void RadGrid1_DeleteCommand(object sender, GridCommandEventArgs e)
         {
             if (e.Item is GridDataItem item && int.TryParse(item.GetDataKeyValue("UserID")?.ToString(), out int userId))
@@ -118,6 +134,7 @@ namespace HospitalSystem.Users
                 }
             }
         }
+
         protected void RadGrid1_UpdateCommand(object sender, GridCommandEventArgs e)
         {
             if (e.Item is GridEditableItem editedItem && int.TryParse(editedItem.GetDataKeyValue("UserID")?.ToString(), out int userId))
@@ -201,7 +218,6 @@ namespace HospitalSystem.Users
                 }
             }
         }
-
         protected void RadGrid1_InsertCommand(object sender, GridCommandEventArgs e)
         {
             if (e.Item is GridEditableItem item)
@@ -282,7 +298,6 @@ namespace HospitalSystem.Users
                 RadGrid1.Rebind();
             }
         }
-
         protected void ddlRole_SelectedIndexChanged(object sender, DropDownListEventArgs e)
         {
             var ddlRole = sender as RadDropDownList;
@@ -348,15 +363,12 @@ namespace HospitalSystem.Users
                 }
             }
         }
-
-
-
-
-
         protected void RadGridDeletedUsers_DeleteCommand(object sender, GridCommandEventArgs e)
         {
-            if (e.Item is GridDataItem item && int.TryParse(item.GetDataKeyValue("UserID")?.ToString(), out int userId))
+            if (e.Item is GridDataItem item)
             {
+                string userIdValue = item.GetDataKeyValue("UserID")?.ToString();
+                int userId = int.Parse(userIdValue);
                 var user = _context.Users.FirstOrDefault(u => u.UserID == userId);
                 if (user != null)
                 {
@@ -368,8 +380,8 @@ namespace HospitalSystem.Users
                     RadGridDeletedUsers.Rebind();
                 }
             }
-        }
-
+        } 
+        #endregion
 
     }
 }
