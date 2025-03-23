@@ -17,7 +17,6 @@ namespace HospitalSystem
         {
             LoadMaxFailedAttempts();
         }
-
         private void LoadMaxFailedAttempts()
         {
             InternSmallHospitalConnectionString _context = new InternSmallHospitalConnectionString();
@@ -27,8 +26,6 @@ namespace HospitalSystem
 
             Application["MaxFailedAttempts"] = MaxFailedAttempts;
         }
-
-
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             if (Page.IsValid)
@@ -45,10 +42,10 @@ namespace HospitalSystem
                     return;
                 }
 
-                if (_authService.AuthenticateUser(email, password, out int userId, out string role))
+                var result = _authService.AuthenticateUser(email, password);
+                if (result.IsAuthenticated)
                 {
-                    _authService.ResetFailedLogins(email);
-                    _authService.SetAuthCookie(email, role, userId, chkRememberMe.Checked);
+                    _authService.SetAuthCookie(email, result.Role, result.UserId, chkRememberMe.Checked);
                     Response.Redirect("Default.aspx");
                 }
                 else
@@ -59,5 +56,7 @@ namespace HospitalSystem
                 }
             }
         }
+
+
     }
 }

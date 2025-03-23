@@ -148,3 +148,6 @@ HospitalSystem/sysdiagram.cs
 HospitalSystem/User.cs
 HospitalSystem/UserInfoView.cs
 >>>>>>> Doctor_Mangement
+HospitalSystem/obj/Debug/HospitalSystem.csproj.AssemblyReference.cache
+HospitalSystem/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+*.cache

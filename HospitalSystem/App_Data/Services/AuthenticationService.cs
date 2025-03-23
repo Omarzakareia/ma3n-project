@@ -14,7 +14,7 @@ namespace HospitalSystem.Services
             _context = new InternSmallHospitalConnectionString();
         }
 
-        public bool AuthenticateUser(string email, string password, out int userId, out string role)
+        public AuthenticationResult AuthenticateUser(string email, string password)
         {
             var user = _context.Users.FirstOrDefault(u => u.Email == email);
 
@@ -22,23 +22,17 @@ namespace HospitalSystem.Services
             {
                 if ((bool)user.IsLocked)
                 {
-                    userId = 0;
-                    role = null;
-                    return false; // Account is locked
+                    return new AuthenticationResult(false, 0, null); // Account is locked
                 }
 
                 if (user.PasswordHash == password)
                 {
-                    userId = user.UserID;
-                    role = user.Role.RoleName;
                     ResetFailedLogins(email); // Reset failed attempts on success
-                    return true;
+                    return new AuthenticationResult(true, user.UserID, user.Role.RoleName);
                 }
             }
 
-            userId = 0;
-            role = null;
-            return false;
+            return new AuthenticationResult(false, 0, null);
         }
 
         public bool IsAccountLocked(string email)
@@ -76,14 +70,27 @@ namespace HospitalSystem.Services
 
         public void SetAuthCookie(string email, string role, int userId, bool rememberMe)
         {
-            FormsAuthentication.SetAuthCookie(email, rememberMe);
-
             HttpCookie authCookie = new HttpCookie("cooklogin");
             authCookie["email"] = HttpUtility.UrlEncode(email.ToUpper());
             authCookie["role"] = HttpUtility.UrlEncode(role);
             authCookie["userId"] = userId.ToString();
-            authCookie.Expires = rememberMe ? DateTime.Now.AddDays(7) : DateTime.Now.AddHours(1); 
+            authCookie.Expires = rememberMe ? DateTime.Now.AddDays(7) : DateTime.Now.AddHours(1);
             HttpContext.Current.Response.Cookies.Add(authCookie);
+        }
+
+    }
+
+    public class AuthenticationResult
+    {
+        public bool IsAuthenticated { get; }
+        public int UserId { get; }
+        public string Role { get; }
+
+        public AuthenticationResult(bool isAuthenticated, int userId, string role)
+        {
+            IsAuthenticated = isAuthenticated;
+            UserId = userId;
+            Role = role;
         }
     }
 }
