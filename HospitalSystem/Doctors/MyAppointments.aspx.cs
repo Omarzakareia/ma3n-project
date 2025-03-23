@@ -21,26 +21,34 @@ namespace HospitalSystem.Doctors
             }
         }
 
-        protected void RadGrid1_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
-        {
+		private int getUserID()
+		{
+			HttpCookie myCookie = Request.Cookies["cooklogin"];
+			return Convert.ToInt32(myCookie["userId"]);
+		}
 
-            var appointments = from a in db.Appointments
-                               join p in db.Patients on a.PatientID equals p.PatientID
-                               join s in db.Staffs on a.StaffID equals s.StaffID
-                               join u in db.Users on s.UserID equals u.UserID
-                               select new
-                               {
-                                   a.AppointmentID,
-                                   PatientName = p.FirstName,
-                                   StaffName = u.FullName,
-                                   a.AppointmentDate,
-                                   a.Status
-                               };
+		protected void RadGrid1_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
+		{
+			int userId = getUserID();
 
-            RadGrid1.DataSource = appointments.ToList();
+			var appointments = from a in db.Appointments
+							   join p in db.Patients on a.PatientID equals p.PatientID
+							   join d in db.Doctors on a.DoctorID equals d.DoctorID
+							   join s in db.Staffs on a.StaffID equals s.StaffID
+							   join u in db.Users on s.UserID equals u.UserID // Get Staff Name
+							   where d.UserID == userId || s.UserID == userId  // Filter by Doctor or Staff
+							   select new
+							   {
+								   a.AppointmentID,
+								   PatientName = p.FirstName + " " + p.LastName, // Concatenate First & Last Name
+								   StaffName = u.FullName, // Display Staff's Name
+								   a.AppointmentDate,
+								   a.Status
+							   };
 
-        }
+			RadGrid1.DataSource = appointments.ToList();
+		}
 
-    }
+	}
 
 }
