@@ -39,6 +39,15 @@ namespace HospitalSystem.Patients
 
                 using (var db = DbService.Instance.GetDbContext())
                 {
+                    // 🔹 Check if the user is an Admin
+                    bool isAdmin = db.Users.Any(u => u.UserID == userId && u.RoleID == 1);
+
+                    if (isAdmin)
+                    {
+                        return; // Allow access to admins
+                    }
+
+                    // 🔹 Otherwise, check if the user is a staff member
                     var staff = db.Staffs.FirstOrDefault(s => s.UserID == userId);
                     if (staff != null)
                     {
@@ -46,7 +55,7 @@ namespace HospitalSystem.Patients
                     }
                     else
                     {
-                        Response.Write("<script>alert('Error: No staff record found for this user!'); window.location.href='" + ResolveUrl("~/Default.aspx") + "';</script>");
+                        Response.Write("<script>alert('Error: Access Denied!'); window.location.href='" + ResolveUrl("~/Login.aspx") + "';</script>");
                         Response.End();
                         return;
                     }
@@ -58,6 +67,7 @@ namespace HospitalSystem.Patients
                 Response.End();
             }
         }
+
 
         #region Buttons Clicks
         protected void btnResetSearch_Click(object sender, EventArgs e)
