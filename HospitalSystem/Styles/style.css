@@ -1,5 +1,4 @@
-/* General Styles */
-html, body {
+﻿html, body {
     height: 100%;
     margin: 0;
     display: flex;
@@ -7,8 +6,8 @@ html, body {
     font-family: 'Poppins', sans-serif !important;
 }
 
-form {
-    flex: 1; /* Ensures the main content takes up the available space */
+.main-content {
+    flex: 1; /* Pushes footer down when there's not enough content */
 }
 
 .small-text {
@@ -16,11 +15,7 @@ form {
     color: #888888;
 }
 
-/* Container */
-.container-fluid {
-    padding-left: 7vw;
-    padding-right: 7vw;
-}
+
 
 /* Navbar Styles */
 nav {
@@ -60,6 +55,14 @@ nav {
                     text-decoration: none; /* Removes underline */
                     color: #f0c040; /* Change to any color you prefer */
                 }
+.navbar-toggler {
+    border-color: white !important; /* Ensures the border is white */
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=UTF8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='white' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") !important;
+}
+
 
 /* Footer Styles */
 .footer {
@@ -387,3 +390,70 @@ nav {
         color: #23408e;
     }
 
+/* Extra Small Screens (≤568px) */
+@media (max-width: 568px) {
+    .footer {
+        padding: 5px 0;
+        font-size: 12px;
+
+    }
+
+    .footer-content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between; /* Distribute sections evenly */
+        text-align: center;
+        gap: 10px;
+        flex-wrap: nowrap; /* Prevent sections from stacking */
+    }
+
+    .footer-logo-section {
+        flex: 1;
+        text-align: left;
+    }
+
+    .footer-logo {
+        max-width: 80px; /* Reduce logo size to fit */
+    }
+
+    .footer-links-section {
+        flex: 2;
+        text-align: center;
+    }
+
+    .footer-links {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 8px; /* Reduce spacing between links */
+        padding: 0;
+    }
+
+        .footer-links a {
+            font-size: 10px; /* Smaller font for links */
+        }
+
+    .footer-social-section {
+        flex: 1;
+        text-align: right;
+    }
+        .footer-social-section h5 {
+            display:none
+        }
+    .footer-social {
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+    }
+
+        .footer-social a {
+            font-size: 14px;
+        }
+
+    .footer-bottom {
+        font-size: 10px;
+        padding-top: 3px;
+        text-align: center;
+    }
+}

@@ -1,4 +1,5 @@
-﻿using HospitalSystem.Services;
+﻿using HospitalSystem.App_Data;
+using HospitalSystem.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace HospitalSystem.Patients
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            SecurityService.CheckUserAccess("ADMIN", "STAFF");
         }
 
         protected void RadGridPatientHistory_NeedDataSource(object sender, Telerik.Web.UI.GridNeedDataSourceEventArgs e)

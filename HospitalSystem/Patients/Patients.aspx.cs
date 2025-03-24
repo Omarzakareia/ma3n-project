@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using HospitalSystem.App_Data;
 using HospitalSystem.Services;
 using Telerik.Web.UI;
 using Telerik.Web.UI.Skins;
@@ -18,6 +19,7 @@ namespace HospitalSystem.Patients
         {
             if (!IsPostBack) 
             {
+                SecurityService.CheckUserAccess("ADMIN", "STAFF");
                 SetUserAndStaffID();
             }
         }

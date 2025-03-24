@@ -1,4 +1,5 @@
-﻿using HospitalSystem.Services;
+﻿using HospitalSystem.App_Data;
+using HospitalSystem.Services;
 using System;
 using System.Drawing;
 using System.Linq;
@@ -17,10 +18,13 @@ namespace HospitalSystem.Doctors
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                SecurityService.CheckUserAccess("ADMIN", "DOCTOR");
+            }
         }
 
-		private int getUserID()
+        private int getUserID()
 		{
 			HttpCookie myCookie = Request.Cookies["cooklogin"];
 			return Convert.ToInt32(myCookie["userId"]);

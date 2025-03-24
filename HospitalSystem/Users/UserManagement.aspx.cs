@@ -1,4 +1,5 @@
-﻿using HospitalSystem.Services;
+﻿using HospitalSystem.App_Data;
+using HospitalSystem.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,21 +18,8 @@ namespace HospitalSystem.Users
         {
             if (!IsPostBack)
             {
-                HttpCookie myCookie = Request.Cookies["cooklogin"];
-                if (myCookie == null)
-                {
-                    Response.Redirect("~/Login.aspx");
-                }
-                else
-                {
-                    string userRole = myCookie["Role"].ToUpper();
-
-                    if (string.IsNullOrEmpty(userRole) || userRole != "ADMIN")
-                    {
-                        Response.Redirect("~/Unauthorized.aspx");
-                    }
-                    LoadMaxAttempts();
-                }
+                SecurityService.CheckUserAccess("ADMIN");
+                LoadMaxAttempts();
             }
         }
 

@@ -109,6 +109,7 @@
     <Compile Include="Appointment.cs">
       <DependentUpon>HospitalModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="App_Data\Services\SecurityService.cs" />
     <Compile Include="Billing.cs">
       <DependentUpon>HospitalModel.tt</DependentUpon>
     </Compile>

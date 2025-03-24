@@ -1,4 +1,5 @@
-﻿using HospitalSystem.Services;
+﻿using HospitalSystem.App_Data;
+using HospitalSystem.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace HospitalSystem.Doctors
         {
             if (!IsPostBack)
             {
+                SecurityService.CheckUserAccess("ADMIN", "DOCTOR");
                 RadGrid1.Rebind();
             }
         }

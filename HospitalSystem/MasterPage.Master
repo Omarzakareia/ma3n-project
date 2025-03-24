@@ -24,7 +24,7 @@
 </head>
 
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" class="w-100  overflow-auto">
         <telerik:RadScriptManager ID="RadScriptManager1" runat="server">
             <Scripts>
                 <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.Core.js" />
@@ -36,88 +36,100 @@
         <telerik:RadAjaxManager ID="RadAjaxManager1" runat="server"></telerik:RadAjaxManager>
 
         <!-- NAVBAR MOVED INSIDE THE FORM -->
-        <nav class="container-fluid d-flex align-items-center justify-content-between p-3 custom-nav">
-            <!-- Logo -->
-            <a href="<%= ResolveUrl("~/Login.aspx") %>">
-                <img width="140" src="<%= ResolveUrl("~/img/logo.png") %>">
-            </a>
+        <nav class="navbar navbar-expand-lg p-3">
+            <div class="container-fluid">
+                <!-- Logo -->
+                <a href="<%= ResolveUrl("~/Login.aspx") %>">
+                    <img width="140" src="<%= ResolveUrl("~/img/logo.png") %>">
+                </a>
 
-            <!-- Navigation Links -->
-            <ul class="nav">
-                <li class="nav-item"><a href="<%= ResolveUrl("~/Users/UserManagement.aspx") %>">User Management</a></li>
+                <!-- Hamburger Button -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                <!-- Doctor Dropdown -->
-                <li class="nav-item dropdown">
-                    <a class="dropdown-toggle" href="#" id="doctorDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Doctor
-                    </a>
-                    <ul class="dropdown-menu custom-dropdown" aria-labelledby="doctorDropdown">
-                        <li><a class="dropdown-item" href="<%= ResolveUrl("~/Doctors/Departments.aspx") %>">Departments</a></li>
-                        <li><a class="dropdown-item" href="<%= ResolveUrl("~/Doctors/MyAppointments.aspx") %>">Appointments</a></li>
+                <!-- Navigation Links (Collapsible) -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <!-- User Management (Admin Only) -->
+                        <li class="nav-item" id="userManagementNav" runat="server">
+                            <a href="<%= ResolveUrl("~/Users/UserManagement.aspx") %>">User Management</a>
+                        </li>
+
+                        <!-- Doctor Dropdown (Admin & Doctor) -->
+                        <li class="nav-item dropdown" id="doctorsNav" runat="server">
+                            <a class="dropdown-toggle" href="#" id="doctorDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Doctor</a>
+                            <ul class="dropdown-menu" aria-labelledby="doctorDropdown">
+                                <li><a class="dropdown-item" href="<%= ResolveUrl("~/Doctors/Departments.aspx") %>">Departments</a></li>
+                                <li><a class="dropdown-item" href="<%= ResolveUrl("~/Doctors/MyAppointments.aspx") %>">Appointments</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- Patients (Admin & Staff) -->
+                        <li class="nav-item" id="patientsNav" runat="server">
+                            <a href="<%= ResolveUrl("~/Patients/Patients.aspx") %>">Patients</a>
+                        </li>
+
+                        <!-- Login & Signout Links -->
+                        <li class="nav-item" id="lstLog" runat="server">
+                            <a class="btn btn-info  text-white" href="<%= ResolveUrl("~/Login.aspx") %>">Login</a>
+                        </li>
+
+                        <li class="nav-item d-flex align-items-center" id="lstWelcome" runat="server">
+                            <asp:LinkButton ID="btnUser" runat="server"></asp:LinkButton>
+                            <asp:LinkButton ID="btnLogOut" CssClass="btn btn-danger ms-2" runat="server" OnClick="btnLogOut_Click">Sign Out</asp:LinkButton>
+                        </li>
                     </ul>
-                </li>
-
-                <li class="nav-item"><a href="<%= ResolveUrl("~/Patients/Patients.aspx") %>">Patients</a></li>
-            </ul>
-
-            <!-- Login & Signout Links -->
-            <ul class="navbar-nav mr-auto" id="lstLog" runat="server">
-                <li class="nav-item">
-                    <a href="<%= ResolveUrl("~/Login.aspx") %>" class=" btn btn-info">Login</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav d-flex flex-row align-items-center" id="lstWelcome" runat="server">
-                <li class="nav-item me-3">
-                    <asp:LinkButton ID="btnUser" runat="server"></asp:LinkButton>
-                </li>
-                <li class="nav-item">
-                    <asp:LinkButton ID="btnLogOut" CssClass="btn btn-danger" runat="server" OnClick="btnLogOut_Click">Sign Out</asp:LinkButton>
-                </li>
-            </ul>
-
+                </div>
+            </div>
         </nav>
+
+
 
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
         </div>
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <!-- Logo Section -->
+                    <div class="footer-logo-section">
+                        <a href="index.html">
+                            <img src="<%= ResolveUrl("~/img/logo.png") %>" class="footer-logo" alt="Logo">
+                        </a>
+                    </div>
+
+                    <!-- Sitemap -->
+                    <div class="footer-links-section mt-4">
+                        <ul class="footer-links">
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Our Team</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Social Links -->
+                    <div class="footer-social-section">
+                        <h5>Follow Us</h5>
+                        <ul class="footer-social">
+                            <li><a href="#"><i class="bi bi-facebook"></i></a></li>
+                            <li><a href="#"><i class="bi bi-instagram"></i></a></li>
+                            <li><a href="#"><i class="bi bi-twitter"></i></a></li>
+                            <li><a href="#"><i class="bi bi-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Copyright -->
+                <div class="footer-bottom">
+                    <p>&copy; 2025 Your Hospital. All Rights Reserved.</p>
+                </div>
+            </div>
+        </footer>
     </form>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <!-- Logo Section -->
-                <div class="footer-logo-section">
-                    <a href="index.html">
-                        <img src="<%= ResolveUrl("~/img/logo.png") %>" class="footer-logo" alt="Logo">
-                    </a>
-                </div>
 
-                <!-- Sitemap -->
-                <div class="footer-links-section mt-4">
-                    <ul class="footer-links">
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Our Team</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                    </ul>
-                </div>
 
-                <!-- Social Links -->
-                <div class="footer-social-section">
-                    <h5>Follow Us</h5>
-                    <ul class="footer-social">
-                        <li><a href="#"><i class="bi bi-facebook"></i></a></li>
-                        <li><a href="#"><i class="bi bi-instagram"></i></a></li>
-                        <li><a href="#"><i class="bi bi-twitter"></i></a></li>
-                        <li><a href="#"><i class="bi bi-linkedin"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Copyright -->
-            <div class="footer-bottom">
-                <p >&copy; 2025 Your Hospital. All Rights Reserved.</p>
-            </div>
-        </div>
-    </footer>
 
 
 
