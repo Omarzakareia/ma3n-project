@@ -292,6 +292,7 @@
     <Content Include="App_Data\RadCaptcha\Z.wav" />
     <Compile Include="App_Data\Services\AuthenticationService.cs" />
     <Compile Include="App_Data\Services\DbService.cs" />
+    <Compile Include="App_Data\Services\UserService.cs" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -422,7 +423,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

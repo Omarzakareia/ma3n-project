@@ -4,69 +4,25 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using DPL.Telerik.Barcode;
 using HospitalSystem.App_Data;
 using HospitalSystem.Services;
 using Telerik.Web.UI;
 using Telerik.Web.UI.Skins;
+using Telerik.Windows.Documents.Spreadsheet.Expressions.Functions;
 
 namespace HospitalSystem.Patients
 {
     public partial class Patients : System.Web.UI.Page
     {
-        private int? userId = null; 
-        private int? staffId = null;
+        private int? userId = UserService.GetUserId();
+        private int? staffId = UserService.GetEntityId();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack) 
+            if (!IsPostBack)
             {
                 SecurityService.CheckUserAccess("ADMIN", "STAFF");
-                SetUserAndStaffID();
-            }
-        }
-        private void SetUserAndStaffID()
-        {
-            try
-            {
-                HttpCookie myCookie = Request.Cookies["cooklogin"];
-                if (myCookie != null && int.TryParse(myCookie["userId"], out int parsedUserId))
-                {
-                    userId = parsedUserId;
-                }
-                else
-                {
-                    Response.Write("<script>alert('Error: Unable to retrieve user ID!'); window.location.href='" + ResolveUrl("~/Login.aspx") + "';</script>");
-                    Response.End();
-                    return;
-                }
 
-                using (var db = DbService.Instance.GetDbContext())
-                {
-                    // 🔹 Check if the user is an Admin
-                    bool isAdmin = db.Users.Any(u => u.UserID == userId && u.RoleID == 1);
-
-                    if (isAdmin)
-                    {
-                        return; // Allow access to admins
-                    }
-
-                    // 🔹 Otherwise, check if the user is a staff member
-                    var staff = db.Staffs.FirstOrDefault(s => s.UserID == userId);
-                    if (staff != null)
-                    {
-                        staffId = staff.StaffID;
-                    }
-                    else
-                    {
-                        Response.Write("<script>alert('Error: Access Denied!'); window.location.href='" + ResolveUrl("~/Login.aspx") + "';</script>");
-                        Response.End();
-                        return;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Response.Write("<script>alert('Error: " + ex.Message.Replace("'", "\\'") + "');</script>");
-                Response.End();
             }
         }
 
@@ -85,7 +41,7 @@ namespace HospitalSystem.Patients
                 {
                     // Get the staff ID for the logged-in user
                     var staff = db.Staffs.FirstOrDefault(s => s.UserID == userId);
-                    
+
                     var newPatient = new Patient
                     {
                         FirstName = txtFirstName.Text.Trim(),
@@ -154,7 +110,7 @@ namespace HospitalSystem.Patients
             GridDataItem item = e.Item as GridDataItem;
             if (item != null)
             {
-                int patientId = Convert.ToInt32(item.GetDataKeyValue("PatientID"));
+                int patientId = System.Convert.ToInt32(item.GetDataKeyValue("PatientID"));
                 Response.Write("<script>alert('Patient ID: " + patientId + "');</script>"); // 🔹 Debugging step
 
                 using (var db = DbService.Instance.GetDbContext())
@@ -184,7 +140,7 @@ namespace HospitalSystem.Patients
             if (editedItem != null)
             {
                 // Get PatientID (Primary Key)
-                int patientId = Convert.ToInt32(editedItem.GetDataKeyValue("PatientID"));
+                int patientId = System.Convert.ToInt32(editedItem.GetDataKeyValue("PatientID"));
 
                 // Retrieve updated values from the edit form
                 string fullName = (editedItem["FullNameColumn"].FindControl("txtFullName") as RadTextBox)?.Text.Trim();
@@ -221,7 +177,7 @@ namespace HospitalSystem.Patients
         {
             if (e.CommandName == "RestorePatient")
             {
-                int patientId = Convert.ToInt32(e.CommandArgument);
+                int patientId = System.Convert.ToInt32(e.CommandArgument);
 
                 using (var db = DbService.Instance.GetDbContext())
                 {
@@ -277,6 +233,67 @@ namespace HospitalSystem.Patients
             }
         }
         #endregion
+        protected void RadGridActive_InsertCommand(object sender, GridCommandEventArgs e)
+        {
+            try
+            {
+                GridEditableItem editedItem = e.Item as GridEditableItem;
+                if (editedItem != null)
+                {
+                    string fullName = (editedItem["FullNameColumn"].FindControl("txtFullNameInsert") as RadTextBox)?.Text.Trim();
+                    string phone = (editedItem["Phone"].Controls[0] as TextBox)?.Text.Trim();
+                    string address = (editedItem["Address"].Controls[0] as TextBox)?.Text.Trim();
+                    string email = (editedItem["Email"].Controls[0] as TextBox)?.Text.Trim();
+                    string dobText = (editedItem["DOB"].Controls[0] as TextBox)?.Text.Trim();
+                    string gender = (editedItem["Gender"].Controls[0] as TextBox)?.Text.Trim();
+
+                    // Split full name into first and last name
+                    string firstName = "";
+                    string lastName = "";
+                    if (!string.IsNullOrEmpty(fullName))
+                    {
+                        string[] nameParts = fullName.Split(new char[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);
+                        firstName = nameParts.Length > 0 ? nameParts[0] : "";
+                        lastName = nameParts.Length > 1 ? nameParts[1] : "";
+                    }
+
+                    DateTime? dob = null;
+                    if (DateTime.TryParse(dobText, out DateTime parsedDOB))
+                    {
+                        dob = parsedDOB;
+                    }
+
+                    using (var db = DbService.Instance.GetDbContext())
+                    {
+
+                        var newPatient = new Patient
+                        {
+                            FirstName = firstName,
+                            LastName = lastName,
+                            Phone = phone,
+                            Address = address,
+                            Email = email,
+                            Gender = gender,
+                            StaffID = (int)staffId,
+                            CreatedAt = DateTime.Now,
+                            IsDeleted = false
+                        };
+
+                        db.Patients.Add(newPatient);
+                        db.SaveChanges();
+
+                        Response.Write("<script>alert('Patient added successfully!');</script>");
+                        RadGridActive.Rebind();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('Error: " + ex.Message.Replace("'", "\\'") + "');</script>");
+            }
+        }
+
+
 
     }
 }
