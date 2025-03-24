@@ -1,5 +1,4 @@
-﻿<%@ Page Title="Unauthorized Access" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Unauthorized.aspx.cs" Inherits="HospitalSystem.Unauthorized" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Unauthorized.aspx.cs" Inherits="HospitalSystem.Unauthorized" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
         .unauthorized-container {
@@ -19,9 +18,11 @@
             color: #fff;
             text-decoration: none;
             border-radius: 5px;
+            transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
         }
         .home-link:hover {
             background-color: #0056b3;
+            color:white;
         }
     </style>
 </asp:Content>
