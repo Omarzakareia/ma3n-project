@@ -14,10 +14,13 @@
         <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
         
         <ClientSettings>
-            <Scrolling AllowScroll="True" UseStaticHeaders="True" />
+            <Scrolling AllowScroll="True" UseStaticHeaders="True" ScrollHeight="540px" />
         </ClientSettings>
         
         <MasterTableView AutoGenerateColumns="False" DataKeyNames="AppointmentID">
+<RowIndicatorColumn ShowNoSortIcon="False"></RowIndicatorColumn>
+
+<ExpandCollapseColumn ShowNoSortIcon="False"></ExpandCollapseColumn>
             <Columns>
                 <telerik:GridBoundColumn DataField="AppointmentID" HeaderText="Appointment ID" UniqueName="AppointmentID"
                     ReadOnly="True" Visible="False" />

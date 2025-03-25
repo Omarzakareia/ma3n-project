@@ -34,7 +34,7 @@ OnUpdateCommand="RadGrid1_UpdateCommand" EnableHierarchyExpandAll="True"  >
     <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
 
     <ClientSettings>
-        <Scrolling AllowScroll="True" UseStaticHeaders="True" />
+        <Scrolling AllowScroll="True" UseStaticHeaders="True" ScrollHeight="540px" />
     </ClientSettings>
 
     <MasterTableView AutoGenerateColumns="False" DataKeyNames="DepartmentID" ShowFooter="False"
@@ -94,12 +94,17 @@ OnUpdateCommand="RadGrid1_UpdateCommand" EnableHierarchyExpandAll="True"  >
     <asp:panel id="DeletedDepartment" runat="server" Visible="false">
         <telerik:RadGrid ID="RadGridDeleted" runat="server" AutoGenerateColumns="False" AllowPaging="True"
                  CellSpacing="-1" GridLines="Both" OnNeedDataSource="RadGridDeleted_NeedDataSource" OnDeleteCommand="RadGridDeletedUsers_DeleteCommand">
+                 <GroupingSettings CollapseAllTooltip="Collapse all groups" />
+                 <ClientSettings>
+                     <Scrolling AllowScroll="True" ScrollHeight="540px" />
+                 </ClientSettings>
                  <MasterTableView DataKeyNames="DepartmentID">
+                     <RowIndicatorColumn ShowNoSortIcon="False">
+                     </RowIndicatorColumn>
+                     <ExpandCollapseColumn ShowNoSortIcon="False">
+                     </ExpandCollapseColumn>
                      <Columns>
-                        
                          <telerik:GridBoundColumn DataField="DepartmentName" HeaderText="Department Name" UniqueName="DepartmentName" />
-
-
                          <telerik:GridTemplateColumn HeaderText="Restore" UniqueName="RestoreColumn">
                              <HeaderStyle HorizontalAlign="Center" />
                              <ItemStyle HorizontalAlign="Center" Width="50px" />
@@ -113,7 +118,8 @@ OnUpdateCommand="RadGrid1_UpdateCommand" EnableHierarchyExpandAll="True"  >
                          </telerik:GridTemplateColumn>
                      </Columns>
                      <EditFormSettings>
-                         <EditColumn ShowNoSortIcon="False"></EditColumn>
+                         <EditColumn ShowNoSortIcon="False">
+                         </EditColumn>
                      </EditFormSettings>
                  </MasterTableView>
                  <HeaderStyle BackColor="Green" ForeColor="White" />
