@@ -13,7 +13,7 @@
             <!-- Toggle Button -->
             <div class="d-flex justify-content-between align-items-center flex-wrap bg-light px-3 rounded shadow-sm ">
 
-                <asp:Button ID="btnToggleView" runat="server" CssClass="btn btn-primary mb-3 mt-4"
+                <asp:Button ID="btnToggleView" runat="server" CssClass="btn btn-success mb-3 mt-4"
                     Text="Show Deleted Patients" OnClick="btnToggleView_Click" />
             </div>
 
@@ -40,36 +40,43 @@
                         OnDeleteCommand="RadGridActive_DeleteCommand" AutoGenerateEditColumn="True"
                         OnUpdateCommand="RadGridActive_UpdateCommand" OnInsertCommand="RadGridActive_InsertCommand"
                         OnNeedDataSource="RadGridActive_NeedDataSource">
-                        <MasterTableView DataKeyNames="PatientID" CommandItemDisplay="Top">
+                        <GroupingSettings CollapseAllTooltip="Collapse all groups" />
+                        <GroupHeaderItemStyle BackColor="Red" />
+                        <MasterTableView CommandItemDisplay="Top" DataKeyNames="PatientID">
+                            <CommandItemSettings ShowExportToCsvButton="True" ShowExportToExcelButton="True" ShowExportToPdfButton="True" ShowExportToWordButton="True" ShowRefreshButton="False" />
+                            <RowIndicatorColumn ShowNoSortIcon="False">
+                            </RowIndicatorColumn>
+                            <ExpandCollapseColumn ShowNoSortIcon="False">
+                            </ExpandCollapseColumn>
                             <Columns>
-                                <telerik:GridBoundColumn DataField="PatientID" HeaderText="Patient ID" UniqueName="PatientID" ReadOnly="true" />
-
+                                <telerik:GridBoundColumn DataField="PatientID" HeaderText="Patient ID" ReadOnly="true" UniqueName="PatientID" />
                                 <telerik:GridTemplateColumn HeaderText="Patient Name" UniqueName="FullNameColumn">
                                     <ItemTemplate>
-                                        <asp:HyperLink ID="lnkPatientHistory" runat="server"
-                                            NavigateUrl='<%# "PatientHistory.aspx?PatientID=" + Eval("PatientID") %>'
-                                            Text='<%# Eval("FullName") %>' CssClass="text-primary">
+                                        <asp:HyperLink ID="lnkPatientHistory" runat="server" CssClass="text-primary" NavigateUrl='<%# "PatientHistory.aspx?PatientID=" + Eval("PatientID") %>' Text='<%# Eval("FullName") %>'>
                                         </asp:HyperLink>
                                     </ItemTemplate>
                                     <EditItemTemplate>
-                                        <telerik:RadTextBox ID="txtFullName" runat="server" Text='<%# Bind("FullName") %>' CssClass="form-control" />
+                                        <telerik:RadTextBox ID="txtFullName" runat="server" CssClass="form-control" Text='<%# Bind("FullName") %>' />
                                     </EditItemTemplate>
                                     <InsertItemTemplate>
-                                        <telerik:RadTextBox ID="txtFullNameInsert" runat="server" EmptyMessage="Enter Full Name..." CssClass="form-control" />
+                                        <telerik:RadTextBox ID="txtFullNameInsert" runat="server" CssClass="form-control" EmptyMessage="Enter Full Name..." />
                                     </InsertItemTemplate>
                                 </telerik:GridTemplateColumn>
-
                                 <telerik:GridBoundColumn DataField="Phone" HeaderText="Patient Phone" UniqueName="Phone" />
                                 <telerik:GridBoundColumn DataField="Address" HeaderText="Address" UniqueName="Address" />
                                 <telerik:GridBoundColumn DataField="Email" HeaderText="Email" UniqueName="Email" />
                                 <telerik:GridBoundColumn DataField="DOB" HeaderText="DOB" UniqueName="DOB" />
                                 <telerik:GridBoundColumn DataField="Gender" HeaderText="Gender" UniqueName="Gender" />
-
                             </Columns>
                             <EditFormSettings>
-                                <EditColumn ShowNoSortIcon="False"></EditColumn>
+                                <EditColumn ShowNoSortIcon="False">
+                                </EditColumn>
                             </EditFormSettings>
+                            <HeaderStyle BackColor="Green" ForeColor="White" />
+                            <CommandItemStyle BackColor="Red" BorderColor="Red" ForeColor="Red" />
                         </MasterTableView>
+                        <HeaderStyle BackColor="Yellow" />
+                        <CommandItemStyle BackColor="Green" BorderColor="Olive" BorderStyle="Solid" ForeColor="Green" />
                     </telerik:RadGrid>
 
                 </asp:Panel>
@@ -80,27 +87,36 @@
                 <asp:Panel ID="pnlDeletedPatients" runat="server" Visible="false">
                     <telerik:RadGrid ID="RadGridDeleted" runat="server" AutoGenerateColumns="False" AllowPaging="True"
                         CellSpacing="-1" GridLines="Both" OnNeedDataSource="RadGridDeleted_NeedDataSource" OnItemCommand="RadGridDeleted_ItemCommand">
+                        <GroupingSettings CollapseAllTooltip="Collapse all groups" />
+                        <ExportSettings ExportOnlyData="True" IgnorePaging="True">
+                            <Pdf PaperSize="A4">
+                            </Pdf>
+                        </ExportSettings>
                         <MasterTableView DataKeyNames="PatientID">
+                            <CommandItemSettings ShowExportToExcelButton="True" ShowExportToPdfButton="True" ShowExportToWordButton="True" />
+                            <RowIndicatorColumn ShowNoSortIcon="False">
+                            </RowIndicatorColumn>
+                            <ExpandCollapseColumn ShowNoSortIcon="False">
+                            </ExpandCollapseColumn>
                             <Columns>
                                 <telerik:GridBoundColumn DataField="PatientID" HeaderText="Patient ID" UniqueName="PatientID" />
                                 <telerik:GridBoundColumn DataField="PatientFullName" HeaderText="Patient Name" UniqueName="PatientFullName" />
                                 <telerik:GridBoundColumn DataField="DeletedBy" HeaderText="Deleted By" UniqueName="UserFullName" />
                                 <telerik:GridBoundColumn DataField="UserFullName" HeaderText="User Name" UniqueName="UserFullName" />
-                                <telerik:GridBoundColumn DataField="DeletedAt" HeaderText="Deleted At" UniqueName="DeletedAt" DataFormatString="{0:MM/dd/yyyy}" />
+                                <telerik:GridBoundColumn DataField="DeletedAt" DataFormatString="{0:MM/dd/yyyy}" HeaderText="Deleted At" UniqueName="DeletedAt" />
                                 <telerik:GridTemplateColumn HeaderText="Restore User" UniqueName="RestoreColumn">
                                     <ItemStyle HorizontalAlign="Center" Width="50px" />
                                     <ItemTemplate>
-                                        <asp:Button ID="btnRestorePatient" runat="server" Text="&#10084;"
-                                            ForeColor="Red" CssClass="btn text-center" CommandName="RestorePatient"
-                                            CommandArgument='<%# Eval("PatientID") %>' />
+                                        <asp:Button ID="btnRestorePatient" runat="server" CommandArgument='<%# Eval("PatientID") %>' CommandName="RestorePatient" CssClass="btn text-center" ForeColor="Red" Text="❤" />
                                     </ItemTemplate>
                                 </telerik:GridTemplateColumn>
                             </Columns>
                             <EditFormSettings>
-                                <EditColumn ShowNoSortIcon="False"></EditColumn>
+                                <EditColumn ShowNoSortIcon="False">
+                                </EditColumn>
                             </EditFormSettings>
                         </MasterTableView>
-                        <HeaderStyle BackColor="#23408E" ForeColor="#ED1B24" />
+                        <HeaderStyle BackColor="Green" ForeColor="White" />
                     </telerik:RadGrid>
                 </asp:Panel>
             </div>
