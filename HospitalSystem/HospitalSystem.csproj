@@ -322,8 +322,8 @@
       <LastGenOutput>HospitalModel.cs</LastGenOutput>
     </Content>
     <Content Include="img\favicon.png" />
-    <Content Include="img\logo.png" />
     <Content Include="Doctors\Departments.aspx" />
+    <Content Include="img\logo.png" />
     <Content Include="Patients\PatientHistory.aspx" />
     <Content Include="Patients\Patients.aspx" />
     <Content Include="Login.aspx" />
@@ -423,7 +423,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
+      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
     </VisualStudio>
   </ProjectExtensions>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
