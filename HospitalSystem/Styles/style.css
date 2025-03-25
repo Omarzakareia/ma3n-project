@@ -6,8 +6,16 @@
     font-family: 'Poppins', sans-serif !important;
 }
 
-.main-content {
-    flex: 1; /* Pushes footer down when there's not enough content */
+#page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+#content-wrap {
+    flex: 1;
+    padding-bottom: 1.5rem; /* Adjust this value for more gap */
+    min-height: 100vh;
 }
 
 .small-text {
@@ -67,9 +75,11 @@ nav {
 /* Footer Styles */
 .footer {
     width: 100%;
-    padding: 15px 0;
+    padding: 20px 0;
     background-color: #23408E;
     color: white;
+    text-align: center;
+    position: relative;
 }
 
     .footer .container {

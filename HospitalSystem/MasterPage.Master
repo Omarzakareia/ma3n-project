@@ -36,21 +36,23 @@
         <telerik:RadAjaxManager ID="RadAjaxManager1" runat="server"></telerik:RadAjaxManager>
 
         <!-- NAVBAR MOVED INSIDE THE FORM -->
+        <!-- NAVBAR MOVED INSIDE THE FORM -->
         <nav class="navbar navbar-expand-lg p-3">
             <div class="container-fluid">
-                <!-- Logo -->
-                <a href="<%= ResolveUrl("~/Login.aspx") %>">
+                <!-- Logo on the Left -->
+                <a href="<%= ResolveUrl("~/Default.aspx") %>">
                     <img width="140" src="<%= ResolveUrl("~/img/logo.png") %>">
                 </a>
 
-                <!-- Hamburger Button -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <!-- Hamburger Button for Mobile View -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <!-- Navigation Links (Collapsible) -->
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
+                <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                    <!-- Centered Navigation Links -->
+                    <ul class="navbar-nav">
                         <!-- User Management (Admin Only) -->
                         <li class="nav-item" id="userManagementNav" runat="server">
                             <a href="<%= ResolveUrl("~/Users/UserManagement.aspx") %>">User Management</a>
@@ -69,12 +71,15 @@
                         <li class="nav-item" id="patientsNav" runat="server">
                             <a href="<%= ResolveUrl("~/Patients/Patients.aspx") %>">Patients</a>
                         </li>
+                    </ul>
+                </div>
 
-                        <!-- Login & Signout Links -->
+                <!-- Right Side: Login & Logout -->
+                <div class="d-flex">
+                    <ul class="navbar-nav">
                         <li class="nav-item" id="lstLog" runat="server">
-                            <a class="btn btn-info  text-white" href="<%= ResolveUrl("~/Login.aspx") %>">Login</a>
+                            <a class="btn btn-info text-white" href="<%= ResolveUrl("~/Login.aspx") %>">Login</a>
                         </li>
-
                         <li class="nav-item d-flex align-items-center" id="lstWelcome" runat="server">
                             <asp:LinkButton ID="btnUser" runat="server"></asp:LinkButton>
                             <asp:LinkButton ID="btnLogOut" CssClass="btn btn-danger ms-2" runat="server" OnClick="btnLogOut_Click">Sign Out</asp:LinkButton>
@@ -84,10 +89,10 @@
             </div>
         </nav>
 
-
-
-        <div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+        <div class="page-container">
+            <div id="content-wrap">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+            </div>
         </div>
         <footer class="footer">
             <div class="container">
@@ -126,6 +131,7 @@
                 </div>
             </div>
         </footer>
+
     </form>
 
 

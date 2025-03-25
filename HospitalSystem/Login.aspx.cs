@@ -15,6 +15,13 @@ namespace HospitalSystem
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            HttpCookie myCookie = HttpContext.Current.Request.Cookies["cooklogin"];
+
+            if (myCookie != null && !string.IsNullOrEmpty(myCookie.Value))
+            {
+                Response.Redirect("~/Default.aspx");
+                return;
+            }
             LoadMaxFailedAttempts();
         }
         private void LoadMaxFailedAttempts()
