@@ -16,7 +16,12 @@
                 <telerik:RadGrid ID="RadGridPatientHistory" runat="server" AutoGenerateColumns="False" AllowPaging="True"
                     CellSpacing="-1" GridLines="Both"
                     OnNeedDataSource="RadGridPatientHistory_NeedDataSource">
+<GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
+
                     <MasterTableView DataKeyNames="PatientID">
+<RowIndicatorColumn ShowNoSortIcon="False"></RowIndicatorColumn>
+
+<ExpandCollapseColumn ShowNoSortIcon="False"></ExpandCollapseColumn>
                         <Columns>
                             <telerik:GridBoundColumn DataField="PatientID" HeaderText="Patient ID" UniqueName="PatientID" ReadOnly="true" />
                             <telerik:GridBoundColumn DataField="FullName" HeaderText="Full Name" UniqueName="FullName" />
@@ -31,8 +36,12 @@
                             <telerik:GridBoundColumn DataField="DoctorName" HeaderText="Doctor Name" UniqueName="DoctorName" />
                             <telerik:GridBoundColumn DataField="DepartmentName" HeaderText="Department Name" UniqueName="DepartmentName" />
                         </Columns>
+
+<EditFormSettings>
+<EditColumn ShowNoSortIcon="False"></EditColumn>
+</EditFormSettings>
                     </MasterTableView>
-                    <HeaderStyle BackColor="#23408E" ForeColor="#ED1B24" />
+                    <HeaderStyle BackColor="Green" ForeColor="Snow" />
                 </telerik:RadGrid>
             </div>
         </div>

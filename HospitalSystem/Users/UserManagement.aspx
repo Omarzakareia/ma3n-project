@@ -55,6 +55,9 @@
                 OnInsertCommand="RadGrid1_InsertCommand" OnItemDataBound="RadGrid1_ItemDataBound" Skin="Bootstrap">
                 <PagerStyle BackColor="Green" ForeColor="Red" AlwaysVisible="True" />
                 <GroupingSettings CollapseAllTooltip="Collapse all groups" />
+                <ClientSettings>
+                    <Scrolling AllowScroll="True" ScrollHeight="540px" UseStaticHeaders="True" />
+                </ClientSettings>
                 <MasterTableView AutoGenerateColumns="False" CommandItemDisplay="Top" DataKeyNames="UserID">
                     <CommandItemSettings ShowAddNewRecordButton="false" ShowRefreshButton="False" />
                     <RowIndicatorColumn ShowNoSortIcon="False">
@@ -79,7 +82,7 @@
                                 <%# Eval("RoleName") %>
                             </ItemTemplate>
                             <EditItemTemplate>
-                                <telerik:RadDropDownList ID="ddlRole" runat="server" AutoPostBack="true" SelectedValue='<%# Bind("RoleName") %>' OnSelectedIndexChanged="ddlRole_SelectedIndexChanged">
+                                <telerik:RadDropDownList ID="ddlRole" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlRole_SelectedIndexChanged" SelectedValue='<%# Bind("RoleName") %>'>
                                     <Items>
                                         <telerik:DropDownListItem Text="Admin" Value="Admin" />
                                         <telerik:DropDownListItem Text="Staff" Value="Staff" />
@@ -93,8 +96,6 @@
                                 <telerik:RadComboBox ID="ddlSpecialty" runat="server" Visible="false" />
                             </EditItemTemplate>
                         </telerik:GridTemplateColumn>
-
-
                         <telerik:GridBoundColumn DataField="CreatedAt" HeaderText="Created At" ReadOnly="True" UniqueName="CreatedAt">
                         </telerik:GridBoundColumn>
                         <telerik:GridTemplateColumn HeaderText="Is Locked" UniqueName="IsLocked">
@@ -146,6 +147,9 @@
                 AllowSorting="True" CssClass="mx-2 mb-5" OnDeleteCommand="RadGridDeletedUsers_DeleteCommand" OnNeedDataSource="RadGridDeletedUsers_NeedDataSource">
 
                 <GroupingSettings CollapseAllTooltip="Collapse all groups" />
+                <ClientSettings>
+                    <Scrolling ScrollHeight="500px" />
+                </ClientSettings>
                 <MasterTableView AutoGenerateColumns="False" DataKeyNames="UserID">
                     <RowIndicatorColumn ShowNoSortIcon="False">
                     </RowIndicatorColumn>
