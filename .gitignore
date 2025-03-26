@@ -157,3 +157,6 @@ HospitalSystem/obj/Debug/HospitalSystem.csproj.AssemblyReference.cache
 HospitalSystem/obj/Debug/HospitalSystem.csproj.AssemblyReference.cache
 HospitalSystem/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 HospitalSystem/obj/Debug/HospitalSystem.csproj.AssemblyReference.cache
+HospitalSystem/vw_AppointmentsByDate.cs
+HospitalSystem/vw_AppointmentsByDoctor.cs
+HospitalSystem/vw_AppointmentsByStaff.cs
