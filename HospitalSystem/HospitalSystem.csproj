@@ -197,6 +197,9 @@
       <DependentUpon>Departments.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="PartialPaymentBill.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Patient.cs">
       <DependentUpon>HospitalModel.tt</DependentUpon>
     </Compile>
@@ -229,6 +232,15 @@
     </Compile>
     <Compile Include="Reports\AppointmentsReport.aspx.designer.cs">
       <DependentUpon>AppointmentsReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vw_AppointmentsByDate.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_AppointmentsByDoctor.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_AppointmentsByStaff.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
     </Compile>
     <Content Include="Global.asax" />
     <Content Include="Reports\AppointmentsReport.aspx" />
@@ -480,7 +492,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
+      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
     </VisualStudio>
   </ProjectExtensions>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -39,9 +39,10 @@ namespace HospitalSystem.Reports
 
                 if (type == "Daily")
                 {
-                    startDate = DateTime.Today;
-                    endDate = DateTime.Today;
+                    startDate = DateTime.Today; // Start of the day (00:00:00)
+                    endDate = DateTime.Today.AddDays(1).AddTicks(-1); // End of the day (23:59:59.9999999)
                 }
+
                 else // Monthly
                 {
                     startDate = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
