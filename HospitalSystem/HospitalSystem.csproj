@@ -233,6 +233,12 @@
     <Compile Include="Reports\AppointmentsReport.aspx.designer.cs">
       <DependentUpon>AppointmentsReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Reports\IncomeReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\IncomeReport.Designer.cs">
+      <DependentUpon>IncomeReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="vw_AppointmentsByDate.cs">
       <DependentUpon>HospitalModel.tt</DependentUpon>
     </Compile>
@@ -458,6 +464,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Reports\IncomeReport.resx">
+      <DependentUpon>IncomeReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\PatientRegisterationReport.resx">
       <DependentUpon>PatientRegisterationReport.cs</DependentUpon>
     </EmbeddedResource>
@@ -492,7 +501,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

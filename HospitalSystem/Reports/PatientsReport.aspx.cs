@@ -7,7 +7,7 @@ namespace HospitalSystem.Reports
 {
     public partial class PatientsReport : System.Web.UI.Page
     {
-        private InternSmallHospitalConnectionString _context = DbService.Instance.GetDbContext();
+        //private InternSmallHospitalConnectionString _context = DbService.Instance.GetDbContext();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -57,5 +57,6 @@ namespace HospitalSystem.Reports
                 ASPxWebDocumentViewer1.DataBind();
             }
         }
+
     }
 }
