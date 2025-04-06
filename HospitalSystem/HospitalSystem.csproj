@@ -131,7 +131,15 @@
     </Compile>
     <Compile Include="App_Data\Services\SecurityService.cs" />
     <Compile Include="Billing.cs">
+    <Compile Include="App_Data\Services\SecurityService.cs" />666
       <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Billings\BillingHistory.aspx.cs">
+      <DependentUpon>BillingHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Billings\BillingHistory.aspx.designer.cs">
+      <DependentUpon>BillingHistory.aspx</DependentUpon>
     </Compile>
     <Compile Include="BillingVault.cs">
       <DependentUpon>HospitalModel.tt</DependentUpon>
@@ -239,6 +247,7 @@
     <Compile Include="Reports\IncomeReport.Designer.cs">
       <DependentUpon>IncomeReport.cs</DependentUpon>
     </Compile>
+    <Content Include="Billings\BillingHistory.aspx" />
     <Compile Include="vw_AppointmentsByDate.cs">
       <DependentUpon>HospitalModel.tt</DependentUpon>
     </Compile>
