@@ -39,6 +39,7 @@
             this.pageInfo1 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.pageInfo2 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.ReportHeader = new DevExpress.XtraReports.UI.ReportHeaderBand();
+            this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.label1 = new DevExpress.XtraReports.UI.XRLabel();
             this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
             this.table1 = new DevExpress.XtraReports.UI.XRTable();
@@ -64,7 +65,6 @@
             this.PageInfo = new DevExpress.XtraReports.UI.XRControlStyle();
             this.StartDate = new DevExpress.XtraReports.Parameters.Parameter();
             this.EndDate = new DevExpress.XtraReports.Parameters.Parameter();
-            this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.table1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.table2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -104,6 +104,17 @@
             this.label1});
             this.ReportHeader.HeightF = 60F;
             this.ReportHeader.Name = "ReportHeader";
+            // 
+            // xrLabel1
+            // 
+            this.xrLabel1.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "\'Total Patients: \' + ToStr(Count())")});
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(441.9943F, 24.19434F);
+            this.xrLabel1.Multiline = true;
+            this.xrLabel1.Name = "xrLabel1";
+            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel1.SizeF = new System.Drawing.SizeF(164.9502F, 23F);
+            this.xrLabel1.Text = "Total Patients Today: 0";
             // 
             // label1
             // 
@@ -333,17 +344,6 @@
             this.EndDate.Type = typeof(System.DateTime);
             this.EndDate.ValueInfo = "2025-03-26";
             this.EndDate.Visible = false;
-            // 
-            // xrLabel1
-            // 
-            this.xrLabel1.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "\'Total Patients: \' + ToStr(Count())")});
-            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(441.9943F, 24.19434F);
-            this.xrLabel1.Multiline = true;
-            this.xrLabel1.Name = "xrLabel1";
-            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xrLabel1.SizeF = new System.Drawing.SizeF(164.9502F, 23F);
-            this.xrLabel1.Text = "Total Patients Today: 0";
             // 
             // PatientRegisterationReport
             // 
