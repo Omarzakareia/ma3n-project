@@ -133,8 +133,22 @@
     <Compile Include="Billing.cs">
       <DependentUpon>HospitalModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Billings\Invoice.aspx.cs">
+      <DependentUpon>Invoice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Billings\Invoice.aspx.designer.cs">
+      <DependentUpon>Invoice.aspx</DependentUpon>
+    </Compile>
     <Compile Include="BillingVault.cs">
       <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Billings\BillingHistory.aspx.cs">
+      <DependentUpon>BillingHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Billings\BillingHistory.aspx.designer.cs">
+      <DependentUpon>BillingHistory.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -168,6 +182,12 @@
     <Compile Include="Doctors\MyAppointments.aspx.designer.cs">
       <DependentUpon>MyAppointments.aspx</DependentUpon>
     </Compile>
+<<<<<<< HEAD
+=======
+    <Compile Include="FullPaymentBill.cs">
+      <DependentUpon>HospitalModel.tt</DependentUpon>
+    </Compile>
+>>>>>>> billing-invoice
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -240,12 +260,15 @@
     <Compile Include="Reports\AppointmentsReport.aspx.designer.cs">
       <DependentUpon>AppointmentsReport.aspx</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Reports\IncomeReport.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\IncomeReport.Designer.cs">
       <DependentUpon>IncomeReport.cs</DependentUpon>
     </Compile>
+=======
+>>>>>>> billing-invoice
     <Compile Include="vw_AppointmentsByDate.cs">
       <DependentUpon>HospitalModel.tt</DependentUpon>
     </Compile>
@@ -255,8 +278,14 @@
     <Compile Include="vw_AppointmentsByStaff.cs">
       <DependentUpon>HospitalModel.tt</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Content Include="Global.asax" />
     <Content Include="Patients\Booking.aspx" />
+=======
+    <Content Include="Billings\BillingHistory.aspx" />
+    <Content Include="Billings\Invoice.aspx" />
+    <Content Include="Global.asax" />
+>>>>>>> billing-invoice
     <Content Include="Reports\AppointmentsReport.aspx" />
     <Compile Include="Reports\BillingsReport.aspx.cs">
       <DependentUpon>BillingsReport.aspx</DependentUpon>
@@ -472,9 +501,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
+<<<<<<< HEAD
     <EmbeddedResource Include="Reports\IncomeReport.resx">
       <DependentUpon>IncomeReport.cs</DependentUpon>
     </EmbeddedResource>
+=======
+>>>>>>> billing-invoice
     <EmbeddedResource Include="Reports\PatientRegisterationReport.resx">
       <DependentUpon>PatientRegisterationReport.cs</DependentUpon>
     </EmbeddedResource>
@@ -509,7 +541,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

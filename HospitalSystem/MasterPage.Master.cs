@@ -76,6 +76,7 @@ namespace HospitalSystem
 
             Dictionary<string, string[]> rolePageMapping = new Dictionary<string, string[]>
             {
+<<<<<<< HEAD
                 { "ADMIN", new string[] {
                     "default.aspx",
                     "usermanagement.aspx",
@@ -106,6 +107,11 @@ namespace HospitalSystem
                     "billingsreport.aspx",
                     "patientsreport.aspx"
                 } }
+=======
+                { "ADMIN", new string[] { "default.aspx", "usermanagement.aspx", "departments.aspx", "myappointments.aspx", "patients.aspx", "unauthorized.aspx", "patienthistory.aspx","billinghistory.aspx", "invoice.aspx" } },
+                { "DOCTOR", new string[] { "default.aspx", "departments.aspx", "myappointments.aspx", "unauthorized.aspx" } },
+                { "STAFF", new string[] { "default.aspx", "patients.aspx", "patienthistory.aspx", "unauthorized.aspx" } }
+>>>>>>> billing-invoice
             };
 
             if (!rolePageMapping.ContainsKey(userRole) || !rolePageMapping[userRole].Contains(currentPage))

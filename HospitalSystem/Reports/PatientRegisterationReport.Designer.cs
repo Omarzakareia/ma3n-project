@@ -33,6 +33,7 @@
             DevExpress.DataAccess.Sql.QueryParameter queryParameter1 = new DevExpress.DataAccess.Sql.QueryParameter();
             DevExpress.DataAccess.Sql.QueryParameter queryParameter2 = new DevExpress.DataAccess.Sql.QueryParameter();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PatientRegisterationReport));
+<<<<<<< HEAD
             DevExpress.XtraReports.UI.XRWatermark xrWatermark1 = new DevExpress.XtraReports.UI.XRWatermark();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
@@ -44,14 +45,33 @@
             this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
             this.table1 = new DevExpress.XtraReports.UI.XRTable();
             this.tableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
+=======
+            this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
+            this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
+            this.ReportHeader = new DevExpress.XtraReports.UI.ReportHeaderBand();
+            this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
+            this.Detail = new DevExpress.XtraReports.UI.DetailBand();
+            this.pageInfo1 = new DevExpress.XtraReports.UI.XRPageInfo();
+            this.pageInfo2 = new DevExpress.XtraReports.UI.XRPageInfo();
+            this.label1 = new DevExpress.XtraReports.UI.XRLabel();
+            this.table1 = new DevExpress.XtraReports.UI.XRTable();
+            this.tableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.tableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
+>>>>>>> billing-invoice
             this.tableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell4 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell5 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell6 = new DevExpress.XtraReports.UI.XRTableCell();
+<<<<<<< HEAD
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.table2 = new DevExpress.XtraReports.UI.XRTable();
             this.tableRow2 = new DevExpress.XtraReports.UI.XRTableRow();
+=======
+            this.table2 = new DevExpress.XtraReports.UI.XRTable();
+            this.tableRow2 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.tableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
+>>>>>>> billing-invoice
             this.tableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell9 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell10 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -63,8 +83,11 @@
             this.DetailData1 = new DevExpress.XtraReports.UI.XRControlStyle();
             this.DetailData3_Odd = new DevExpress.XtraReports.UI.XRControlStyle();
             this.PageInfo = new DevExpress.XtraReports.UI.XRControlStyle();
+<<<<<<< HEAD
             this.StartDate = new DevExpress.XtraReports.Parameters.Parameter();
             this.EndDate = new DevExpress.XtraReports.Parameters.Parameter();
+=======
+>>>>>>> billing-invoice
             ((System.ComponentModel.ISupportInitialize)(this.table1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.table2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -80,6 +103,7 @@
             this.pageInfo2});
             this.BottomMargin.Name = "BottomMargin";
             // 
+<<<<<<< HEAD
             // pageInfo1
             // 
             this.pageInfo1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 10F);
@@ -101,10 +125,16 @@
             // 
             this.ReportHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrLabel1,
+=======
+            // ReportHeader
+            // 
+            this.ReportHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+>>>>>>> billing-invoice
             this.label1});
             this.ReportHeader.HeightF = 60F;
             this.ReportHeader.Name = "ReportHeader";
             // 
+<<<<<<< HEAD
             // xrLabel1
             // 
             this.xrLabel1.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
@@ -124,6 +154,8 @@
             this.label1.StyleName = "Title";
             this.label1.Text = "PatientRegisterationReport";
             // 
+=======
+>>>>>>> billing-invoice
             // GroupHeader1
             // 
             this.GroupHeader1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
@@ -132,6 +164,41 @@
             this.GroupHeader1.HeightF = 28F;
             this.GroupHeader1.Name = "GroupHeader1";
             // 
+<<<<<<< HEAD
+=======
+            // Detail
+            // 
+            this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.table2});
+            this.Detail.HeightF = 25F;
+            this.Detail.Name = "Detail";
+            // 
+            // pageInfo1
+            // 
+            this.pageInfo1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
+            this.pageInfo1.Name = "pageInfo1";
+            this.pageInfo1.PageInfo = DevExpress.XtraPrinting.PageInfo.DateTime;
+            this.pageInfo1.SizeF = new System.Drawing.SizeF(325F, 23F);
+            this.pageInfo1.StyleName = "PageInfo";
+            // 
+            // pageInfo2
+            // 
+            this.pageInfo2.LocationFloat = new DevExpress.Utils.PointFloat(325F, 0F);
+            this.pageInfo2.Name = "pageInfo2";
+            this.pageInfo2.SizeF = new System.Drawing.SizeF(325F, 23F);
+            this.pageInfo2.StyleName = "PageInfo";
+            this.pageInfo2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
+            this.pageInfo2.TextFormatString = "Page {0} of {1}";
+            // 
+            // label1
+            // 
+            this.label1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
+            this.label1.Name = "label1";
+            this.label1.SizeF = new System.Drawing.SizeF(650F, 24.19433F);
+            this.label1.StyleName = "Title";
+            this.label1.Text = "PatientRegisterationReport";
+            // 
+>>>>>>> billing-invoice
             // table1
             // 
             this.table1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
@@ -143,6 +210,10 @@
             // tableRow1
             // 
             this.tableRow1.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+<<<<<<< HEAD
+=======
+            this.tableCell1,
+>>>>>>> billing-invoice
             this.tableCell2,
             this.tableCell3,
             this.tableCell4,
@@ -151,39 +222,72 @@
             this.tableRow1.Name = "tableRow1";
             this.tableRow1.Weight = 1D;
             // 
+<<<<<<< HEAD
+=======
+            // tableCell1
+            // 
+            this.tableCell1.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.tableCell1.Name = "tableCell1";
+            this.tableCell1.StyleName = "DetailCaption1";
+            this.tableCell1.StylePriority.UseBorders = false;
+            this.tableCell1.StylePriority.UseTextAlignment = false;
+            this.tableCell1.Text = "Patient ID";
+            this.tableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.tableCell1.Weight = 0.17703886765700119D;
+            // 
+>>>>>>> billing-invoice
             // tableCell2
             // 
             this.tableCell2.Name = "tableCell2";
             this.tableCell2.StyleName = "DetailCaption1";
             this.tableCell2.Text = "First Name";
+<<<<<<< HEAD
             this.tableCell2.Weight = 0.1696674724317086D;
+=======
+            this.tableCell2.Weight = 0.19391065157376802D;
+>>>>>>> billing-invoice
             // 
             // tableCell3
             // 
             this.tableCell3.Name = "tableCell3";
             this.tableCell3.StyleName = "DetailCaption1";
             this.tableCell3.Text = "Last Name";
+<<<<<<< HEAD
             this.tableCell3.Weight = 0.17435897881513721D;
+=======
+            this.tableCell3.Weight = 0.19055108877328725D;
+>>>>>>> billing-invoice
             // 
             // tableCell4
             // 
             this.tableCell4.Name = "tableCell4";
             this.tableCell4.StyleName = "DetailCaption1";
+<<<<<<< HEAD
             this.tableCell4.Text = "Gender";
             this.tableCell4.Weight = 0.104134028524046D;
+=======
+            this.tableCell4.Text = "DOB";
+            this.tableCell4.Weight = 0.10460857684795673D;
+>>>>>>> billing-invoice
             // 
             // tableCell5
             // 
             this.tableCell5.Name = "tableCell5";
             this.tableCell5.StyleName = "DetailCaption1";
+<<<<<<< HEAD
             this.tableCell5.Text = "DOB";
             this.tableCell5.Weight = 0.251061479914114D;
+=======
+            this.tableCell5.Text = "Gender";
+            this.tableCell5.Weight = 0.14336928147536057D;
+>>>>>>> billing-invoice
             // 
             // tableCell6
             // 
             this.tableCell6.Name = "tableCell6";
             this.tableCell6.StyleName = "DetailCaption1";
             this.tableCell6.Text = "Created At";
+<<<<<<< HEAD
             this.tableCell6.Weight = 0.30077800673982574D;
             // 
             // Detail
@@ -192,6 +296,9 @@
             this.table2});
             this.Detail.HeightF = 25F;
             this.Detail.Name = "Detail";
+=======
+            this.tableCell6.Weight = 0.19052149846003605D;
+>>>>>>> billing-invoice
             // 
             // table2
             // 
@@ -205,6 +312,10 @@
             // tableRow2
             // 
             this.tableRow2.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+<<<<<<< HEAD
+=======
+            this.tableCell7,
+>>>>>>> billing-invoice
             this.tableCell8,
             this.tableCell9,
             this.tableCell10,
@@ -213,13 +324,32 @@
             this.tableRow2.Name = "tableRow2";
             this.tableRow2.Weight = 11.5D;
             // 
+<<<<<<< HEAD
+=======
+            // tableCell7
+            // 
+            this.tableCell7.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.tableCell7.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[PatientID]")});
+            this.tableCell7.Name = "tableCell7";
+            this.tableCell7.StyleName = "DetailData1";
+            this.tableCell7.StylePriority.UseBorders = false;
+            this.tableCell7.StylePriority.UseTextAlignment = false;
+            this.tableCell7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.tableCell7.Weight = 0.17703887939453125D;
+            // 
+>>>>>>> billing-invoice
             // tableCell8
             // 
             this.tableCell8.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[FirstName]")});
             this.tableCell8.Name = "tableCell8";
             this.tableCell8.StyleName = "DetailData1";
+<<<<<<< HEAD
             this.tableCell8.Weight = 0.16966748278615973D;
+=======
+            this.tableCell8.Weight = 0.19391066331129808D;
+>>>>>>> billing-invoice
             // 
             // tableCell9
             // 
@@ -227,25 +357,43 @@
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[LastName]")});
             this.tableCell9.Name = "tableCell9";
             this.tableCell9.StyleName = "DetailData1";
+<<<<<<< HEAD
             this.tableCell9.Weight = 0.17435898962890364D;
+=======
+            this.tableCell9.Weight = 0.19055110051081731D;
+>>>>>>> billing-invoice
             // 
             // tableCell10
             // 
             this.tableCell10.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+<<<<<<< HEAD
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Gender]")});
             this.tableCell10.Name = "tableCell10";
             this.tableCell10.StyleName = "DetailData1";
             this.tableCell10.StylePriority.UseTextAlignment = false;
             this.tableCell10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.tableCell10.Weight = 0.10413402849697294D;
+=======
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DOB]")});
+            this.tableCell10.Name = "tableCell10";
+            this.tableCell10.StyleName = "DetailData1";
+            this.tableCell10.Weight = 0.10460857684795673D;
+>>>>>>> billing-invoice
             // 
             // tableCell11
             // 
             this.tableCell11.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+<<<<<<< HEAD
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DOB]")});
             this.tableCell11.Name = "tableCell11";
             this.tableCell11.StyleName = "DetailData1";
             this.tableCell11.Weight = 0.25106150953303941D;
+=======
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Gender]")});
+            this.tableCell11.Name = "tableCell11";
+            this.tableCell11.StyleName = "DetailData1";
+            this.tableCell11.Weight = 0.14336928147536057D;
+>>>>>>> billing-invoice
             // 
             // tableCell12
             // 
@@ -253,7 +401,11 @@
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[CreatedAt]")});
             this.tableCell12.Name = "tableCell12";
             this.tableCell12.StyleName = "DetailData1";
+<<<<<<< HEAD
             this.tableCell12.Weight = 0.30077801302998447D;
+=======
+            this.tableCell12.Weight = 0.19052152193509617D;
+>>>>>>> billing-invoice
             // 
             // sqlDataSource1
             // 
@@ -262,6 +414,7 @@
             customSqlQuery1.Name = "Query";
             queryParameter1.Name = "StartDate";
             queryParameter1.Type = typeof(DevExpress.DataAccess.Expression);
+<<<<<<< HEAD
             queryParameter1.Value = new DevExpress.DataAccess.Expression("?StartDate", typeof(System.DateTime));
             queryParameter2.Name = "EndDate";
             queryParameter2.Type = typeof(DevExpress.DataAccess.Expression);
@@ -272,6 +425,18 @@
             customSqlQuery1.Sql = "SELECT FirstName, LastName, DOB, Gender, CreatedAt \r\nFROM dbo.Patient\r\nWHERE IsDe" +
     "leted = 0 \r\n  AND CreatedAt BETWEEN @StartDate AND @EndDate\r\nORDER BY CreatedAt " +
     "DESC;";
+=======
+            queryParameter1.Value = new DevExpress.DataAccess.Expression("\'01/01/1753 12:00:00 AM\'", typeof(System.DateTime));
+            queryParameter2.Name = "EndDate";
+            queryParameter2.Type = typeof(DevExpress.DataAccess.Expression);
+            queryParameter2.Value = new DevExpress.DataAccess.Expression("\'01/01/1753 12:00:00 AM\'", typeof(System.DateTime));
+            customSqlQuery1.Parameters.AddRange(new DevExpress.DataAccess.Sql.QueryParameter[] {
+            queryParameter1,
+            queryParameter2});
+            customSqlQuery1.Sql = "SELECT PatientID, FirstName, LastName, DOB, Gender, CreatedAt \r\nFROM dbo.Patient\r" +
+    "\nWHERE IsDeleted = 0 \r\n  AND CreatedAt BETWEEN @StartDate AND @EndDate\r\nORDER BY" +
+    " CreatedAt DESC;";
+>>>>>>> billing-invoice
             this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
             customSqlQuery1});
             this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
@@ -329,6 +494,7 @@
             this.PageInfo.Name = "PageInfo";
             this.PageInfo.Padding = new DevExpress.XtraPrinting.PaddingInfo(6, 6, 0, 0, 100F);
             // 
+<<<<<<< HEAD
             // StartDate
             // 
             this.StartDate.Description = "Parameter1";
@@ -345,6 +511,8 @@
             this.EndDate.ValueInfo = "2025-03-26";
             this.EndDate.Visible = false;
             // 
+=======
+>>>>>>> billing-invoice
             // PatientRegisterationReport
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -358,11 +526,14 @@
             this.DataMember = "Query";
             this.DataSource = this.sqlDataSource1;
             this.Font = new DevExpress.Drawing.DXFont("Arial", 9.75F);
+<<<<<<< HEAD
             this.ParameterPanelLayoutItems.AddRange(new DevExpress.XtraReports.Parameters.ParameterPanelLayoutItem[] {
             new DevExpress.XtraReports.Parameters.ParameterLayoutItem(this.StartDate, DevExpress.XtraReports.Parameters.Orientation.Horizontal)});
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.StartDate,
             this.EndDate});
+=======
+>>>>>>> billing-invoice
             this.StyleSheet.AddRange(new DevExpress.XtraReports.UI.XRControlStyle[] {
             this.Title,
             this.DetailCaption1,
@@ -370,9 +541,12 @@
             this.DetailData3_Odd,
             this.PageInfo});
             this.Version = "24.2";
+<<<<<<< HEAD
             xrWatermark1.Id = "Watermark1";
             this.Watermarks.AddRange(new DevExpress.XtraPrinting.Drawing.Watermark[] {
             xrWatermark1});
+=======
+>>>>>>> billing-invoice
             ((System.ComponentModel.ISupportInitialize)(this.table1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.table2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
@@ -390,6 +564,10 @@
         private DevExpress.XtraReports.UI.GroupHeaderBand GroupHeader1;
         private DevExpress.XtraReports.UI.XRTable table1;
         private DevExpress.XtraReports.UI.XRTableRow tableRow1;
+<<<<<<< HEAD
+=======
+        private DevExpress.XtraReports.UI.XRTableCell tableCell1;
+>>>>>>> billing-invoice
         private DevExpress.XtraReports.UI.XRTableCell tableCell2;
         private DevExpress.XtraReports.UI.XRTableCell tableCell3;
         private DevExpress.XtraReports.UI.XRTableCell tableCell4;
@@ -398,6 +576,10 @@
         private DevExpress.XtraReports.UI.DetailBand Detail;
         private DevExpress.XtraReports.UI.XRTable table2;
         private DevExpress.XtraReports.UI.XRTableRow tableRow2;
+<<<<<<< HEAD
+=======
+        private DevExpress.XtraReports.UI.XRTableCell tableCell7;
+>>>>>>> billing-invoice
         private DevExpress.XtraReports.UI.XRTableCell tableCell8;
         private DevExpress.XtraReports.UI.XRTableCell tableCell9;
         private DevExpress.XtraReports.UI.XRTableCell tableCell10;
@@ -409,8 +591,11 @@
         private DevExpress.XtraReports.UI.XRControlStyle DetailData1;
         private DevExpress.XtraReports.UI.XRControlStyle DetailData3_Odd;
         private DevExpress.XtraReports.UI.XRControlStyle PageInfo;
+<<<<<<< HEAD
         private DevExpress.XtraReports.Parameters.Parameter StartDate;
         private DevExpress.XtraReports.Parameters.Parameter EndDate;
         private DevExpress.XtraReports.UI.XRLabel xrLabel1;
+=======
+>>>>>>> billing-invoice
     }
 }
