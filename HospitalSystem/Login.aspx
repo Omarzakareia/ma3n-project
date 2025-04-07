@@ -9,15 +9,12 @@
             <div class="col-xl-4">
                 <div class="border p-4 shadow rounded bg-white">
                     
-                    <!-- Validation Summary -->
                     <asp:ValidationSummary ID="ValidationSummary1" runat="server" ValidationGroup="grp" ForeColor="Red" />
 
                     <h4>Login</h4>
 
-                    <!-- Error Message Label -->
                     <asp:Label ID="lblError" runat="server" ForeColor="Red" CssClass="d-block mb-3" ></asp:Label>
 
-                    <!-- Email Field -->
                     <div class="mb-3">
                         <asp:Label class="form-label" ID="lblEmail" runat="server" Text="Email"></asp:Label>
                         <div class="d-flex align-items-center">
@@ -33,7 +30,7 @@
                         </div>
                     </div>
 
-                    <!-- Password Field -->
+                    
                     <div class="mb-3">
                         <asp:Label class="form-label" ID="lblPassword" runat="server" Text="Password"></asp:Label>
                         <div class="d-flex align-items-center">
@@ -49,13 +46,11 @@
                         </div>
                     </div>
 
-                    <!-- Remember Me Checkbox -->
                     <div class="mb-3 form-check">
                         <asp:CheckBox ID="chkRememberMe" runat="server" />
                         <asp:Label CssClass="form-check-label" AssociatedControlID="chkRememberMe" runat="server">Remember Me</asp:Label>
                     </div>
 
-                    <!-- Login Button -->
                     <asp:Button ID="btnLogin" runat="server" CssClass="primary-btn w-100 my-4" Text="Login" ValidationGroup="grp" OnClick="btnLogin_Click" />
 
                 </div>

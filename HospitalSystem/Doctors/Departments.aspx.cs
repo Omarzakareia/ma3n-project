@@ -31,11 +31,11 @@ namespace HospitalSystem.Doctors
 		}
 		protected void btnToggleView_Click(object sender, EventArgs e)
         {
-            // Toggle visibility of panels
+            // visibility of panels
             ActiveDeparment.Visible = !ActiveDeparment.Visible;
             DeletedDepartment.Visible = !DeletedDepartment.Visible;
 
-            // Ensure correct data is loaded when toggling
+            // Ensure correct data 
             if (DeletedDepartment.Visible)
             {
                 RadGridDeleted.Rebind();
@@ -76,7 +76,7 @@ namespace HospitalSystem.Doctors
 		#region DateView
 		protected void RadGrid1_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
         {
-            var departmentViews = db.DepartmentViews.ToList(); // Fetch from view
+            var departmentViews = db.DepartmentViews.ToList(); 
             RadGrid1.DataSource = departmentViews;
         }
         protected void RadGridDeleted_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)

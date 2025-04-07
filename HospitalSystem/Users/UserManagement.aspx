@@ -23,9 +23,7 @@
         <asp:Label ID="lblSaveStatus" runat="server" CssClass="fw-bold ms-3 text-success" Visible="False"></asp:Label>
     </div>
 
-    <!-- Add User and Search Section -->
     <div class="d-flex justify-content-between align-items-center flex-wrap bg-light p-3 rounded shadow-sm mb-3">
-        <!-- Search Box & Buttons (Left Side) -->
         <div class="d-flex flex-grow-1 me-3 align-items-stretch">
             <telerik:RadTextBox ID="txtSearch" runat="server" EmptyMessage="🔍 Search by Full Name..."
                 CssClass="form-control shadow-sm py-2" Width="40%" />
@@ -37,7 +35,6 @@
                 OnClick="btnResetSearch_Click" />
         </div>
 
-        <!-- Add User Button (Right Side) -->
         <telerik:RadButton ID="btnAddUser" runat="server" Text="Add User"
             OnClick="btnAddUser_Click" Style="background-color: #259843; color: white;" />
     </div>
@@ -45,7 +42,6 @@
 
     <telerik:RadMultiPage ID="RadMultiPage1" runat="server" SelectedIndex="0">
 
-        <!-- Active Users Page -->
         <telerik:RadPageView ID="PageActiveUsers" runat="server">
             <telerik:RadGrid ID="RadGrid1" runat="server" AllowPaging="True"
                 AllowSorting="True" CssClass="mx-2 mb-3"

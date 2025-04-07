@@ -11,7 +11,6 @@
          Text="Show Deleted Deparments" OnClick="btnToggleView_Click" />
     </div>
     <div class="d-flex justify-content-between align-items-center flex-wrap bg-light p-3 rounded shadow-sm mb-3">
-    <!-- Search Box & Buttons (Left Side) -->
     <div class="d-flex flex-grow-1 me-3 align-items-stretch">
         <telerik:RadTextBox ID="txtSearch" runat="server" EmptyMessage="🔍 Search by Full Name..."
             CssClass="form-control shadow-sm py-2" Width="40%" />
