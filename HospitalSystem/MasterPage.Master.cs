@@ -70,7 +70,11 @@ namespace HospitalSystem
 
             Dictionary<string, string[]> rolePageMapping = new Dictionary<string, string[]>
             {
+<<<<<<< Updated upstream
                 { "ADMIN", new string[] { "default.aspx", "usermanagement.aspx", "departments.aspx", "myappointments.aspx", "patients.aspx", "unauthorized.aspx", "patienthistory.aspx" } },
+=======
+                { "ADMIN", new string[] { "default.aspx", "usermanagement.aspx", "departments.aspx", "myappointments.aspx", "patients.aspx", "patientsreport.aspx", "unauthorized.aspx", "appointmentsreport.aspx" } },
+>>>>>>> Stashed changes
                 { "DOCTOR", new string[] { "default.aspx", "departments.aspx", "myappointments.aspx", "unauthorized.aspx" } },
                 { "STAFF", new string[] { "default.aspx", "patients.aspx", "patienthistory.aspx", "unauthorized.aspx" } }
             };
