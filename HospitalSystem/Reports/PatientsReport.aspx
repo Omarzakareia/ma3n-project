@@ -4,11 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<<<<<<< HEAD
-    <div style="text-align: center; margin-top:20px;margin-bottom: 20px;">
-=======
     <div style="text-align: center; margin-bottom: 20px;">
->>>>>>> billing-invoice
         <asp:Button ID="btnDaily" runat="server" Text="Daily" CssClass="btn btn-primary" OnClick="btnDaily_Click" />
         <asp:Button ID="btnMonthly" runat="server" Text="Monthly" CssClass="btn btn-success" OnClick="btnMonthly_Click" />
     </div>

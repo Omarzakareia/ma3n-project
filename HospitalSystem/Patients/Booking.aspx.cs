@@ -66,7 +66,8 @@ namespace HospitalSystem.Patients
                 DoctorID = doctorId,
                 StaffID = staffId,
                 AppointmentDate = date.Date + time,
-                Status = status
+                Status = status,
+                IsDeleted = false
             };
 
             db.Appointments.Add(appointment);
