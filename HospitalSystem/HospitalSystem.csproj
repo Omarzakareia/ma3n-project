@@ -254,6 +254,12 @@
     <Compile Include="Reports\AppointmentsReport.aspx.designer.cs">
       <DependentUpon>AppointmentsReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Reports\DailyMonthlyAppointment.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\DailyMonthlyAppointment.Designer.cs">
+      <DependentUpon>DailyMonthlyAppointment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\IncomeReport.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -488,6 +494,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Reports\DailyMonthlyAppointment.resx">
+      <DependentUpon>DailyMonthlyAppointment.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\IncomeReport.resx">
       <DependentUpon>IncomeReport.cs</DependentUpon>
     </EmbeddedResource>
