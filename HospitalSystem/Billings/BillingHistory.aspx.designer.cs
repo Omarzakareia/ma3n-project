@@ -4,42 +4,59 @@
 //
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated. 
-//     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HospitalSystem.Reports
+namespace HospitalSystem.Billings
 {
 
 
-    public partial class BillingsReport
+    public partial class BillingHistory
     {
 
         /// <summary>
-        /// btnDaily control.
+        /// txtSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDaily;
+        protected global::Telerik.Web.UI.RadTextBox txtSearch;
 
         /// <summary>
-        /// btnMonthly control.
+        /// btnSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMonthly;
+        protected global::Telerik.Web.UI.RadButton btnSearch;
 
         /// <summary>
-        /// ASPxWebDocumentViewer1 control.
+        /// btnResetSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.XtraReports.Web.ASPxWebDocumentViewer ASPxWebDocumentViewer1;
+        protected global::Telerik.Web.UI.RadButton btnResetSearch;
+
+        /// <summary>
+        /// pnlActivePatients control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlActivePatients;
+
+        /// <summary>
+        /// RadGridActive control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid RadGridActive;
     }
 }

@@ -22,6 +22,8 @@ namespace HospitalSystem
                     userManagementNav.Visible = false;
                     doctorsNav.Visible = false;
                     patientsNav.Visible = false;
+                    reportsNav.Visible = false;
+                    bookingNav.Visible = false;
                     lstWelcome.Visible = false;
                     return;
                 }
@@ -62,6 +64,10 @@ namespace HospitalSystem
             userManagementNav.Visible = (userRole == "ADMIN");
             doctorsNav.Visible = (userRole == "ADMIN" || userRole == "DOCTOR");
             patientsNav.Visible = (userRole == "ADMIN" || userRole == "STAFF");
+            reportsNav.Visible = (userRole == "ADMIN"); // Adjust roles as needed
+            bookingNav.Visible = (userRole == "ADMIN" || userRole == "STAFF"); // Adjust roles as needed
+
+
         }
 
         private void RestrictPageAccess(string userRole)
@@ -70,15 +76,42 @@ namespace HospitalSystem
 
             Dictionary<string, string[]> rolePageMapping = new Dictionary<string, string[]>
             {
-<<<<<<< Updated upstream
-                { "ADMIN", new string[] { "default.aspx", "usermanagement.aspx", "departments.aspx", "myappointments.aspx", "patients.aspx", "unauthorized.aspx", "patienthistory.aspx" } },
-=======
-                { "ADMIN", new string[] { "default.aspx", "usermanagement.aspx", "departments.aspx", "myappointments.aspx", "patients.aspx", "patientsreport.aspx", "unauthorized.aspx", "appointmentsreport.aspx" } },
->>>>>>> Stashed changes
-                { "DOCTOR", new string[] { "default.aspx", "departments.aspx", "myappointments.aspx", "unauthorized.aspx" } },
-                { "STAFF", new string[] { "default.aspx", "patients.aspx", "patienthistory.aspx", "unauthorized.aspx" } }
-            };
 
+                { "ADMIN", new string[] {
+                    "default.aspx",
+                    "usermanagement.aspx",
+                    "departments.aspx",
+                    "myappointments.aspx",
+                    "patients.aspx",
+                    "patientsreport.aspx",
+                    "booking.aspx",
+                    "unauthorized.aspx",
+                    "billingsreport.aspx",
+                    "patientsreport.aspx",
+                    "appointmentsreport.aspx",
+                    "billinghistory.aspx",
+                    "invoice.aspx"
+                } },
+                { "DOCTOR", new string[] {
+                    "default.aspx",
+                    "departments.aspx",
+                    "myappointments.aspx",
+                    "unauthorized.aspx",
+                    "appointmentsreport.aspx" 
+                } },
+                { "STAFF", new string[] {
+                    "default.aspx",
+                    "patients.aspx",
+                    "patienthistory.aspx",
+                    "patientsreport.aspx",
+                    "booking.aspx",
+                    "unauthorized.aspx",
+                    "billingsreport.aspx",
+                    "patientsreport.aspx",
+                    "billinghistory.aspx",
+                    "invoice.aspx"
+                } }
+            };
 
             if (!rolePageMapping.ContainsKey(userRole) || !rolePageMapping[userRole].Contains(currentPage))
             {

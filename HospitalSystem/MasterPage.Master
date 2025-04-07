@@ -71,6 +71,17 @@
                         <li class="nav-item" id="patientsNav" runat="server">
                             <a href="<%= ResolveUrl("~/Patients/Patients.aspx") %>">Patients</a>
                         </li>
+                        <li class="nav-item" id="bookingNav" runat="server">
+                            <a href="<%= ResolveUrl("~/Patients/Booking.aspx") %>">Booking</a>
+                        </li>
+                    <li class="nav-item dropdown" id="reportsNav" runat="server">
+                        <a class="dropdown-toggle" href="#" id="reportsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Reports</a>
+                        <ul class="dropdown-menu" aria-labelledby="reportsDropdown">
+                            <li><a class="dropdown-item" href="<%= ResolveUrl("~/Reports/BillingsReport.aspx") %>">Billing Report</a></li>
+                            <li><a class="dropdown-item" href="<%= ResolveUrl("~/Reports/PatientsReport.aspx") %>">Patient Report</a></li>
+                            <li><a class="dropdown-item" href="<%= ResolveUrl("~/Reports/AppointmentsReport.aspx") %>">Appointment Report</a></li>
+                        </ul>
+                    </li>
                     </ul>
                 </div>
 
