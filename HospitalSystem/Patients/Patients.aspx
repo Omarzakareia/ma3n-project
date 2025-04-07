@@ -154,7 +154,6 @@
                     </div>
                 </div>
 
-                <!-- Centered Telerik Button with Bottom Margin -->
                 <div class="d-flex justify-content-center mb-4">
                     <telerik:RadButton ID="btnAddPatient" runat="server" Class="btn btn-success" Style="background-color: #259843; color: white;"
                         ButtonType="SkinnedButton" Text="Add Patient" OnClick="btnAddPatient_Click" />

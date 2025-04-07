@@ -16,7 +16,7 @@ namespace HospitalSystem
             {
                 string currentPage = Path.GetFileName(Request.Url.AbsolutePath).ToLower();
 
-                // Hide navbar items if on the Login page
+                
                 if (currentPage == "login.aspx")
                 {
                     userManagementNav.Visible = false;

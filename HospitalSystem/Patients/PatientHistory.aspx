@@ -4,8 +4,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <a href="Patients.aspx" style="text-decoration: none;">
-    <h2 class="text-center fw-bold mt-4 py-2 border-bottom shadow-sm bg-light text-success">Patients</h2>
-</a>
+        <h2 class="text-center fw-bold mt-4 py-2 border-bottom shadow-sm bg-light text-success">Patients</h2>
+    </a>
     <div class="container mt-4">
 
         <asp:Label ID="lblErrorMessage" runat="server" CssClass="text-danger" Visible="false"></asp:Label>
@@ -16,12 +16,12 @@
                 <telerik:RadGrid ID="RadGridPatientHistory" runat="server" AutoGenerateColumns="False" AllowPaging="True"
                     CellSpacing="-1" GridLines="Both"
                     OnNeedDataSource="RadGridPatientHistory_NeedDataSource">
-<GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
+                    <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
 
                     <MasterTableView DataKeyNames="PatientID">
-<RowIndicatorColumn ShowNoSortIcon="False"></RowIndicatorColumn>
+                        <RowIndicatorColumn ShowNoSortIcon="False"></RowIndicatorColumn>
 
-<ExpandCollapseColumn ShowNoSortIcon="False"></ExpandCollapseColumn>
+                        <ExpandCollapseColumn ShowNoSortIcon="False"></ExpandCollapseColumn>
                         <Columns>
                             <telerik:GridBoundColumn DataField="PatientID" HeaderText="Patient ID" UniqueName="PatientID" ReadOnly="true" />
                             <telerik:GridBoundColumn DataField="FullName" HeaderText="Full Name" UniqueName="FullName" />
@@ -37,9 +37,9 @@
                             <telerik:GridBoundColumn DataField="DepartmentName" HeaderText="Department Name" UniqueName="DepartmentName" />
                         </Columns>
 
-<EditFormSettings>
-<EditColumn ShowNoSortIcon="False"></EditColumn>
-</EditFormSettings>
+                        <EditFormSettings>
+                            <EditColumn ShowNoSortIcon="False"></EditColumn>
+                        </EditFormSettings>
                     </MasterTableView>
                     <HeaderStyle BackColor="Green" ForeColor="Snow" />
                 </telerik:RadGrid>

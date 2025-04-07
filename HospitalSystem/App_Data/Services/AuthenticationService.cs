@@ -81,13 +81,12 @@ namespace HospitalSystem.Services
 
     }
 
-    // Updated AuthenticationResult to include the Name
     public class AuthenticationResult
     {
         public bool IsAuthenticated { get; }
         public int UserId { get; }
         public string Role { get; }
-        public string Name { get; } // Added name property
+        public string Name { get; } 
 
         public AuthenticationResult(bool isAuthenticated, int userId, string role, string name)
         {

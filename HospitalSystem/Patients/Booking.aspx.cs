@@ -34,7 +34,7 @@ namespace HospitalSystem.Patients
         private void LoadDoctors()
         {
             var doctors = (from d in db.Doctors
-                           join u in db.Users on d.UserID equals u.UserID // Adjust UserID with the actual foreign key field
+                           join u in db.Users on d.UserID equals u.UserID 
                            where d.DepartmentID != null
                            select new
                            {

@@ -68,12 +68,10 @@
             height: auto !important;
         }
 
-        /* Make Date Input Wider */
         .RadDatePicker .rdtInput {
             width: 100% !important;
         }
 
-        /* Align Status to the Left */
         .form-group.status-container {
             text-align: left;
             width: 100%;

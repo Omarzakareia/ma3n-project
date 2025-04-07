@@ -78,20 +78,17 @@ namespace HospitalSystem.Billings
                 decimal totalAmount;
                 decimal amountPaid;
 
-                // Try parsing the amount paid and total amount
                 bool isTotalAmountValid = decimal.TryParse(txtTotalAmount.Text, out totalAmount);
                 bool isAmountPaidValid = decimal.TryParse(txtAmountPaid.Text, out amountPaid);
 
                 if (isTotalAmountValid && isAmountPaidValid)
                 {
-                    // Get values from the form and the function
                     int patientId = int.Parse(ddlPatient.SelectedValue);
                     int doctorId = int.Parse(ddlDoctor.SelectedValue);
                     int billingVaultId = int.Parse(ddlBillingVault.SelectedValue);
-                    int staffId = GetStaffId();  // Get staff ID based on role
-                    DateTime billingDate = DateTime.Now;  // Current billing date
+                    int staffId = GetStaffId();  
+                    DateTime billingDate = DateTime.Now;  
 
-                    // Insert the new billing record into the Billing table
                     using (var db = DbService.Instance.GetDbContext())
                     {
                         var newBilling = new Billing
@@ -105,7 +102,7 @@ namespace HospitalSystem.Billings
                             BillingDate = billingDate
                         };
 
-                        // Add the new billing record and save the changes
+                       
                         db.Billings.Add(newBilling);
                         db.SaveChanges();
                     }

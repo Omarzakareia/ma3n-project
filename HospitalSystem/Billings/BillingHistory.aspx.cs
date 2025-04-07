@@ -49,11 +49,11 @@ namespace HospitalSystem.Billings
         }
         protected void btnToggleVisibility_Click(object sender, EventArgs e)
         {
-            // Toggle visibility of the panels
+            
             pnlPartialBill.Visible = !pnlPartialBill.Visible;
             pnlFullBill.Visible = !pnlFullBill.Visible;
 
-            // Change button text based on visibility of panels
+            
             if (pnlFullBill.Visible)
             {
                 btnToggleVisibility.Text = "Show Partial Bill";
@@ -110,7 +110,6 @@ namespace HospitalSystem.Billings
                         // Recalculate balance
                         billingRecord.Balance = billingRecord.TotalAmount - billingRecord.AmountPaid;
 
-                        // If the balance is now zero, change status to 'Fulfilled'
                         if (billingRecord.Balance == 0)
                         {
                             billingRecord.PaymentStatus = "Paid";
@@ -118,10 +117,9 @@ namespace HospitalSystem.Billings
                         billingRecord.BillingDate = billingRecord.BillingDate = DateTime.Now;
 
 
-                        // Save changes to the database
                         db.SaveChanges();
 
-                        // Refresh grid
+         
                         RadGridActive.Rebind();
                     }
                 }
