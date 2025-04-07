@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 ﻿using DevExpress.XtraReports.Web;
 using System;
-=======
-﻿using System;
->>>>>>> billing-invoice
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,7 +10,6 @@ namespace HospitalSystem.Reports
 {
 	public partial class BillingsReport : System.Web.UI.Page
 	{
-<<<<<<< HEAD
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -64,11 +59,4 @@ namespace HospitalSystem.Reports
             }
         }
     }
-=======
-		protected void Page_Load(object sender, EventArgs e)
-		{
-
-		}
-	}
->>>>>>> billing-invoice
 }

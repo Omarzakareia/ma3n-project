@@ -7,21 +7,13 @@ namespace HospitalSystem.Reports
 {
     public partial class PatientsReport : System.Web.UI.Page
     {
-<<<<<<< HEAD
-        //private InternSmallHospitalConnectionString _context = DbService.Instance.GetDbContext();
-=======
         private InternSmallHospitalConnectionString _context = DbService.Instance.GetDbContext();
->>>>>>> billing-invoice
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-<<<<<<< HEAD
-                LoadReport("Daily"); 
-=======
                 LoadReport("Daily"); // Load Daily report by default
->>>>>>> billing-invoice
             }
         }
 
@@ -39,65 +31,44 @@ namespace HospitalSystem.Reports
         {
             // Create Report Instance
             PatientRegisterationReport report = new PatientRegisterationReport();
-<<<<<<< HEAD
-=======
 
->>>>>>> billing-invoice
             // Validate Parameters Exist Before Assigning
             if (report.Parameters["StartDate"] != null && report.Parameters["EndDate"] != null)
             {
                 DateTime startDate, endDate;
-<<<<<<< HEAD
-                if (type == "Daily")
-                {
-                    startDate = DateTime.Today; 
-                    endDate = DateTime.Today.AddDays(1).AddTicks(-1); // End of the day (23:59:59.9999999)
-=======
 
                 if (type == "Daily")
                 {
                     startDate = DateTime.Today;
-                    endDate = DateTime.Today;
->>>>>>> billing-invoice
+                    endDate = DateTime.Today.AddDays(1).AddTicks(-1); // End of the day (23:59:59.9999999)
                 }
                 else // Monthly
                 {
                     startDate = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
-                    endDate = startDate.AddMonths(1).AddDays(-1);
+                    endDate = startDate.AddMonths(1).AddDays(-1).AddDays(1).AddTicks(-1); // End of the last day of the month
                 }
-<<<<<<< HEAD
-=======
 
->>>>>>> billing-invoice
                 // Assign Parameter Values
                 report.Parameters["StartDate"].Value = startDate;
                 report.Parameters["EndDate"].Value = endDate;
                 report.Parameters["StartDate"].Visible = false;
                 report.Parameters["EndDate"].Visible = false;
             }
-<<<<<<< HEAD
-=======
             else
             {
                 throw new Exception("Report parameters are missing. Ensure they are defined in the report.");
             }
 
             // Ensure the viewer is not null before assigning
->>>>>>> billing-invoice
             if (ASPxWebDocumentViewer1 != null)
             {
                 ASPxWebDocumentViewer1.OpenReport(report);
                 ASPxWebDocumentViewer1.DataBind();
             }
-<<<<<<< HEAD
-        }
-
-=======
             else
             {
                 throw new Exception("ASPxWebDocumentViewer1 is not initialized. Ensure the control is available in the page.");
             }
         }
->>>>>>> billing-invoice
     }
 }

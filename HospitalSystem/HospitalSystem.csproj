@@ -182,12 +182,9 @@
     <Compile Include="Doctors\MyAppointments.aspx.designer.cs">
       <DependentUpon>MyAppointments.aspx</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-=======
     <Compile Include="FullPaymentBill.cs">
       <DependentUpon>HospitalModel.tt</DependentUpon>
     </Compile>
->>>>>>> billing-invoice
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -240,9 +237,6 @@
       <DependentUpon>Patients.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="PatientHistory.cs">
-      <DependentUpon>HospitalEntities.tt</DependentUpon>
-    </Compile>
     <Compile Include="Doctors\Departments.aspx.designer.cs">
       <DependentUpon>Departments.aspx</DependentUpon>
     </Compile>
@@ -260,15 +254,12 @@
     <Compile Include="Reports\AppointmentsReport.aspx.designer.cs">
       <DependentUpon>AppointmentsReport.aspx</DependentUpon>
     </Compile>
-<<<<<<< HEAD
     <Compile Include="Reports\IncomeReport.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\IncomeReport.Designer.cs">
       <DependentUpon>IncomeReport.cs</DependentUpon>
     </Compile>
-=======
->>>>>>> billing-invoice
     <Compile Include="vw_AppointmentsByDate.cs">
       <DependentUpon>HospitalModel.tt</DependentUpon>
     </Compile>
@@ -278,14 +269,10 @@
     <Compile Include="vw_AppointmentsByStaff.cs">
       <DependentUpon>HospitalModel.tt</DependentUpon>
     </Compile>
-<<<<<<< HEAD
     <Content Include="Global.asax" />
     <Content Include="Patients\Booking.aspx" />
-=======
     <Content Include="Billings\BillingHistory.aspx" />
     <Content Include="Billings\Invoice.aspx" />
-    <Content Include="Global.asax" />
->>>>>>> billing-invoice
     <Content Include="Reports\AppointmentsReport.aspx" />
     <Compile Include="Reports\BillingsReport.aspx.cs">
       <DependentUpon>BillingsReport.aspx</DependentUpon>
@@ -501,14 +488,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
-<<<<<<< HEAD
     <EmbeddedResource Include="Reports\IncomeReport.resx">
       <DependentUpon>IncomeReport.cs</DependentUpon>
     </EmbeddedResource>
-=======
->>>>>>> billing-invoice
     <EmbeddedResource Include="Reports\PatientRegisterationReport.resx">
       <DependentUpon>PatientRegisterationReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
@@ -541,7 +526,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
+      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
     </VisualStudio>
   </ProjectExtensions>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
