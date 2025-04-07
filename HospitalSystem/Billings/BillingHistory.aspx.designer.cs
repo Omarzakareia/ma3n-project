@@ -15,6 +15,15 @@ namespace HospitalSystem.Billings
     {
 
         /// <summary>
+        /// btnToggleVisibility control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnToggleVisibility;
+
+        /// <summary>
         /// txtSearch control.
         /// </summary>
         /// <remarks>
@@ -42,13 +51,13 @@ namespace HospitalSystem.Billings
         protected global::Telerik.Web.UI.RadButton btnResetSearch;
 
         /// <summary>
-        /// pnlActivePatients control.
+        /// pnlPartialBill control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlActivePatients;
+        protected global::System.Web.UI.WebControls.Panel pnlPartialBill;
 
         /// <summary>
         /// RadGridActive control.
@@ -58,5 +67,23 @@ namespace HospitalSystem.Billings
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadGrid RadGridActive;
+
+        /// <summary>
+        /// pnlFullBill control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlFullBill;
+
+        /// <summary>
+        /// RadGridFull control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid RadGridFull;
     }
 }

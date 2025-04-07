@@ -16,5 +16,6 @@ namespace HospitalSystem
     {
         public string Staff { get; set; }
         public Nullable<int> HandledAppointments { get; set; }
+        public Nullable<System.DateTime> AppointmentDate { get; set; }
     }
 }

@@ -22,9 +22,9 @@ namespace HospitalSystem
         public string Phone { get; set; }
         public Nullable<System.DateTime> CreatedAt { get; set; }
         public Nullable<bool> IsLocked { get; set; }
+        public string RoleName { get; set; }
         public Nullable<System.DateTime> DeletedAt { get; set; }
         public Nullable<int> DeletedBy { get; set; }
         public string DeletedByUser { get; set; }
-        public string RoleName { get; set; }
     }
 }

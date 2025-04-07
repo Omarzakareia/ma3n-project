@@ -31,6 +31,41 @@ namespace HospitalSystem.Billings
                 Response.Write("<script>alert('Error: " + ex.Message.Replace("'", "\\'") + "');</script>");
             }
         }
+        protected void RadGridFull_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
+        {
+            try
+            {
+                using (var db = DbService.Instance.GetDbContext())
+                {
+                    var billingData = db.FullPaymentBills.ToList();
+                    RadGridFull.DataSource = billingData;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Response.Write("<script>alert('Error: " + ex.Message.Replace("'", "\\'") + "');</script>");
+            }
+        }
+        protected void btnToggleVisibility_Click(object sender, EventArgs e)
+        {
+            // Toggle visibility of the panels
+            pnlPartialBill.Visible = !pnlPartialBill.Visible;
+            pnlFullBill.Visible = !pnlFullBill.Visible;
+
+            // Change button text based on visibility of panels
+            if (pnlFullBill.Visible)
+            {
+                btnToggleVisibility.Text = "Show Partial Bill";
+                RadGridFull.Rebind();
+            }
+            else
+            {
+                btnToggleVisibility.Text = "Show Full Bill";  
+                RadGridActive.Rebind();
+            }
+        }
+
 
         protected void RadGridActive_ItemCommand(object sender, GridCommandEventArgs e)
         {
