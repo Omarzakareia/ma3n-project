@@ -1,4 +1,5 @@
-﻿using HospitalSystem.Services;
+﻿using HospitalSystem.App_Data;
+using HospitalSystem.Services;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -13,7 +14,8 @@ namespace HospitalSystem.Billings
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            LoadPatients();
+			SecurityService.CheckUserAccess("ADMIN", "STAFF");
+			LoadPatients();
             LoadDoctors();
             LoadBillingVaults();
         }

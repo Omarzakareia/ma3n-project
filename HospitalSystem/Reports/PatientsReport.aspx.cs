@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraReports.Web;
+using HospitalSystem.App_Data;
 using HospitalSystem.Services;
 using System;
 using System.Web.UI;
@@ -13,7 +14,8 @@ namespace HospitalSystem.Reports
         {
             if (!IsPostBack)
             {
-                LoadReport("Daily"); // Load Daily report by default
+				SecurityService.CheckUserAccess("ADMIN");
+				LoadReport("Daily"); // Load Daily report by default
             }
         }
 

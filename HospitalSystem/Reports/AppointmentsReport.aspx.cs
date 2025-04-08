@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using DevExpress.DocumentServices.ServiceModel.DataContracts;
+using HospitalSystem.App_Data;
 
 namespace HospitalSystem.Reports
 {
@@ -14,6 +15,7 @@ namespace HospitalSystem.Reports
 		{
 			if (!IsPostBack)
 			{
+				SecurityService.CheckUserAccess("ADMIN");
 				LoadReport("Daily");
 			}
 		}

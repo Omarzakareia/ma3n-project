@@ -1,4 +1,5 @@
-﻿using HospitalSystem.Services;
+﻿using HospitalSystem.App_Data;
+using HospitalSystem.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,8 @@ namespace HospitalSystem.Patients
         {
             if (!IsPostBack)
             {
-                LoadPatients();
+				SecurityService.CheckUserAccess("ADMIN", "STAFF");
+				LoadPatients();
                 LoadDoctors();
             }
         }

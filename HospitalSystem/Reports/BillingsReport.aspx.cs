@@ -1,4 +1,5 @@
 ﻿using System;
+using HospitalSystem.App_Data;
 namespace HospitalSystem.Reports
 {
 	public partial class BillingsReport : System.Web.UI.Page
@@ -7,7 +8,8 @@ namespace HospitalSystem.Reports
         {
             if (!IsPostBack)
             {
-                LoadReport("Daily");
+				SecurityService.CheckUserAccess("ADMIN");
+				LoadReport("Daily");
             }
         }
 
